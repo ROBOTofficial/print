@@ -1,4 +1,4 @@
-name: print
+name: gh-printer
 description: Outputs the results of the actions to the specified file.
 author: ROBOT
 
