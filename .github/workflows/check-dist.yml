@@ -30,11 +30,11 @@ jobs:
 
       - name: Install Dependencies
         id: install
-        run: npm ci
+        run: npm run ci
 
       - name: Build dist/ Directory
         id: build
-        run: npm run bundle
+        run: npm run build
 
       - name: Compare Directories
         id: diff

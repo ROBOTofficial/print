@@ -5,6 +5,7 @@
 	"type": "module",
 	"private": true,
 	"scripts": {
+		"ci": "npm install",
 		"build": "npx rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
