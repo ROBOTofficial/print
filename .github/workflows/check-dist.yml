@@ -30,7 +30,7 @@ jobs:
 
       - name: Install Dependencies
         id: install
-        run: npm run ci
+        run: npm ci
 
       - name: Build dist/ Directory
         id: build
