@@ -34,7 +34,7 @@ jobs:
 
       - name: Build dist/ Directory
         id: build
-        run: npm run bundle
+        run: npm run build
 
       - name: Compare Directories
         id: diff
