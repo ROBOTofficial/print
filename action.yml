@@ -1,0 +1,11 @@
+name: print
+description: Outputs the results of the actions to the specified file.
+author: ROBOT
+
+branding:
+  icon: printer
+  color: blue
+
+runs:
+  using: node20
+  main: dist/index.js
