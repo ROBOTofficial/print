@@ -18,6 +18,7 @@
 		"typescript": "^5"
 	},
 	"dependencies": {
+		"@actions/core": "^1.11.1",
 		"@eslint/compat": "^1.2.9",
 		"@eslint/eslintrc": "^3.3.1",
 		"@eslint/js": "^9.26.0",
