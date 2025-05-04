@@ -5,7 +5,6 @@
 	"type": "module",
 	"private": true,
 	"scripts": {
-		"ci": "npm install",
 		"build": "npx rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
@@ -40,5 +39,8 @@
 		"ts-jest": "^29.3.2",
 		"ts-jest-resolver": "^2.0.1",
 		"tslib": "^2.8.1"
+	},
+	"optionalDependencies": {
+		"@rollup/rollup-linux-x64-gnu": "*"
 	}
 }
