@@ -4,6 +4,7 @@
 	"module": "dist/index.js",
 	"type": "module",
 	"private": true,
+	"license": "MIT",
 	"scripts": {
 		"build": "npx rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
 		"format": "prettier --write .",
