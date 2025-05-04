@@ -1,5 +1,6 @@
 {
 	"name": "print",
+	"description": "Outputs the results of the actions to the specified file.",
 	"module": "dist/index.js",
 	"type": "module",
 	"private": true,
