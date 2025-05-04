@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sources":[],"sourcesContent":[],"names":[],"mappings":""}
+{"version":3,"file":"index.js","sources":["../src/index.ts"],"sourcesContent":["console.log(\"v0.0.1\");\n"],"names":[],"mappings":"AAAA,OAAO,CAAC,GAAG,CAAC,QAAQ,CAAC"}
