@@ -3,9 +3,11 @@ name: Check Transpiled JavaScript
 on:
   pull_request:
     branches:
+      - main
       - v*
   push:
     branches:
+      - main
       - v*
 
 permissions:
