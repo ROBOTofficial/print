@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["../src/main.ts","../src/index.ts"],"sourcesContent":["export async function run() {}\n","import { run } from \"./main.js\";\n\nrun();\n"],"names":[],"mappings":"AAAO,eAAe,GAAG;;ACEzB,GAAG,EAAE"}
