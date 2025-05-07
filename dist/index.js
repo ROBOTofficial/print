@@ -31236,17 +31236,43 @@ function generatePRBody() {
     return ``;
 }
 
+var execExports = requireExec();
+
+//import * as github from "@actions/github";
+class Git {
+    static async setupUser() {
+        await execExports.exec("git", ["config", "user.name", `"github-actions[bot]"`]);
+        await execExports.exec("git", ["config", "user.email", `"github-actions[bot]@users.noreply.github.com"`]);
+    }
+    static async checkoutBranch(branch) {
+        const { stderr } = await execExports.getExecOutput("git", ["checkout", branch]);
+        const isCreatingBranch = !stderr.toString().includes(`Switched to a new branch '${branch}'`);
+        if (isCreatingBranch) {
+            await execExports.exec("git", ["checkout", "-b", branch]);
+        }
+    }
+    static async commitAll(message) {
+        await execExports.exec("git", ["add", "."]);
+        await execExports.exec("git", ["commit", "-m", message]);
+    }
+    static async pushAll() {
+        await execExports.exec("git", ["push", "origin", "main"]);
+    }
+}
+
 async function run() {
     const outputFile = coreExports.getInput("output-file");
     const ghToken = coreExports.getInput("github-token");
     const branch = githubExports.context.ref.replace("refs/heads/", "");
     const printerBranch = `gh-printer/${branch}`;
+    const title = `Print a result of ${branch}`;
     if (!outputFile) {
         coreExports.setFailed(Error("output-file is not set"));
     }
     if (!ghToken) {
         coreExports.setFailed(Error("github-token is not set"));
     }
+    await Git.setupUser();
     const octokit = generateBot(ghToken);
     const prs = await octokit.rest.pulls.list({
         ...githubExports.context.repo,
@@ -31258,7 +31284,7 @@ async function run() {
         await octokit.rest.pulls.create({
             base: branch,
             head: printerBranch,
-            title: "",
+            title,
             body: generatePRBody(),
             ...githubExports.context.repo
         });
@@ -31268,7 +31294,7 @@ async function run() {
         await octokit.rest.pulls.update({
             ...githubExports.context.repo,
             pull_number: pr.number,
-            title: "",
+            title,
             body: generatePRBody(),
             state: "open"
         });
