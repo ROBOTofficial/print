@@ -11,6 +11,8 @@ inputs:
     description: Used to use the github bot.
   output-file:
     description: gh-printer's output file
+  contents:
+    description: printer contents
 
 outputs:
   output-file:
