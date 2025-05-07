@@ -6,6 +6,16 @@ branding:
   icon: printer
   color: blue
 
+inputs:
+  github-token:
+    description: Used to use the github bot.
+  output-file:
+    description: gh-printer's output file
+
+outputs:
+  output-file:
+    description: gh-printer's output file
+
 runs:
   using: node20
   main: dist/index.js
