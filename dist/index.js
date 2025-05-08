@@ -31245,13 +31245,17 @@ var execExports = requireExec();
 
 class Git {
     static get branchName() {
+        return this.getBranchName(true);
+    }
+    static getBranchName(replace) {
         if (githubExports.context.eventName === "push") {
             return githubExports.context.ref.replace("refs/heads/", "").replace("/", "-");
         }
         else if (githubExports.context.payload.pull_request &&
             githubExports.context.payload.pull_request.head &&
             githubExports.context.payload.pull_request.head.ref) {
-            return githubExports.context.payload.pull_request.head.ref.replace("/", "-");
+            const ref = githubExports.context.payload.pull_request.head.ref;
+            return replace ? ref.replace("/", "-") : ref;
         }
         return null;
     }
@@ -34050,6 +34054,7 @@ async function run() {
     const ghToken = process.env.GITHUB_TOKEN;
     const contents = coreExports.getInput("contents");
     const branch = Git.branchName;
+    const baseBranch = Git.getBranchName(false);
     const printerBranch = `gh-printer/${branch}`;
     const title = `Print a result of ${branch}`;
     if (!outputFile) {
@@ -34064,7 +34069,7 @@ async function run() {
         coreExports.setFailed(Error("contents is not set"));
         return;
     }
-    if (!branch) {
+    if (!branch || !baseBranch) {
         coreExports.setFailed(Error(`Unsupported event type: ${githubExports.context.eventName}`));
         return;
     }
@@ -34085,7 +34090,7 @@ async function run() {
         await octokit.rest.pulls.create({
             owner: githubExports.context.repo.owner,
             repo: githubExports.context.repo.repo,
-            base: githubExports.context.ref,
+            base: baseBranch,
             head: `${githubExports.context.repo.owner}:${printerBranch}`,
             title,
             body: generatePRBody()

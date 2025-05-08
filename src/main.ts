@@ -12,6 +12,7 @@ export async function run() {
 	const contents = core.getInput("contents");
 
 	const branch = Git.branchName;
+	const baseBranch = Git.getBranchName(false);
 	const printerBranch = `gh-printer/${branch}`;
 	const title = `Print a result of ${branch}`;
 
@@ -28,7 +29,7 @@ export async function run() {
 		return;
 	}
 
-	if (!branch) {
+	if (!branch || !baseBranch) {
 		core.setFailed(Error(`Unsupported event type: ${github.context.eventName}`));
 		return;
 	}
@@ -53,7 +54,7 @@ export async function run() {
 		await octokit.rest.pulls.create({
 			owner: github.context.repo.owner,
 			repo: github.context.repo.repo,
-			base: github.context.ref,
+			base: baseBranch,
 			head: `${github.context.repo.owner}:${printerBranch}`,
 			title,
 			body: generatePRBody()
