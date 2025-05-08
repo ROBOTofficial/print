@@ -72,7 +72,7 @@ jobs:
         id: generate-msg
         run: |
           RESULT=$(npm run actions-test)
-          echo "msg=$RESULT" >> "$GITHUB_OUTPUT"
+          echo "msg='$RESULT'" >> "$GITHUB_OUTPUT"
 
   test-action:
     name: GitHub Actions Test
