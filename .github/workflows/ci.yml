@@ -96,18 +96,17 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: test
-      - name: Read Artifact
-        run: |
-          echo "abc='$(cat test.txt)'" > "$GITHUB_ENV"
 
       - name: Test Local Action
-        id: test-action
         uses: ./
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           output-file: ./tests/last-update.txt
           contents: "Updated at ${{ needs.test-unixtime.outputs.unixtime }}."
 
-      - name: Print Output
-        id: output
-        run: echo "${{ steps.test-action.outputs.time }}"
+      - name: Test Local Action
+        uses: ./
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          output-file: ./tests/log.txt
+          input-file: ./test.txt
