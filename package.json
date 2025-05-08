@@ -10,7 +10,8 @@
 		"build": "npx rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
-		"test": "jest"
+		"test": "jest",
+		"actions-test": "echo \"Created by gh-printer.\""
 	},
 	"devDependencies": {
 		"@types/bun": "latest"
