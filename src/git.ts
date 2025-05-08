@@ -9,11 +9,17 @@ export class Git {
 	}
 
 	public static async checkoutBranch(branch: string) {
-		const { stderr } = await getExecOutput("git", ["checkout", branch]);
+		const { stderr } = await getExecOutput("git", ["checkout", branch], {
+			ignoreReturnCode: true
+		});
 		const isCreatingBranch = !stderr.toString().includes(`Switched to a new branch '${branch}'`);
 		if (isCreatingBranch) {
 			await exec("git", ["checkout", "-b", branch]);
 		}
+	}
+
+	public static async reset(pathSpec: string, mode: "hard" | "soft" | "mixed" = "hard") {
+		await exec("git", ["reset", `--${mode}`, pathSpec]);
 	}
 
 	public static async commitAll(message: string) {

@@ -34004,11 +34004,16 @@ class Git {
         await execExports.exec("git", ["config", "user.email", `"github-actions[bot]@users.noreply.github.com"`]);
     }
     static async checkoutBranch(branch) {
-        const { stderr } = await execExports.getExecOutput("git", ["checkout", branch]);
+        const { stderr } = await execExports.getExecOutput("git", ["checkout", branch], {
+            ignoreReturnCode: true
+        });
         const isCreatingBranch = !stderr.toString().includes(`Switched to a new branch '${branch}'`);
         if (isCreatingBranch) {
             await execExports.exec("git", ["checkout", "-b", branch]);
         }
+    }
+    static async reset(pathSpec, mode = "hard") {
+        await execExports.exec("git", ["reset", `--${mode}`, pathSpec]);
     }
     static async commitAll(message) {
         await execExports.exec("git", ["add", "."]);
@@ -34041,6 +34046,7 @@ async function run() {
     const filePath = join(process.cwd(), outputFile);
     await Git.setupUser();
     await Git.checkoutBranch(printerBranch);
+    await Git.reset(githubExports.context.sha);
     await libExports.writeFile(filePath, contents);
     await Git.commitAll(title);
     await Git.pushAll();
