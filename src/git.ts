@@ -4,6 +4,10 @@ import { exec, getExecOutput } from "@actions/exec";
 
 export class Git {
 	public static get branchName() {
+		return this.getBranchName(true);
+	}
+
+	public static getBranchName(replace?: boolean) {
 		if (github.context.eventName === "push") {
 			return github.context.ref.replace("refs/heads/", "").replace("/", "-");
 		} else if (
@@ -11,7 +15,8 @@ export class Git {
 			github.context.payload.pull_request.head &&
 			github.context.payload.pull_request.head.ref
 		) {
-			return github.context.payload.pull_request.head.ref.replace("/", "-");
+			const ref: string = github.context.payload.pull_request.head.ref;
+			return replace ? ref.replace("/", "-") : ref;
 		}
 		return null;
 	}
