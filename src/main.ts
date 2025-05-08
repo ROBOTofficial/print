@@ -1,10 +1,10 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
-import { writeFile } from "fs-extra";
 import { join } from "path";
 
 import { generateBot, generatePRBody } from "./bot.js";
 import { Git } from "./git.js";
+import { createFile } from "./file.js";
 
 export async function run() {
 	const outputFile = core.getInput("output-file");
@@ -37,7 +37,7 @@ export async function run() {
 
 	await Git.setupUser();
 	await Git.checkoutBranch(printerBranch);
-	await writeFile(filePath, contents);
+	await createFile(filePath, contents);
 	await Git.commitAll(title);
 	await Git.pushAll(printerBranch);
 

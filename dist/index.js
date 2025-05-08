@@ -31230,6 +31230,56 @@ function requireGithub () {
 
 var githubExports = requireGithub();
 
+function generateBot(token) {
+    return githubExports.getOctokit(token);
+}
+function generatePRBody() {
+    const body = [
+        "This pull request was created by gh printer.",
+        "Please merge after confirming the contents."
+    ];
+    return body.join("\n");
+}
+
+var execExports = requireExec();
+
+class Git {
+    static get branchName() {
+        if (githubExports.context.eventName === "push") {
+            return githubExports.context.ref.replace("refs/heads/", "").replace("/", "-");
+        }
+        else if (githubExports.context.payload.pull_request &&
+            githubExports.context.payload.pull_request.head &&
+            githubExports.context.payload.pull_request.head.ref) {
+            return githubExports.context.payload.pull_request.head.ref.replace("/", "-");
+        }
+        return null;
+    }
+    static async setupUser() {
+        await execExports.exec("git", ["config", "user.name", `"github-actions[bot]"`]);
+        await execExports.exec("git", ["config", "user.email", `"github-actions[bot]@users.noreply.github.com"`]);
+    }
+    static async checkoutBranch(branch) {
+        const { stderr } = await execExports.getExecOutput("git", ["checkout", branch], {
+            ignoreReturnCode: true
+        });
+        const isCreatingBranch = !stderr.toString().includes(`Switched to a new branch '${branch}'`);
+        if (isCreatingBranch) {
+            await execExports.exec("git", ["checkout", "-b", branch]);
+        }
+    }
+    static async reset(pathSpec, mode = "hard") {
+        await execExports.exec("git", ["reset", `--${mode}`, pathSpec]);
+    }
+    static async commitAll(message) {
+        await execExports.exec("git", ["add", "."]);
+        await execExports.exec("git", ["commit", "-m", message]);
+    }
+    static async pushAll(branchName) {
+        await execExports.exec("git", ["push", "-u", "origin", branchName ?? "main"]);
+    }
+}
+
 var fs = {};
 
 var universalify = {};
@@ -33984,53 +34034,14 @@ function requireLib () {
 
 var libExports = /*@__PURE__*/ requireLib();
 
-function generateBot(token) {
-    return githubExports.getOctokit(token);
-}
-function generatePRBody() {
-    const body = [
-        "This pull request was created by gh printer.",
-        "Please merge after confirming the contents."
-    ];
-    return body.join("\n");
-}
-
-var execExports = requireExec();
-
-class Git {
-    static get branchName() {
-        if (githubExports.context.eventName === "push") {
-            return githubExports.context.ref.replace("refs/heads/", "").replace("/", "-");
-        }
-        else if (githubExports.context.payload.pull_request &&
-            githubExports.context.payload.pull_request.head &&
-            githubExports.context.payload.pull_request.head.ref) {
-            return githubExports.context.payload.pull_request.head.ref.replace("/", "-");
-        }
-        return null;
+async function createFile(filePath, data, options) {
+    try {
+        await libExports.writeFile(filePath, data, options);
     }
-    static async setupUser() {
-        await execExports.exec("git", ["config", "user.name", `"github-actions[bot]"`]);
-        await execExports.exec("git", ["config", "user.email", `"github-actions[bot]@users.noreply.github.com"`]);
-    }
-    static async checkoutBranch(branch) {
-        const { stderr } = await execExports.getExecOutput("git", ["checkout", branch], {
-            ignoreReturnCode: true
-        });
-        const isCreatingBranch = !stderr.toString().includes(`Switched to a new branch '${branch}'`);
-        if (isCreatingBranch) {
-            await execExports.exec("git", ["checkout", "-b", branch]);
-        }
-    }
-    static async reset(pathSpec, mode = "hard") {
-        await execExports.exec("git", ["reset", `--${mode}`, pathSpec]);
-    }
-    static async commitAll(message) {
-        await execExports.exec("git", ["add", "."]);
-        await execExports.exec("git", ["commit", "-m", message]);
-    }
-    static async pushAll(branchName) {
-        await execExports.exec("git", ["push", "-u", "origin", branchName ?? "main"]);
+    catch {
+        const dir = filePath.substring(0, filePath.replaceAll("\\", "/").lastIndexOf("/"));
+        await libExports.mkdir(dir, { recursive: true });
+        return await createFile(filePath, data, options);
     }
 }
 
@@ -34060,7 +34071,7 @@ async function run() {
     const filePath = join(process.cwd(), outputFile);
     await Git.setupUser();
     await Git.checkoutBranch(printerBranch);
-    await libExports.writeFile(filePath, contents);
+    await createFile(filePath, contents);
     await Git.commitAll(title);
     await Git.pushAll(printerBranch);
     const octokit = generateBot(ghToken);
