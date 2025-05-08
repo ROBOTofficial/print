@@ -77,7 +77,29 @@ jobs:
           name: test
           path: test.txt
 
-  test-action:
+  test-action-contents:
+    name: GitHub Actions Test
+
+    permissions:
+      pull-requests: write
+      contents: write
+
+    runs-on: ubuntu-latest
+    needs: test-unixtime
+
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Test Local Action
+        uses: ./
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          output-file: ./tests/last-update.txt
+          contents: "Updated at ${{ needs.test-unixtime.outputs.unixtime }}."
+
+  test-action-file:
     name: GitHub Actions Test
 
     permissions:
@@ -96,13 +118,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: test
-
-      - name: Test Local Action
-        uses: ./
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          output-file: ./tests/last-update.txt
-          contents: "Updated at ${{ needs.test-unixtime.outputs.unixtime }}."
 
       - name: Test Local Action
         uses: ./
