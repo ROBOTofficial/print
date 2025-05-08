@@ -47,16 +47,16 @@ jobs:
     name: Generate Update Log
     runs-on: ubuntu-latest
 
+    env:
+      unixtime: 0
+
     steps:
       - name: Get Unixtime
         id: get-unixtime
         run: echo "unixtime=$(date +%s)" >> $GITHUB_ENV
 
-      - name: test
-        run: echo "$(date +%s)"
-
     outputs:
-      unixtime: ${{ steps.get-unixtime.outputs.unixtime }}
+      unixtime: ${{ env.unixtime }}
 
   test-action:
     name: GitHub Actions Test
