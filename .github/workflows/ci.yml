@@ -50,10 +50,13 @@ jobs:
     steps:
       - name: Get Unixtime
         id: get-unixtime
-        run: echo "UNIX_TIME=$(date +%s)" >> $GITHUB_ENV
+        run: echo "unixtime=$(date +%s)" >> $GITHUB_ENV
+
+      - name: test
+        run: echo "$(date +%s)"
 
     outputs:
-      unixtime: ${{ steps.get-unixtime.outputs.UNIX_TIME }}
+      unixtime: ${{ steps.get-unixtime.outputs.unixtime }}
 
   test-action:
     name: GitHub Actions Test
