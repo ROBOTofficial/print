@@ -34000,12 +34000,12 @@ var execExports = requireExec();
 class Git {
     static get branchName() {
         if (githubExports.context.eventName === "push") {
-            return githubExports.context.ref.replace("refs/heads/", "");
+            return githubExports.context.ref.replace("refs/heads/", "").replace("/", "-");
         }
         else if (githubExports.context.payload.pull_request &&
             githubExports.context.payload.pull_request.head &&
             githubExports.context.payload.pull_request.head.ref) {
-            return githubExports.context.payload.pull_request.head.ref;
+            return githubExports.context.payload.pull_request.head.ref.replace("/", "-");
         }
         return null;
     }
@@ -34030,7 +34030,7 @@ class Git {
         await execExports.exec("git", ["commit", "-m", message]);
     }
     static async pushAll(branchName) {
-        await execExports.exec("git", ["push", "origin", branchName ?? "main"]);
+        await execExports.exec("git", ["push", "-u", "origin", branchName ?? "main"]);
     }
 }
 

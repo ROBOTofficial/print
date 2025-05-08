@@ -5,13 +5,13 @@ import { exec, getExecOutput } from "@actions/exec";
 export class Git {
 	public static get branchName() {
 		if (github.context.eventName === "push") {
-			return github.context.ref.replace("refs/heads/", "");
+			return github.context.ref.replace("refs/heads/", "").replace("/", "-");
 		} else if (
 			github.context.payload.pull_request &&
 			github.context.payload.pull_request.head &&
 			github.context.payload.pull_request.head.ref
 		) {
-			return github.context.payload.pull_request.head.ref;
+			return github.context.payload.pull_request.head.ref.replace("/", "-");
 		}
 		return null;
 	}
