@@ -51,16 +51,18 @@ export async function run() {
 
 	if (!prs.data.length) {
 		await octokit.rest.pulls.create({
+			owner: github.context.repo.owner,
+			repo: github.context.repo.repo,
 			base: branch,
 			head: `${github.context.repo.owner}:${printerBranch}`,
 			title,
-			body: generatePRBody(),
-			...github.context.repo
+			body: generatePRBody()
 		});
 	} else {
 		const [pr] = prs.data;
 		await octokit.rest.pulls.update({
-			...github.context.repo,
+			owner: github.context.repo.owner,
+			repo: github.context.repo.repo,
 			pull_number: pr.number,
 			title,
 			body: generatePRBody(),

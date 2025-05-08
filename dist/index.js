@@ -34083,17 +34083,19 @@ async function run() {
     });
     if (!prs.data.length) {
         await octokit.rest.pulls.create({
+            owner: githubExports.context.repo.owner,
+            repo: githubExports.context.repo.repo,
             base: branch,
             head: `${githubExports.context.repo.owner}:${printerBranch}`,
             title,
-            body: generatePRBody(),
-            ...githubExports.context.repo
+            body: generatePRBody()
         });
     }
     else {
         const [pr] = prs.data;
         await octokit.rest.pulls.update({
-            ...githubExports.context.repo,
+            owner: githubExports.context.repo.owner,
+            repo: githubExports.context.repo.repo,
             pull_number: pr.number,
             title,
             body: generatePRBody(),
