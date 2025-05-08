@@ -52,9 +52,21 @@ jobs:
       message: ${{ steps.generate-msg.outcome.msg }}
 
     steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        id: setup-node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
       - name: Get Unixtime
         id: get-unixtime
         run: echo "unixtime=$(date +%s)" >> "$GITHUB_OUTPUT"
+
       - name: Generate Message
         id: generate-msg
         run: echo "msg=$(npm run actions-test)" >> "$GITHUB_OUTPUT"
