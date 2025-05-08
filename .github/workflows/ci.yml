@@ -49,7 +49,6 @@ jobs:
 
     outputs:
       unixtime: ${{ steps.get-unixtime.outputs.unixtime }}
-      msg: ${{ steps.generate-msg.outputs.msg }}
 
     steps:
       - name: Checkout
@@ -70,9 +69,13 @@ jobs:
 
       - name: Generate Message
         id: generate-msg
-        run: |
-          RESULT=$(npm run "actions")
-          echo "msg=$RESULT" >> "$GITHUB_OUTPUT"
+        run: echo "$(npm run actions)" > test.txt
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: test
+          path: test.txt
 
   test-action:
     name: GitHub Actions Test
@@ -88,6 +91,14 @@ jobs:
       - name: Checkout
         id: checkout
         uses: actions/checkout@v4
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: test
+      - name: Read Artifact
+        run: |
+          echo "abc='$(cat test.txt)'" > "$GITHUB_ENV"
 
       - name: Test Local Action
         id: test-action
