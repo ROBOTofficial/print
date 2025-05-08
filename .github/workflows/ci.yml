@@ -71,7 +71,7 @@ jobs:
 
       - name: Generate Message
         id: generate-msg
-        run: npm run actions-test
+        run: RESULT=$(npm run actions-test)
 
   test-action:
     name: GitHub Actions Test
