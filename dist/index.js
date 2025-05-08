@@ -34030,8 +34030,14 @@ class Git {
         await execExports.exec("git", ["reset", `--${mode}`, pathSpec]);
     }
     static async commitAll(message) {
-        await execExports.exec("git", ["add", "."]);
-        await execExports.exec("git", ["commit", "-m", message]);
+        try {
+            await execExports.exec("git", ["add", "."]);
+            await execExports.exec("git", ["commit", "-m", message]);
+            return true;
+        }
+        catch {
+            return false;
+        }
     }
     static async pushAll(branchName, force) {
         await execExports.exec("git", ["push", "origin", `HEAD:${branchName}`, force ? "--force" : null].filter((value) => value !== null));
@@ -34089,7 +34095,10 @@ async function run() {
     await Git.setupUser();
     await Git.checkoutBranch(printerBranch);
     await createFile(filePath, contents);
-    await Git.commitAll(title);
+    if (!(await Git.commitAll(title))) {
+        coreExports.info("No changes in this branch");
+        return;
+    }
     await Git.pushAll(printerBranch, true);
     const octokit = generateBot(ghToken);
     const prs = await octokit.rest.pulls.list({

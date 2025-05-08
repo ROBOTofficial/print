@@ -41,8 +41,13 @@ export class Git {
 	}
 
 	public static async commitAll(message: string) {
-		await exec("git", ["add", "."]);
-		await exec("git", ["commit", "-m", message]);
+		try {
+			await exec("git", ["add", "."]);
+			await exec("git", ["commit", "-m", message]);
+			return true;
+		} catch {
+			return false;
+		}
 	}
 
 	public static async pushAll(branchName: string, force?: boolean) {

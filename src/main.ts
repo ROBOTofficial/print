@@ -52,7 +52,10 @@ export async function run() {
 	await Git.setupUser();
 	await Git.checkoutBranch(printerBranch);
 	await createFile(filePath, contents);
-	await Git.commitAll(title);
+	if (!(await Git.commitAll(title))) {
+		core.info("No changes in this branch");
+		return;
+	}
 	await Git.pushAll(printerBranch, true);
 
 	const octokit = generateBot(ghToken);
