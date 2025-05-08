@@ -29,7 +29,7 @@ jobs:
         id: checkout
         uses: actions/checkout@v4
 
-      - name: Test Local Action
+      - name: Print
         uses: ROBOTofficial/print@1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -66,13 +66,13 @@ jobs:
         run: npm ci
 
       - name: Benchmark
-        run: echo "$(npm run benchmark)" > benchmark.txt
+        run: echo "$(npm run benchmark)" > tmp.txt
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: benchmark
-          path: benchmark.txt
+          path: tmp.txt
 
   printer:
     name: Printer
@@ -93,12 +93,12 @@ jobs:
         with:
           name: benchmark
 
-      - name: Test Local Action
-        uses: ./
+      - name: Print
+        uses: ROBOTofficial/print@1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           output-file: ./benchmark.txt
-          input-file: ./benchmark.txt
+          input-file: ./tmp.txt
 ```
 
 ## For contributors
