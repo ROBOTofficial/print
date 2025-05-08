@@ -7,8 +7,6 @@ branding:
   color: blue
 
 inputs:
-  github-token:
-    description: Used to use the github bot.
   output-file:
     description: gh-printer's output file
   contents:
