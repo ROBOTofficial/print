@@ -34084,7 +34084,7 @@ async function run() {
     if (!prs.data.length) {
         await octokit.rest.pulls.create({
             base: branch,
-            head: printerBranch,
+            head: `${githubExports.context.repo.owner}:${printerBranch}`,
             title,
             body: generatePRBody(),
             ...githubExports.context.repo
