@@ -71,7 +71,7 @@ jobs:
       - name: Generate Message
         id: generate-msg
         run: |
-          RESULT=$(npm run "actions-test")
+          RESULT=$(npm run "test:actions")
           echo "msg=$RESULT" >> "$GITHUB_OUTPUT"
 
   test-action:
