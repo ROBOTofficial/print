@@ -60,9 +60,10 @@ jobs:
         uses: ./
         with:
           output-file: ./tests/log.txt
-          contents: ${{ steps.get-unixtime.outputs.UNIX_TIME }}
+          contents: Updated at ${{ env.UNIX_TIME }}.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          UNIX_TIME: ${{ steps.get-unixtime.outputs.UNIX_TIME }}
 
       - name: Print Output
         id: output
