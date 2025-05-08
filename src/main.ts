@@ -47,7 +47,7 @@ export async function run() {
 		...github.context.repo,
 		state: "open",
 		head: `${github.context.repo.owner}:${printerBranch}`,
-		base: branch
+		base: baseBranch
 	});
 
 	if (!prs.data.length) {

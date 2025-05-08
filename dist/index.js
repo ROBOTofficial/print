@@ -34084,7 +34084,7 @@ async function run() {
         ...githubExports.context.repo,
         state: "open",
         head: `${githubExports.context.repo.owner}:${printerBranch}`,
-        base: branch
+        base: baseBranch
     });
     if (!prs.data.length) {
         await octokit.rest.pulls.create({
