@@ -1,8 +1,21 @@
-//import * as github from "@actions/github";
+import * as github from "@actions/github";
 
 import { exec, getExecOutput } from "@actions/exec";
 
 export class Git {
+	public static get branchName() {
+		if (github.context.eventName === "push") {
+			return github.context.ref.replace("refs/heads/", "");
+		} else if (
+			github.context.payload.pull_request &&
+			github.context.payload.pull_request.head &&
+			github.context.payload.pull_request.head.ref
+		) {
+			return github.context.payload.pull_request.head.ref;
+		}
+		return null;
+	}
+
 	public static async setupUser() {
 		await exec("git", ["config", "user.name", `"github-actions[bot]"`]);
 		await exec("git", ["config", "user.email", `"github-actions[bot]@users.noreply.github.com"`]);
