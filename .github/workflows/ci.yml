@@ -69,6 +69,10 @@ jobs:
         id: get-unixtime
         run: echo "unixtime=$(date +%s)" >> "$GITHUB_OUTPUT"
 
+      - name: Generate Message
+        id: generate-msg
+        run: npm run actions-test
+
   test-action:
     name: GitHub Actions Test
 
