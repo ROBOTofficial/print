@@ -49,7 +49,7 @@ jobs:
 
     outputs:
       unixtime: ${{ steps.get-unixtime.outputs.unixtime }}
-      message: ${{ steps.generate-msg.outcome.msg }}
+      message: ${{ steps.generate-msg.outputs.msg }}
 
     steps:
       - name: Checkout
