@@ -34051,7 +34051,7 @@ async function createFile(filePath, data, options) {
 
 async function run() {
     const outputFile = coreExports.getInput("output-file");
-    const ghToken = process.env.GITHUB_TOKEN;
+    const ghToken = coreExports.getInput("github-token");
     const contents = coreExports.getInput("contents");
     const branch = Git.branchName;
     const baseBranch = Git.getBranchName(false);

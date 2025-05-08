@@ -64,12 +64,12 @@ jobs:
       - name: Test Local Action
         id: test-action
         uses: ./
+        env:
+          UNIX_TIME: ${{ steps.get-unixtime.outputs.UNIX_TIME }}
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           output-file: ./tests/log.txt
           contents: Updated at ${{ env.UNIX_TIME }}.
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          UNIX_TIME: ${{ steps.get-unixtime.outputs.UNIX_TIME }}
 
       - name: Print Output
         id: output

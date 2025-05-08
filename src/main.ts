@@ -8,7 +8,7 @@ import { createFile } from "./file.js";
 
 export async function run() {
 	const outputFile = core.getInput("output-file");
-	const ghToken = process.env.GITHUB_TOKEN;
+	const ghToken = core.getInput("github-token");
 	const contents = core.getInput("contents");
 
 	const branch = Git.branchName;

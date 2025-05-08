@@ -7,6 +7,8 @@ branding:
   color: blue
 
 inputs:
+  github-token:
+    description: gh-printer's github token
   output-file:
     description: gh-printer's output file
   contents:
