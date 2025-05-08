@@ -47,16 +47,17 @@ jobs:
     name: Generate Update Log
     runs-on: ubuntu-latest
 
-    env:
-      unixtime: 0
+    outputs:
+      unixtime: ${{ steps.get-unixtime.outputs.unixtime }}
+      message: ${{ steps.generate-msg.outcome.msg }}
 
     steps:
       - name: Get Unixtime
         id: get-unixtime
-        run: echo "unixtime=$(date +%s)" >> $GITHUB_ENV
-
-    outputs:
-      unixtime: ${{ env.unixtime }}
+        run: echo "unixtime=$(date +%s)" >> "$GITHUB_OUTPUT"
+      - name: Generate Message
+        id: generate-msg
+        run: echo "msg=$(npm run actions-test)" >> "$GITHUB_OUTPUT"
 
   test-action:
     name: GitHub Actions Test
@@ -79,7 +80,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           output-file: ./tests/last-update.txt
-          contents: "Updated at ${{ needs.test-unixtime.outputs.unixtime }}."
+          contents: "Updated at ${{ needs.test-unixtime.outputs.unixtime }}. ${{ needs.test-unixtime.outputs.message }}"
 
       - name: Print Output
         id: output
