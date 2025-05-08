@@ -61,15 +61,19 @@ jobs:
         id: get-unixtime
         run: echo "UNIX_TIME=$(date +%s)" >> $GITHUB_ENV
 
+      - name: Get update log
+        id: get-update-log
+        run: echo "UPDATE_LOG='Updated at ${{ steps.get-unixtime.outputs.UNIX_TIME }}.'" >> $GITHUB_ENV
+
       - name: Test Local Action
         id: test-action
         uses: ./
         env:
-          UNIX_TIME: ${{ steps.get-unixtime.outputs.UNIX_TIME }}
+          LOG: ${{ steps.get-update-log.outputs.UPDATE_LOG }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          output-file: ./tests/log.txt
-          contents: Updated at ${{ env.UNIX_TIME }}.
+          output-file: ./tests/update.txt
+          contents: Updated at ${{ env.LOG }}.
 
       - name: Print Output
         id: output
