@@ -34073,7 +34073,7 @@ async function run() {
     await Git.checkoutBranch(printerBranch);
     await createFile(filePath, contents);
     await Git.commitAll(title);
-    await Git.pushAll(printerBranch);
+    await Git.pushAll(printerBranch, true);
     const octokit = generateBot(ghToken);
     const prs = await octokit.rest.pulls.list({
         ...githubExports.context.repo,
