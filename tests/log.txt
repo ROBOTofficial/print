@@ -1,0 +1,5 @@
+
+> gh-printer@1.0.0 actions
+> echo "Created by gh-printer."
+
+Created by gh-printer.
