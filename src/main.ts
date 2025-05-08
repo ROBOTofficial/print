@@ -37,7 +37,6 @@ export async function run() {
 
 	await Git.setupUser();
 	await Git.checkoutBranch(printerBranch);
-	await Git.reset(github.context.sha);
 	await writeFile(filePath, contents);
 	await Git.commitAll(title);
 	await Git.pushAll(printerBranch);

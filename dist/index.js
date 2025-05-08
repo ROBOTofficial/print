@@ -34060,7 +34060,6 @@ async function run() {
     const filePath = join(process.cwd(), outputFile);
     await Git.setupUser();
     await Git.checkoutBranch(printerBranch);
-    await Git.reset(githubExports.context.sha);
     await libExports.writeFile(filePath, contents);
     await Git.commitAll(title);
     await Git.pushAll(printerBranch);
