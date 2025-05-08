@@ -63,6 +63,9 @@ jobs:
           node-version-file: .node-version
           cache: npm
 
+      - name: Install Dependencies
+        run: npm ci
+
       - name: Get Unixtime
         id: get-unixtime
         run: echo "unixtime=$(date +%s)" >> "$GITHUB_OUTPUT"
