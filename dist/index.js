@@ -31275,13 +31275,8 @@ class Git {
         await execExports.exec("git", ["add", "."]);
         await execExports.exec("git", ["commit", "-m", message]);
     }
-    static async pushAll(branchName) {
-        try {
-            await execExports.exec("git", ["push", "-u", "origin", branchName ?? "main"]);
-        }
-        catch {
-            await execExports.exec("git", ["push"]);
-        }
+    static async pushAll(branchName, force) {
+        await execExports.exec("git", ["push", "origin", `HEAD:${branchName}`, force ? "--force" : null].filter((value) => value !== null));
     }
 }
 

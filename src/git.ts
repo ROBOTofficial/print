@@ -40,11 +40,12 @@ export class Git {
 		await exec("git", ["commit", "-m", message]);
 	}
 
-	public static async pushAll(branchName?: string) {
-		try {
-			await exec("git", ["push", "-u", "origin", branchName ?? "main"]);
-		} catch {
-			await exec("git", ["push"]);
-		}
+	public static async pushAll(branchName: string, force?: boolean) {
+		await exec(
+			"git",
+			["push", "origin", `HEAD:${branchName}`, force ? "--force" : null].filter(
+				(value) => value !== null
+			)
+		);
 	}
 }
