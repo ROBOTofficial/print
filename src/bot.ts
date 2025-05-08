@@ -5,5 +5,9 @@ export function generateBot(token: string) {
 }
 
 export function generatePRBody(): string {
-	return ``;
+	const body = [
+		"This pull request was created by gh printer.",
+		"Please merge after confirming the contents."
+	];
+	return body.join("\n");
 }

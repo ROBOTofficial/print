@@ -1,24 +1,40 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
+import { writeFile } from "fs-extra";
+import { join } from "path";
 
 import { generateBot, generatePRBody } from "./bot.js";
 import { Git } from "./git.js";
 
 export async function run() {
 	const outputFile = core.getInput("output-file");
-	const ghToken = core.getInput("github-token");
+	const ghToken = process.env.GITHUB_TOKEN;
+	const contents = core.getInput("contents");
+
 	const branch = github.context.ref.replace("refs/heads/", "");
 	const printerBranch = `gh-printer/${branch}`;
 	const title = `Print a result of ${branch}`;
 
 	if (!outputFile) {
 		core.setFailed(Error("output-file is not set"));
+		return;
 	}
 	if (!ghToken) {
 		core.setFailed(Error("github-token is not set"));
+		return;
+	}
+	if (!contents) {
+		core.setFailed(Error("contents is not set"));
+		return;
 	}
 
+	const filePath = join(process.cwd(), outputFile);
+
 	await Git.setupUser();
+	await Git.checkoutBranch(printerBranch);
+	await writeFile(filePath, contents);
+	await Git.commitAll(title);
+	await Git.pushAll();
 
 	const octokit = generateBot(ghToken);
 	const prs = await octokit.rest.pulls.list({
