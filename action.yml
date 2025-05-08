@@ -11,6 +11,8 @@ inputs:
     description: gh-printer's github token
   output-file:
     description: gh-printer's output file
+  input-file:
+    description: gh-printer's input file
   contents:
     description: printer contents
 
