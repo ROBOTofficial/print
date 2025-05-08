@@ -5,10 +5,6 @@ on:
     branches:
       - main
       - v*
-  push:
-    branches:
-      - main
-      - v*
 
 permissions:
   contents: read

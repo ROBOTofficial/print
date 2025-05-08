@@ -34029,9 +34029,12 @@ class Git {
     static async reset(pathSpec, mode = "hard") {
         await execExports.exec("git", ["reset", `--${mode}`, pathSpec]);
     }
-    static async commitAll(message) {
+    static async commitAll(message, ignoreFiles) {
         try {
             await execExports.exec("git", ["add", "."]);
+            for (const filePath of ignoreFiles ?? []) {
+                await execExports.exec("git", ["reset", "HEAD", filePath]);
+            }
             await execExports.exec("git", ["commit", "-m", message]);
             return true;
         }
@@ -34067,6 +34070,10 @@ async function getContents() {
         return null;
     }
 }
+async function getInputFileOption() {
+    const inputFilePath = coreExports.getInput("input-file");
+    return inputFilePath ? join(process.cwd(), inputFilePath) : null;
+}
 async function run() {
     const outputFile = coreExports.getInput("output-file");
     const ghToken = coreExports.getInput("github-token");
@@ -34095,7 +34102,7 @@ async function run() {
     await Git.setupUser();
     await Git.checkoutBranch(printerBranch);
     await createFile(filePath, contents);
-    if (!(await Git.commitAll(title))) {
+    if (!(await Git.commitAll(title, [await getInputFileOption()].filter((value) => value !== null)))) {
         coreExports.info("No changes in this branch");
         return;
     }
