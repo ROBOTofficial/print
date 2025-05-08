@@ -53,7 +53,7 @@ export async function run() {
 		await octokit.rest.pulls.create({
 			owner: github.context.repo.owner,
 			repo: github.context.repo.repo,
-			base: branch,
+			base: github.context.ref,
 			head: `${github.context.repo.owner}:${printerBranch}`,
 			title,
 			body: generatePRBody()
