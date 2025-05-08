@@ -79,7 +79,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           output-file: ./tests/last-update.txt
-          contents: ${{ needs.test-unixtime.outputs.unixtime }}
+          contents: "Updated at ${{ needs.test-unixtime.outputs.unixtime }}."
 
       - name: Print Output
         id: output
