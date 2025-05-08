@@ -44,7 +44,7 @@ export class Git {
 		try {
 			await exec("git", ["push", "-u", "origin", branchName ?? "main"]);
 		} catch {
-			await exec("git", ["push", "origin", branchName ?? "main"]);
+			await exec("git", ["push"]);
 		}
 	}
 }
