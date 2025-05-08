@@ -31280,7 +31280,7 @@ class Git {
             await execExports.exec("git", ["push", "-u", "origin", branchName ?? "main"]);
         }
         catch {
-            await execExports.exec("git", ["push", "origin", branchName ?? "main"]);
+            await execExports.exec("git", ["push"]);
         }
     }
 }
