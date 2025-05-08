@@ -10,12 +10,13 @@ on:
       - main
       - v*
 
-permissions:
-  contents: read
-
 jobs:
   test-typescript:
     name: TypeScript Tests
+
+    permissions:
+      contents: read
+
     runs-on: ubuntu-latest
 
     steps:
@@ -42,9 +43,30 @@ jobs:
         id: npm-ci-test
         run: npm run ci-test
 
+  test-unixtime:
+    name: Generate Update Log
+    runs-on: ubuntu-latest
+
+    env:
+      unixtime: 0
+
+    steps:
+      - name: Get Unixtime
+        id: get-unixtime
+        run: echo "unixtime=$(date +%s)" >> $GITHUB_ENV
+
+    outputs:
+      unixtime: ${{ env.unixtime }}
+
   test-action:
     name: GitHub Actions Test
+
+    permissions:
+      pull-requests: write
+      contents: write
+
     runs-on: ubuntu-latest
+    needs: test-unixtime
 
     steps:
       - name: Checkout
@@ -55,7 +77,9 @@ jobs:
         id: test-action
         uses: ./
         with:
-          milliseconds: 2000
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          output-file: ./tests/last-update.txt
+          contents: "Updated at ${{ needs.test-unixtime.outputs.unixtime }}."
 
       - name: Print Output
         id: output
