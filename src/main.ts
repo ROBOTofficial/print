@@ -19,6 +19,11 @@ async function getContents(): Promise<string | null> {
 	}
 }
 
+async function getInputFileOption() {
+	const inputFilePath = core.getInput("input-file");
+	return inputFilePath ? join(process.cwd(), inputFilePath) : null;
+}
+
 export async function run() {
 	const outputFile = core.getInput("output-file");
 	const ghToken = core.getInput("github-token");
@@ -52,7 +57,12 @@ export async function run() {
 	await Git.setupUser();
 	await Git.checkoutBranch(printerBranch);
 	await createFile(filePath, contents);
-	if (!(await Git.commitAll(title))) {
+	if (
+		!(await Git.commitAll(
+			title,
+			[await getInputFileOption()].filter((value) => value !== null)
+		))
+	) {
 		core.info("No changes in this branch");
 		return;
 	}
