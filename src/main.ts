@@ -1,15 +1,28 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
 import { join } from "path";
+import { readFile } from "fs-extra";
 
 import { generateBot, generatePRBody } from "./bot.js";
 import { Git } from "./git.js";
 import { createFile } from "./file.js";
 
+async function getContents(): Promise<string | null> {
+	try {
+		const inputFilePath = core.getInput("input-file");
+		if (inputFilePath) {
+			return await readFile(join(process.cwd(), inputFilePath), "utf-8");
+		}
+		return core.getInput("contents");
+	} catch {
+		return null;
+	}
+}
+
 export async function run() {
 	const outputFile = core.getInput("output-file");
 	const ghToken = core.getInput("github-token");
-	const contents = core.getInput("contents");
+	const contents = await getContents();
 
 	const branch = Git.branchName;
 	const baseBranch = Git.getBranchName(false);
@@ -25,7 +38,7 @@ export async function run() {
 		return;
 	}
 	if (!contents) {
-		core.setFailed(Error("contents is not set"));
+		core.setFailed(Error("please set input-file or contents"));
 		return;
 	}
 

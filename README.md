@@ -1,6 +1,109 @@
-# `print` (Comming soon)
+# `gh-printer`
 
 Outputs the results of the actions to the specified file.
+
+## Usage
+
+#### Hello World
+
+```yml
+name: Hello World
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Greet
+
+    permissions:
+      pull-requests: write
+      contents: write
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Test Local Action
+        uses: ROBOTofficial/print@1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          output-file: ./test.log
+          contents: "Hi!!!"
+```
+
+#### Benchmark
+
+```yml
+name: Benchmark
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  benchmark:
+    name: Benchmark
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Benchmark
+        run: echo "$(npm run benchmark)" > benchmark.txt
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark
+          path: benchmark.txt
+
+  printer:
+    name: Printer
+
+    permissions:
+      pull-requests: write
+      contents: write
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: benchmark
+
+      - name: Test Local Action
+        uses: ./
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          output-file: ./benchmark.txt
+          input-file: ./benchmark.txt
+```
+
+## For contributors
+
+Please look [this](./.github/CONTRIBUTING.md).
 
 ## Respect
 

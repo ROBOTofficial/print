@@ -1,6 +1,7 @@
 {
 	"name": "gh-printer",
 	"description": "Outputs the results of the actions to the specified file.",
+	"version": "1.0.0",
 	"module": "dist/index.js",
 	"type": "module",
 	"private": true,
@@ -10,7 +11,8 @@
 		"build": "npx rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
-		"test": "jest"
+		"test": "jest",
+		"actions": "echo \"Created by gh-printer.\""
 	},
 	"devDependencies": {
 		"@types/bun": "latest"

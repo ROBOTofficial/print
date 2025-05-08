@@ -31230,60 +31230,6 @@ function requireGithub () {
 
 var githubExports = requireGithub();
 
-function generateBot(token) {
-    return githubExports.getOctokit(token);
-}
-function generatePRBody() {
-    const body = [
-        "This pull request was created by gh printer.",
-        "Please merge after confirming the contents."
-    ];
-    return body.join("\n");
-}
-
-var execExports = requireExec();
-
-class Git {
-    static get branchName() {
-        return this.getBranchName(true);
-    }
-    static getBranchName(replace) {
-        if (githubExports.context.eventName === "push") {
-            return githubExports.context.ref.replace("refs/heads/", "").replace("/", "-");
-        }
-        else if (githubExports.context.payload.pull_request &&
-            githubExports.context.payload.pull_request.head &&
-            githubExports.context.payload.pull_request.head.ref) {
-            const ref = githubExports.context.payload.pull_request.head.ref;
-            return replace ? ref.replace("/", "-") : ref;
-        }
-        return null;
-    }
-    static async setupUser() {
-        await execExports.exec("git", ["config", "user.name", `"github-actions[bot]"`]);
-        await execExports.exec("git", ["config", "user.email", `"github-actions[bot]@users.noreply.github.com"`]);
-    }
-    static async checkoutBranch(branch) {
-        const { stderr } = await execExports.getExecOutput("git", ["checkout", branch], {
-            ignoreReturnCode: true
-        });
-        const isCreatingBranch = !stderr.toString().includes(`Switched to a new branch '${branch}'`);
-        if (isCreatingBranch) {
-            await execExports.exec("git", ["checkout", "-b", branch]);
-        }
-    }
-    static async reset(pathSpec, mode = "hard") {
-        await execExports.exec("git", ["reset", `--${mode}`, pathSpec]);
-    }
-    static async commitAll(message) {
-        await execExports.exec("git", ["add", "."]);
-        await execExports.exec("git", ["commit", "-m", message]);
-    }
-    static async pushAll(branchName, force) {
-        await execExports.exec("git", ["push", "origin", `HEAD:${branchName}`, force ? "--force" : null].filter((value) => value !== null));
-    }
-}
-
 var fs = {};
 
 var universalify = {};
@@ -34038,6 +33984,60 @@ function requireLib () {
 
 var libExports = /*@__PURE__*/ requireLib();
 
+function generateBot(token) {
+    return githubExports.getOctokit(token);
+}
+function generatePRBody() {
+    const body = [
+        "This pull request was created by gh printer.",
+        "Please merge after confirming the contents."
+    ];
+    return body.join("\n");
+}
+
+var execExports = requireExec();
+
+class Git {
+    static get branchName() {
+        return this.getBranchName(true);
+    }
+    static getBranchName(replace) {
+        if (githubExports.context.eventName === "push") {
+            return githubExports.context.ref.replace("refs/heads/", "").replace("/", "-");
+        }
+        else if (githubExports.context.payload.pull_request &&
+            githubExports.context.payload.pull_request.head &&
+            githubExports.context.payload.pull_request.head.ref) {
+            const ref = githubExports.context.payload.pull_request.head.ref;
+            return replace ? ref.replace("/", "-") : ref;
+        }
+        return null;
+    }
+    static async setupUser() {
+        await execExports.exec("git", ["config", "user.name", `"github-actions[bot]"`]);
+        await execExports.exec("git", ["config", "user.email", `"github-actions[bot]@users.noreply.github.com"`]);
+    }
+    static async checkoutBranch(branch) {
+        const { stderr } = await execExports.getExecOutput("git", ["checkout", branch], {
+            ignoreReturnCode: true
+        });
+        const isCreatingBranch = !stderr.toString().includes(`Switched to a new branch '${branch}'`);
+        if (isCreatingBranch) {
+            await execExports.exec("git", ["checkout", "-b", branch]);
+        }
+    }
+    static async reset(pathSpec, mode = "hard") {
+        await execExports.exec("git", ["reset", `--${mode}`, pathSpec]);
+    }
+    static async commitAll(message) {
+        await execExports.exec("git", ["add", "."]);
+        await execExports.exec("git", ["commit", "-m", message]);
+    }
+    static async pushAll(branchName, force) {
+        await execExports.exec("git", ["push", "origin", `HEAD:${branchName}`, force ? "--force" : null].filter((value) => value !== null));
+    }
+}
+
 async function createFile(filePath, data, options) {
     try {
         await libExports.writeFile(filePath, data, options);
@@ -34049,10 +34049,22 @@ async function createFile(filePath, data, options) {
     }
 }
 
+async function getContents() {
+    try {
+        const inputFilePath = coreExports.getInput("input-file");
+        if (inputFilePath) {
+            return await libExports.readFile(join(process.cwd(), inputFilePath), "utf-8");
+        }
+        return coreExports.getInput("contents");
+    }
+    catch {
+        return null;
+    }
+}
 async function run() {
     const outputFile = coreExports.getInput("output-file");
     const ghToken = coreExports.getInput("github-token");
-    const contents = coreExports.getInput("contents");
+    const contents = await getContents();
     const branch = Git.branchName;
     const baseBranch = Git.getBranchName(false);
     const printerBranch = `gh-printer/${branch}`;
@@ -34066,7 +34078,7 @@ async function run() {
         return;
     }
     if (!contents) {
-        coreExports.setFailed(Error("contents is not set"));
+        coreExports.setFailed(Error("please set input-file or contents"));
         return;
     }
     if (!branch || !baseBranch) {
