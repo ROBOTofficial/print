@@ -49,7 +49,6 @@ jobs:
 
     outputs:
       unixtime: ${{ steps.get-unixtime.outputs.unixtime }}
-      message: ${{ steps.generate-msg.outputs.msg }}
 
     steps:
       - name: Checkout
@@ -69,12 +68,6 @@ jobs:
       - name: Get Unixtime
         id: get-unixtime
         run: echo "unixtime=$(date +%s)" >> "$GITHUB_OUTPUT"
-
-      - name: Generate Message
-        id: generate-msg
-        run: |
-          RESULT=$(npm run actions-test) 
-          echo "msg=$RESULT" >> "$GITHUB_OUTPUT"
 
   test-action:
     name: GitHub Actions Test
@@ -97,7 +90,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           output-file: ./tests/last-update.txt
-          contents: "Updated at ${{ needs.test-unixtime.outputs.unixtime }}. ${{ needs.test-unixtime.outputs.message }}"
+          contents: "Updated at ${{ needs.test-unixtime.outputs.unixtime }}."
 
       - name: Print Output
         id: output
