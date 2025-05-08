@@ -40,7 +40,7 @@ export class Git {
 		await exec("git", ["commit", "-m", message]);
 	}
 
-	public static async pushAll() {
-		await exec("git", ["push", "origin", "main"]);
+	public static async pushAll(branchName?: string) {
+		await exec("git", ["push", "-u", "origin", branchName ?? "main"]);
 	}
 }

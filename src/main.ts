@@ -11,7 +11,7 @@ export async function run() {
 	const ghToken = process.env.GITHUB_TOKEN;
 	const contents = core.getInput("contents");
 
-	const branch = github.context.ref.replace("refs/heads/", "");
+	const branch = Git.branchName;
 	const printerBranch = `gh-printer/${branch}`;
 	const title = `Print a result of ${branch}`;
 
@@ -28,6 +28,11 @@ export async function run() {
 		return;
 	}
 
+	if (!branch) {
+		core.setFailed(Error(`Unsupported event type: ${github.context.eventName}`));
+		return;
+	}
+
 	const filePath = join(process.cwd(), outputFile);
 
 	await Git.setupUser();
@@ -35,7 +40,7 @@ export async function run() {
 	await Git.reset(github.context.sha);
 	await writeFile(filePath, contents);
 	await Git.commitAll(title);
-	await Git.pushAll();
+	await Git.pushAll(printerBranch);
 
 	const octokit = generateBot(ghToken);
 	const prs = await octokit.rest.pulls.list({

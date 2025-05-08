@@ -33997,8 +33997,18 @@ function generatePRBody() {
 
 var execExports = requireExec();
 
-//import * as github from "@actions/github";
 class Git {
+    static get branchName() {
+        if (githubExports.context.eventName === "push") {
+            return githubExports.context.ref.replace("refs/heads/", "");
+        }
+        else if (githubExports.context.payload.pull_request &&
+            githubExports.context.payload.pull_request.head &&
+            githubExports.context.payload.pull_request.head.ref) {
+            return githubExports.context.payload.pull_request.head.ref;
+        }
+        return null;
+    }
     static async setupUser() {
         await execExports.exec("git", ["config", "user.name", `"github-actions[bot]"`]);
         await execExports.exec("git", ["config", "user.email", `"github-actions[bot]@users.noreply.github.com"`]);
@@ -34019,8 +34029,8 @@ class Git {
         await execExports.exec("git", ["add", "."]);
         await execExports.exec("git", ["commit", "-m", message]);
     }
-    static async pushAll() {
-        await execExports.exec("git", ["push", "origin", "main"]);
+    static async pushAll(branchName) {
+        await execExports.exec("git", ["push", "origin", branchName ?? "main"]);
     }
 }
 
@@ -34028,7 +34038,7 @@ async function run() {
     const outputFile = coreExports.getInput("output-file");
     const ghToken = process.env.GITHUB_TOKEN;
     const contents = coreExports.getInput("contents");
-    const branch = githubExports.context.ref.replace("refs/heads/", "");
+    const branch = Git.branchName;
     const printerBranch = `gh-printer/${branch}`;
     const title = `Print a result of ${branch}`;
     if (!outputFile) {
@@ -34043,13 +34053,17 @@ async function run() {
         coreExports.setFailed(Error("contents is not set"));
         return;
     }
+    if (!branch) {
+        coreExports.setFailed(Error(`Unsupported event type: ${githubExports.context.eventName}`));
+        return;
+    }
     const filePath = join(process.cwd(), outputFile);
     await Git.setupUser();
     await Git.checkoutBranch(printerBranch);
     await Git.reset(githubExports.context.sha);
     await libExports.writeFile(filePath, contents);
     await Git.commitAll(title);
-    await Git.pushAll();
+    await Git.pushAll(printerBranch);
     const octokit = generateBot(ghToken);
     const prs = await octokit.rest.pulls.list({
         ...githubExports.context.repo,
