@@ -51,11 +51,18 @@ jobs:
         id: checkout
         uses: actions/checkout@v4
 
+      - name: Get unixtime
+        id: get-unixtime
+        run: echo "UNIX_TIME=$(date +%s)" >> $GITHUB_ENV
+
       - name: Test Local Action
         id: test-action
         uses: ./
         with:
-          milliseconds: 2000
+          output-file: ./tests/log.txt
+          contents: ${{ steps.get-unixtime.outputs.UNIX_TIME }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Print Output
         id: output

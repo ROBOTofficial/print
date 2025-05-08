@@ -1,32 +1,33 @@
 import require$$0 from 'os';
 import require$$0$1 from 'crypto';
-import require$$1 from 'fs';
-import require$$1$5 from 'path';
+import require$$0$2 from 'fs';
+import require$$1$4, { join } from 'path';
 import require$$2$1 from 'http';
 import require$$3$1 from 'https';
-import require$$0$4 from 'net';
-import require$$1$1 from 'tls';
+import require$$0$5 from 'net';
+import require$$1 from 'tls';
 import require$$4$1 from 'events';
-import require$$0$3 from 'assert';
-import require$$0$2 from 'util';
-import require$$0$5 from 'stream';
+import require$$0$4 from 'assert';
+import require$$0$3 from 'util';
+import require$$0$6 from 'stream';
 import require$$7 from 'buffer';
 import require$$8 from 'querystring';
 import require$$14 from 'stream/web';
-import require$$0$7 from 'node:stream';
-import require$$1$2 from 'node:util';
-import require$$0$6 from 'node:events';
-import require$$0$8 from 'worker_threads';
+import require$$0$8 from 'node:stream';
+import require$$1$1 from 'node:util';
+import require$$0$7 from 'node:events';
+import require$$0$9 from 'worker_threads';
 import require$$2$2 from 'perf_hooks';
 import require$$5 from 'util/types';
 import require$$4$2 from 'async_hooks';
-import require$$1$3 from 'console';
-import require$$1$4 from 'url';
+import require$$1$2 from 'console';
+import require$$1$3 from 'url';
 import require$$3$2 from 'zlib';
 import require$$6 from 'string_decoder';
-import require$$0$9 from 'diagnostics_channel';
+import require$$0$a from 'diagnostics_channel';
 import require$$2$3 from 'child_process';
 import require$$6$1 from 'timers';
+import require$$0$b from 'constants';
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -63,17 +64,17 @@ var core = {};
 
 var command = {};
 
-var utils$3 = {};
+var utils$5 = {};
 
-var hasRequiredUtils$3;
+var hasRequiredUtils$5;
 
-function requireUtils$3 () {
-	if (hasRequiredUtils$3) return utils$3;
-	hasRequiredUtils$3 = 1;
+function requireUtils$5 () {
+	if (hasRequiredUtils$5) return utils$5;
+	hasRequiredUtils$5 = 1;
 	// We use any as a valid input type
 	/* eslint-disable @typescript-eslint/no-explicit-any */
-	Object.defineProperty(utils$3, "__esModule", { value: true });
-	utils$3.toCommandProperties = utils$3.toCommandValue = void 0;
+	Object.defineProperty(utils$5, "__esModule", { value: true });
+	utils$5.toCommandProperties = utils$5.toCommandValue = void 0;
 	/**
 	 * Sanitizes an input into a string so it can be passed into issueCommand safely
 	 * @param input input to sanitize into a string
@@ -87,7 +88,7 @@ function requireUtils$3 () {
 	    }
 	    return JSON.stringify(input);
 	}
-	utils$3.toCommandValue = toCommandValue;
+	utils$5.toCommandValue = toCommandValue;
 	/**
 	 *
 	 * @param annotationProperties
@@ -107,9 +108,9 @@ function requireUtils$3 () {
 	        endColumn: annotationProperties.endColumn
 	    };
 	}
-	utils$3.toCommandProperties = toCommandProperties;
+	utils$5.toCommandProperties = toCommandProperties;
 	
-	return utils$3;
+	return utils$5;
 }
 
 var hasRequiredCommand;
@@ -143,7 +144,7 @@ function requireCommand () {
 	Object.defineProperty(command, "__esModule", { value: true });
 	command.issue = command.issueCommand = void 0;
 	const os = __importStar(require$$0);
-	const utils_1 = requireUtils$3();
+	const utils_1 = requireUtils$5();
 	/**
 	 * Commands
 	 *
@@ -251,9 +252,9 @@ function requireFileCommand () {
 	// We use any as a valid input type
 	/* eslint-disable @typescript-eslint/no-explicit-any */
 	const crypto = __importStar(require$$0$1);
-	const fs = __importStar(require$$1);
+	const fs = __importStar(require$$0$2);
 	const os = __importStar(require$$0);
-	const utils_1 = requireUtils$3();
+	const utils_1 = requireUtils$5();
 	function issueFileCommand(command, message) {
 	    const filePath = process.env[`GITHUB_${command}`];
 	    if (!filePath) {
@@ -288,7 +289,7 @@ function requireFileCommand () {
 
 var oidcUtils = {};
 
-var lib = {};
+var lib$1 = {};
 
 var proxy = {};
 
@@ -401,11 +402,11 @@ var hasRequiredTunnel$1;
 function requireTunnel$1 () {
 	if (hasRequiredTunnel$1) return tunnel$1;
 	hasRequiredTunnel$1 = 1;
-	var tls = require$$1$1;
+	var tls = require$$1;
 	var http = require$$2$1;
 	var https = require$$3$1;
 	var events = require$$4$1;
-	var util = require$$0$2;
+	var util = require$$0$3;
 
 
 	tunnel$1.httpOverHttp = httpOverHttp;
@@ -1119,14 +1120,14 @@ function requireUtil$6 () {
 	if (hasRequiredUtil$6) return util$6;
 	hasRequiredUtil$6 = 1;
 
-	const assert = require$$0$3;
+	const assert = require$$0$4;
 	const { kDestroyed, kBodyUsed } = requireSymbols$4();
 	const { IncomingMessage } = require$$2$1;
-	const stream = require$$0$5;
-	const net = require$$0$4;
+	const stream = require$$0$6;
+	const net = require$$0$5;
 	const { InvalidArgumentError } = requireErrors();
 	const { Blob } = require$$7;
-	const nodeUtil = require$$0$2;
+	const nodeUtil = require$$0$3;
 	const { stringify } = require$$8;
 	const { headerNameLowerCasedRecord } = requireConstants$4();
 
@@ -1782,8 +1783,8 @@ function requireSbmh () {
 	 * Based heavily on the Streaming Boyer-Moore-Horspool C++ implementation
 	 * by Hongli Lai at: https://github.com/FooBarWidget/boyer-moore-horspool
 	 */
-	const EventEmitter = require$$0$6.EventEmitter;
-	const inherits = require$$1$2.inherits;
+	const EventEmitter = require$$0$7.EventEmitter;
+	const inherits = require$$1$1.inherits;
 
 	function SBMH (needle) {
 	  if (typeof needle === 'string') {
@@ -1992,8 +1993,8 @@ function requirePartStream () {
 	if (hasRequiredPartStream) return PartStream_1;
 	hasRequiredPartStream = 1;
 
-	const inherits = require$$1$2.inherits;
-	const ReadableStream = require$$0$7.Readable;
+	const inherits = require$$1$1.inherits;
+	const ReadableStream = require$$0$8.Readable;
 
 	function PartStream (opts) {
 	  ReadableStream.call(this, opts);
@@ -2037,8 +2038,8 @@ function requireHeaderParser () {
 	if (hasRequiredHeaderParser) return HeaderParser_1;
 	hasRequiredHeaderParser = 1;
 
-	const EventEmitter = require$$0$6.EventEmitter;
-	const inherits = require$$1$2.inherits;
+	const EventEmitter = require$$0$7.EventEmitter;
+	const inherits = require$$1$1.inherits;
 	const getLimit = requireGetLimit();
 
 	const StreamSearch = requireSbmh();
@@ -2145,8 +2146,8 @@ function requireDicer () {
 	if (hasRequiredDicer) return Dicer_1;
 	hasRequiredDicer = 1;
 
-	const WritableStream = require$$0$7.Writable;
-	const inherits = require$$1$2.inherits;
+	const WritableStream = require$$0$8.Writable;
+	const inherits = require$$1$1.inherits;
 
 	const StreamSearch = requireSbmh();
 
@@ -2722,8 +2723,8 @@ function requireMultipart () {
 	//  * support limits.fieldNameSize
 	//     -- this will require modifications to utils.parseParams
 
-	const { Readable } = require$$0$7;
-	const { inherits } = require$$1$2;
+	const { Readable } = require$$0$8;
+	const { inherits } = require$$1$1;
 
 	const Dicer = requireDicer();
 
@@ -3288,8 +3289,8 @@ function requireMain () {
 	if (hasRequiredMain) return main.exports;
 	hasRequiredMain = 1;
 
-	const WritableStream = require$$0$7.Writable;
-	const { inherits } = require$$1$2;
+	const WritableStream = require$$0$8.Writable;
+	const { inherits } = require$$1$1;
 	const Dicer = requireDicer();
 
 	const MultipartParser = requireMultipart();
@@ -3381,7 +3382,7 @@ function requireConstants$3 () {
 	if (hasRequiredConstants$3) return constants$3;
 	hasRequiredConstants$3 = 1;
 
-	const { MessageChannel, receiveMessageOnPort } = require$$0$8;
+	const { MessageChannel, receiveMessageOnPort } = require$$0$9;
 
 	const corsSafeListedMethods = ['GET', 'HEAD', 'POST'];
 	const corsSafeListedMethodsSet = new Set(corsSafeListedMethods);
@@ -3592,7 +3593,7 @@ function requireUtil$5 () {
 	const { getGlobalOrigin } = requireGlobal$1();
 	const { performance } = require$$2$2;
 	const { isBlobLike, toUSVString, ReadableStreamFrom } = requireUtil$6();
-	const assert = require$$0$3;
+	const assert = require$$0$4;
 	const { isUint8Array } = require$$5;
 
 	let supportedHashes = [];
@@ -4757,7 +4758,7 @@ function requireWebidl () {
 	if (hasRequiredWebidl) return webidl_1;
 	hasRequiredWebidl = 1;
 
-	const { types } = require$$0$2;
+	const { types } = require$$0$3;
 	const { hasOwn, toUSVString } = requireUtil$5();
 
 	/** @type {import('../../types/webidl').Webidl} */
@@ -5410,7 +5411,7 @@ var hasRequiredDataURL;
 function requireDataURL () {
 	if (hasRequiredDataURL) return dataURL;
 	hasRequiredDataURL = 1;
-	const assert = require$$0$3;
+	const assert = require$$0$4;
 	const { atob } = require$$7;
 	const { isomorphicDecode } = requireUtil$5();
 
@@ -6040,15 +6041,15 @@ function requireDataURL () {
 	return dataURL;
 }
 
-var file;
-var hasRequiredFile;
+var file$1;
+var hasRequiredFile$1;
 
-function requireFile () {
-	if (hasRequiredFile) return file;
-	hasRequiredFile = 1;
+function requireFile$1 () {
+	if (hasRequiredFile$1) return file$1;
+	hasRequiredFile$1 = 1;
 
 	const { Blob, File: NativeFile } = require$$7;
-	const { types } = require$$0$2;
+	const { types } = require$$0$3;
 	const { kState } = requireSymbols$3();
 	const { isBlobLike } = requireUtil$5();
 	const { webidl } = requireWebidl();
@@ -6388,8 +6389,8 @@ function requireFile () {
 	  )
 	}
 
-	file = { File, FileLike, isFileLike };
-	return file;
+	file$1 = { File, FileLike, isFileLike };
+	return file$1;
 }
 
 var formdata;
@@ -6401,7 +6402,7 @@ function requireFormdata () {
 
 	const { isBlobLike, toUSVString, makeIterator } = requireUtil$5();
 	const { kState } = requireSymbols$3();
-	const { File: UndiciFile, FileLike, isFileLike } = requireFile();
+	const { File: UndiciFile, FileLike, isFileLike } = requireFile$1();
 	const { webidl } = requireWebidl();
 	const { Blob, File: NativeFile } = require$$7;
 
@@ -6688,10 +6689,10 @@ function requireBody () {
 	const { DOMException, structuredClone } = requireConstants$3();
 	const { Blob, File: NativeFile } = require$$7;
 	const { kBodyUsed } = requireSymbols$4();
-	const assert = require$$0$3;
+	const assert = require$$0$4;
 	const { isErrored } = requireUtil$6();
 	const { isUint8Array, isArrayBuffer } = require$$5;
-	const { File: UndiciFile } = requireFile();
+	const { File: UndiciFile } = requireFile$1();
 	const { parseMIMEType, serializeAMimeType } = requireDataURL();
 
 	let random;
@@ -7297,7 +7298,7 @@ function requireRequest$1 () {
 	  InvalidArgumentError,
 	  NotSupportedError
 	} = requireErrors();
-	const assert = require$$0$3;
+	const assert = require$$0$4;
 	const { kHTTP2BuildRequest, kHTTP2CopyHeaders, kHTTP1BuildRequest } = requireSymbols$4();
 	const util = requireUtil$6();
 
@@ -8027,8 +8028,8 @@ function requireConnect () {
 	if (hasRequiredConnect) return connect;
 	hasRequiredConnect = 1;
 
-	const net = require$$0$4;
-	const assert = require$$0$3;
+	const net = require$$0$5;
+	const assert = require$$0$4;
 	const util = requireUtil$6();
 	const { InvalidArgumentError, ConnectTimeoutError } = requireErrors();
 
@@ -8113,7 +8114,7 @@ function requireConnect () {
 	    let socket;
 	    if (protocol === 'https:') {
 	      if (!tls) {
-	        tls = require$$1$1;
+	        tls = require$$1;
 	      }
 	      servername = servername || options.servername || util.getServerName(host) || null;
 
@@ -8219,15 +8220,15 @@ function requireConnect () {
 
 var constants$2 = {};
 
-var utils$2 = {};
+var utils$4 = {};
 
-var hasRequiredUtils$2;
+var hasRequiredUtils$4;
 
-function requireUtils$2 () {
-	if (hasRequiredUtils$2) return utils$2;
-	hasRequiredUtils$2 = 1;
-	Object.defineProperty(utils$2, "__esModule", { value: true });
-	utils$2.enumToMap = void 0;
+function requireUtils$4 () {
+	if (hasRequiredUtils$4) return utils$4;
+	hasRequiredUtils$4 = 1;
+	Object.defineProperty(utils$4, "__esModule", { value: true });
+	utils$4.enumToMap = void 0;
 	function enumToMap(obj) {
 	    const res = {};
 	    Object.keys(obj).forEach((key) => {
@@ -8238,9 +8239,9 @@ function requireUtils$2 () {
 	    });
 	    return res;
 	}
-	utils$2.enumToMap = enumToMap;
+	utils$4.enumToMap = enumToMap;
 	
-	return utils$2;
+	return utils$4;
 }
 
 var hasRequiredConstants$2;
@@ -8251,7 +8252,7 @@ function requireConstants$2 () {
 	(function (exports) {
 		Object.defineProperty(exports, "__esModule", { value: true });
 		exports.SPECIAL_HEADERS = exports.HEADER_STATE = exports.MINOR = exports.MAJOR = exports.CONNECTION_TOKEN_CHARS = exports.HEADER_CHARS = exports.TOKEN = exports.STRICT_TOKEN = exports.HEX = exports.URL_CHAR = exports.STRICT_URL_CHAR = exports.USERINFO_CHARS = exports.MARK = exports.ALPHANUM = exports.NUM = exports.HEX_MAP = exports.NUM_MAP = exports.ALPHA = exports.FINISH = exports.H_METHOD_MAP = exports.METHOD_MAP = exports.METHODS_RTSP = exports.METHODS_ICE = exports.METHODS_HTTP = exports.METHODS = exports.LENIENT_FLAGS = exports.FLAGS = exports.TYPE = exports.ERROR = void 0;
-		const utils_1 = requireUtils$2();
+		const utils_1 = requireUtils$4();
 		(function (ERROR) {
 		    ERROR[ERROR["OK"] = 0] = "OK";
 		    ERROR[ERROR["INTERNAL"] = 1] = "INTERNAL";
@@ -8533,7 +8534,7 @@ function requireRedirectHandler () {
 
 	const util = requireUtil$6();
 	const { kBodyUsed } = requireSymbols$4();
-	const assert = require$$0$3;
+	const assert = require$$0$4;
 	const { InvalidArgumentError } = requireErrors();
 	const EE = require$$4$1;
 
@@ -8793,10 +8794,10 @@ function requireClient () {
 
 	/* global WebAssembly */
 
-	const assert = require$$0$3;
-	const net = require$$0$4;
+	const assert = require$$0$4;
+	const net = require$$0$5;
 	const http = require$$2$1;
-	const { pipeline } = require$$0$5;
+	const { pipeline } = require$$0$6;
 	const util = requireUtil$6();
 	const timers = requireTimers();
 	const Request = requireRequest$1();
@@ -11978,8 +11979,8 @@ function requireReadable () {
 	if (hasRequiredReadable) return readable;
 	hasRequiredReadable = 1;
 
-	const assert = require$$0$3;
-	const { Readable } = require$$0$5;
+	const assert = require$$0$4;
+	const { Readable } = require$$0$6;
 	const { RequestAbortedError, NotSupportedError, InvalidArgumentError } = requireErrors();
 	const util = requireUtil$6();
 	const { ReadableStreamFrom, toUSVString } = requireUtil$6();
@@ -12305,7 +12306,7 @@ var hasRequiredUtil$4;
 function requireUtil$4 () {
 	if (hasRequiredUtil$4) return util$4;
 	hasRequiredUtil$4 = 1;
-	const assert = require$$0$3;
+	const assert = require$$0$4;
 	const {
 	  ResponseStatusCodeError
 	} = requireErrors();
@@ -12611,7 +12612,7 @@ function requireApiStream () {
 	if (hasRequiredApiStream) return apiStream;
 	hasRequiredApiStream = 1;
 
-	const { finished, PassThrough } = require$$0$5;
+	const { finished, PassThrough } = require$$0$6;
 	const {
 	  InvalidArgumentError,
 	  InvalidReturnValueError,
@@ -12843,7 +12844,7 @@ function requireApiPipeline () {
 	  Readable,
 	  Duplex,
 	  PassThrough
-	} = require$$0$5;
+	} = require$$0$6;
 	const {
 	  InvalidArgumentError,
 	  InvalidReturnValueError,
@@ -12852,7 +12853,7 @@ function requireApiPipeline () {
 	const util = requireUtil$6();
 	const { AsyncResource } = require$$4$2;
 	const { addSignal, removeSignal } = requireAbortSignal();
-	const assert = require$$0$3;
+	const assert = require$$0$4;
 
 	const kResume = Symbol('resume');
 
@@ -13100,7 +13101,7 @@ function requireApiUpgrade () {
 	const { AsyncResource } = require$$4$2;
 	const util = requireUtil$6();
 	const { addSignal, removeSignal } = requireAbortSignal();
-	const assert = require$$0$3;
+	const assert = require$$0$4;
 
 	class UpgradeHandler extends AsyncResource {
 	  constructor (opts, callback) {
@@ -13405,7 +13406,7 @@ function requireMockUtils () {
 	  types: {
 	    isPromise
 	  }
-	} = require$$0$2;
+	} = require$$0$3;
 
 	function matchValue (match, value) {
 	  if (typeof match === 'string') {
@@ -13965,7 +13966,7 @@ function requireMockClient () {
 	if (hasRequiredMockClient) return mockClient;
 	hasRequiredMockClient = 1;
 
-	const { promisify } = require$$0$2;
+	const { promisify } = require$$0$3;
 	const Client = requireClient();
 	const { buildMockDispatch } = requireMockUtils();
 	const {
@@ -14032,7 +14033,7 @@ function requireMockPool () {
 	if (hasRequiredMockPool) return mockPool;
 	hasRequiredMockPool = 1;
 
-	const { promisify } = require$$0$2;
+	const { promisify } = require$$0$3;
 	const Pool = requirePool();
 	const { buildMockDispatch } = requireMockUtils();
 	const {
@@ -14136,8 +14137,8 @@ function requirePendingInterceptorsFormatter () {
 	if (hasRequiredPendingInterceptorsFormatter) return pendingInterceptorsFormatter;
 	hasRequiredPendingInterceptorsFormatter = 1;
 
-	const { Transform } = require$$0$5;
-	const { Console } = require$$1$3;
+	const { Transform } = require$$0$6;
+	const { Console } = require$$1$2;
 
 	/**
 	 * Gets the output of `console.table(…)` as a string.
@@ -14364,7 +14365,7 @@ function requireProxyAgent () {
 	hasRequiredProxyAgent = 1;
 
 	const { kProxy, kClose, kDestroy, kInterceptors } = requireSymbols$4();
-	const { URL } = require$$1$4;
+	const { URL } = require$$1$3;
 	const Agent = requireAgent();
 	const Pool = requirePool();
 	const DispatcherBase = requireDispatcherBase();
@@ -14559,7 +14560,7 @@ var hasRequiredRetryHandler;
 function requireRetryHandler () {
 	if (hasRequiredRetryHandler) return RetryHandler_1;
 	hasRequiredRetryHandler = 1;
-	const assert = require$$0$3;
+	const assert = require$$0$4;
 
 	const { kRetryHandlerDefaultRetry } = requireSymbols$4();
 	const { RequestRetryError } = requireErrors();
@@ -14996,9 +14997,9 @@ function requireHeaders () {
 	  isValidHeaderName,
 	  isValidHeaderValue
 	} = requireUtil$5();
-	const util = require$$0$2;
+	const util = require$$0$3;
 	const { webidl } = requireWebidl();
-	const assert = require$$0$3;
+	const assert = require$$0$4;
 
 	const kHeadersMap = Symbol('headers map');
 	const kHeadersSortedMap = Symbol('headers map sorted');
@@ -15604,8 +15605,8 @@ function requireResponse () {
 	const { getGlobalOrigin } = requireGlobal$1();
 	const { URLSerializer } = requireDataURL();
 	const { kHeadersList, kConstruct } = requireSymbols$4();
-	const assert = require$$0$3;
-	const { types } = require$$0$2;
+	const assert = require$$0$4;
+	const { types } = require$$0$3;
 
 	const ReadableStream = globalThis.ReadableStream || require$$14.ReadableStream;
 	const textEncoder = new TextEncoder('utf-8');
@@ -16188,7 +16189,7 @@ function requireRequest () {
 	const { getGlobalOrigin } = requireGlobal$1();
 	const { URLSerializer } = requireDataURL();
 	const { kHeadersList, kConstruct } = requireSymbols$4();
-	const assert = require$$0$3;
+	const assert = require$$0$4;
 	const { getMaxListeners, setMaxListeners, getEventListeners, defaultMaxListeners } = require$$4$1;
 
 	let TransformStream = globalThis.TransformStream;
@@ -17154,7 +17155,7 @@ function requireFetch () {
 	  urlHasHttpsScheme
 	} = requireUtil$5();
 	const { kState, kHeaders, kGuard, kRealm } = requireSymbols$3();
-	const assert = require$$0$3;
+	const assert = require$$0$4;
 	const { safelyExtractBody } = requireBody();
 	const {
 	  redirectStatusSet,
@@ -17166,7 +17167,7 @@ function requireFetch () {
 	} = requireConstants$3();
 	const { kHeadersList } = requireSymbols$4();
 	const EE = require$$4$1;
-	const { Readable, pipeline } = require$$0$5;
+	const { Readable, pipeline } = require$$0$6;
 	const { addAbortListener, isErrored, isReadable, nodeMajor, nodeMinor } = requireUtil$6();
 	const { dataURLProcessor, serializeAMimeType } = requireDataURL();
 	const { TransformStream } = require$$14;
@@ -19606,7 +19607,7 @@ function requireUtil$3 () {
 	const { getEncoding } = requireEncoding();
 	const { DOMException } = requireConstants$3();
 	const { serializeAMimeType, parseMIMEType } = requireDataURL();
-	const { types } = require$$0$2;
+	const { types } = require$$0$3;
 	const { StringDecoder } = require$$6;
 	const { btoa } = require$$7;
 
@@ -20360,7 +20361,7 @@ function requireUtil$2 () {
 	if (hasRequiredUtil$2) return util$2;
 	hasRequiredUtil$2 = 1;
 
-	const assert = require$$0$3;
+	const assert = require$$0$4;
 	const { URLSerializer } = requireDataURL();
 	const { isValidHeaderName } = requireUtil$5();
 
@@ -20427,7 +20428,7 @@ function requireCache () {
 	const { kState, kHeaders, kGuard, kRealm } = requireSymbols$3();
 	const { fetching } = requireFetch();
 	const { urlIsHttpHttpsScheme, createDeferredPromise, readAllBytes } = requireUtil$5();
-	const assert = require$$0$3;
+	const assert = require$$0$4;
 	const { getGlobalDispatcher } = requireGlobal();
 
 	/**
@@ -21720,7 +21721,7 @@ function requireParse () {
 	const { maxNameValuePairSize, maxAttributeValueSize } = requireConstants$1();
 	const { isCTLExcludingHtab } = requireUtil$1();
 	const { collectASequenceOfCodePointsFast } = requireDataURL();
-	const assert = require$$0$3;
+	const assert = require$$0$4;
 
 	/**
 	 * @description Parses the field-value attributes of a set-cookie header string.
@@ -22314,7 +22315,7 @@ function requireEvents () {
 
 	const { webidl } = requireWebidl();
 	const { kEnumerableProperty } = requireUtil$6();
-	const { MessagePort } = require$$0$8;
+	const { MessagePort } = require$$0$9;
 
 	/**
 	 * @see https://html.spec.whatwg.org/multipage/comms.html#messageevent
@@ -22831,7 +22832,7 @@ function requireConnection () {
 	if (hasRequiredConnection) return connection;
 	hasRequiredConnection = 1;
 
-	const diagnosticsChannel = require$$0$9;
+	const diagnosticsChannel = require$$0$a;
 	const { uid, states } = requireConstants();
 	const {
 	  kReadyState,
@@ -23211,8 +23212,8 @@ function requireReceiver () {
 	if (hasRequiredReceiver) return receiver;
 	hasRequiredReceiver = 1;
 
-	const { Writable } = require$$0$5;
-	const diagnosticsChannel = require$$0$9;
+	const { Writable } = require$$0$6;
+	const diagnosticsChannel = require$$0$a;
 	const { parserStates, opcodes, states, emptyBuffer } = requireConstants();
 	const { kReadyState, kSentClose, kResponse, kReceivedClose } = requireSymbols();
 	const { isValidStatusCode, failWebsocketConnection, websocketMessageReceived } = requireUtil();
@@ -23583,7 +23584,7 @@ function requireWebsocket () {
 	const { ByteParser } = requireReceiver();
 	const { kEnumerableProperty, isBlobLike } = requireUtil$6();
 	const { getGlobalDispatcher } = requireGlobal();
-	const { types } = require$$0$2;
+	const { types } = require$$0$3;
 
 	let experimentalWarned = false;
 
@@ -24327,7 +24328,7 @@ function requireUndici () {
 	  undici.Response = requireResponse().Response;
 	  undici.Request = requireRequest().Request;
 	  undici.FormData = requireFormdata().FormData;
-	  undici.File = requireFile().File;
+	  undici.File = requireFile$1().File;
 	  undici.FileReader = requireFilereader().FileReader;
 
 	  const { setGlobalOrigin, getGlobalOrigin } = requireGlobal$1();
@@ -24376,13 +24377,13 @@ function requireUndici () {
 	return undici;
 }
 
-var hasRequiredLib;
+var hasRequiredLib$1;
 
-function requireLib () {
-	if (hasRequiredLib) return lib;
-	hasRequiredLib = 1;
+function requireLib$1 () {
+	if (hasRequiredLib$1) return lib$1;
+	hasRequiredLib$1 = 1;
 	/* eslint-disable @typescript-eslint/no-explicit-any */
-	var __createBinding = (lib && lib.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+	var __createBinding = (lib$1 && lib$1.__createBinding) || (Object.create ? (function(o, m, k, k2) {
 	    if (k2 === undefined) k2 = k;
 	    var desc = Object.getOwnPropertyDescriptor(m, k);
 	    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
@@ -24393,19 +24394,19 @@ function requireLib () {
 	    if (k2 === undefined) k2 = k;
 	    o[k2] = m[k];
 	}));
-	var __setModuleDefault = (lib && lib.__setModuleDefault) || (Object.create ? (function(o, v) {
+	var __setModuleDefault = (lib$1 && lib$1.__setModuleDefault) || (Object.create ? (function(o, v) {
 	    Object.defineProperty(o, "default", { enumerable: true, value: v });
 	}) : function(o, v) {
 	    o["default"] = v;
 	});
-	var __importStar = (lib && lib.__importStar) || function (mod) {
+	var __importStar = (lib$1 && lib$1.__importStar) || function (mod) {
 	    if (mod && mod.__esModule) return mod;
 	    var result = {};
 	    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
 	    __setModuleDefault(result, mod);
 	    return result;
 	};
-	var __awaiter = (lib && lib.__awaiter) || function (thisArg, _arguments, P, generator) {
+	var __awaiter = (lib$1 && lib$1.__awaiter) || function (thisArg, _arguments, P, generator) {
 	    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
 	    return new (P || (P = Promise))(function (resolve, reject) {
 	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -24414,8 +24415,8 @@ function requireLib () {
 	        step((generator = generator.apply(thisArg, _arguments || [])).next());
 	    });
 	};
-	Object.defineProperty(lib, "__esModule", { value: true });
-	lib.HttpClient = lib.isHttps = lib.HttpClientResponse = lib.HttpClientError = lib.getProxyUrl = lib.MediaTypes = lib.Headers = lib.HttpCodes = void 0;
+	Object.defineProperty(lib$1, "__esModule", { value: true });
+	lib$1.HttpClient = lib$1.isHttps = lib$1.HttpClientResponse = lib$1.HttpClientError = lib$1.getProxyUrl = lib$1.MediaTypes = lib$1.Headers = lib$1.HttpCodes = void 0;
 	const http = __importStar(require$$2$1);
 	const https = __importStar(require$$3$1);
 	const pm = __importStar(requireProxy());
@@ -24450,16 +24451,16 @@ function requireLib () {
 	    HttpCodes[HttpCodes["BadGateway"] = 502] = "BadGateway";
 	    HttpCodes[HttpCodes["ServiceUnavailable"] = 503] = "ServiceUnavailable";
 	    HttpCodes[HttpCodes["GatewayTimeout"] = 504] = "GatewayTimeout";
-	})(HttpCodes || (lib.HttpCodes = HttpCodes = {}));
+	})(HttpCodes || (lib$1.HttpCodes = HttpCodes = {}));
 	var Headers;
 	(function (Headers) {
 	    Headers["Accept"] = "accept";
 	    Headers["ContentType"] = "content-type";
-	})(Headers || (lib.Headers = Headers = {}));
+	})(Headers || (lib$1.Headers = Headers = {}));
 	var MediaTypes;
 	(function (MediaTypes) {
 	    MediaTypes["ApplicationJson"] = "application/json";
-	})(MediaTypes || (lib.MediaTypes = MediaTypes = {}));
+	})(MediaTypes || (lib$1.MediaTypes = MediaTypes = {}));
 	/**
 	 * Returns the proxy URL, depending upon the supplied url and proxy environment variables.
 	 * @param serverUrl  The server URL where the request will be sent. For example, https://api.github.com
@@ -24468,7 +24469,7 @@ function requireLib () {
 	    const proxyUrl = pm.getProxyUrl(new URL(serverUrl));
 	    return proxyUrl ? proxyUrl.href : '';
 	}
-	lib.getProxyUrl = getProxyUrl;
+	lib$1.getProxyUrl = getProxyUrl;
 	const HttpRedirectCodes = [
 	    HttpCodes.MovedPermanently,
 	    HttpCodes.ResourceMoved,
@@ -24492,7 +24493,7 @@ function requireLib () {
 	        Object.setPrototypeOf(this, HttpClientError.prototype);
 	    }
 	}
-	lib.HttpClientError = HttpClientError;
+	lib$1.HttpClientError = HttpClientError;
 	class HttpClientResponse {
 	    constructor(message) {
 	        this.message = message;
@@ -24524,12 +24525,12 @@ function requireLib () {
 	        });
 	    }
 	}
-	lib.HttpClientResponse = HttpClientResponse;
+	lib$1.HttpClientResponse = HttpClientResponse;
 	function isHttps(requestUrl) {
 	    const parsedUrl = new URL(requestUrl);
 	    return parsedUrl.protocol === 'https:';
 	}
-	lib.isHttps = isHttps;
+	lib$1.isHttps = isHttps;
 	class HttpClient {
 	    constructor(userAgent, handlers, requestOptions) {
 	        this._ignoreSslError = false;
@@ -25029,10 +25030,10 @@ function requireLib () {
 	        });
 	    }
 	}
-	lib.HttpClient = HttpClient;
+	lib$1.HttpClient = HttpClient;
 	const lowercaseKeys = (obj) => Object.keys(obj).reduce((c, k) => ((c[k.toLowerCase()] = obj[k]), c), {});
 	
-	return lib;
+	return lib$1;
 }
 
 var auth$1 = {};
@@ -25141,7 +25142,7 @@ function requireOidcUtils () {
 	};
 	Object.defineProperty(oidcUtils, "__esModule", { value: true });
 	oidcUtils.OidcClient = void 0;
-	const http_client_1 = requireLib();
+	const http_client_1 = requireLib$1();
 	const auth_1 = requireAuth();
 	const core_1 = requireCore();
 	class OidcClient {
@@ -25229,7 +25230,7 @@ function requireSummary () {
 		Object.defineProperty(exports, "__esModule", { value: true });
 		exports.summary = exports.markdownSummary = exports.SUMMARY_DOCS_URL = exports.SUMMARY_ENV_VAR = void 0;
 		const os_1 = require$$0;
-		const fs_1 = require$$1;
+		const fs_1 = require$$0$2;
 		const { access, appendFile, writeFile } = fs_1.promises;
 		exports.SUMMARY_ENV_VAR = 'GITHUB_STEP_SUMMARY';
 		exports.SUMMARY_DOCS_URL = 'https://docs.github.com/actions/using-workflows/workflow-commands-for-github-actions#adding-a-job-summary';
@@ -25535,7 +25536,7 @@ function requirePathUtils () {
 	};
 	Object.defineProperty(pathUtils, "__esModule", { value: true });
 	pathUtils.toPlatformPath = pathUtils.toWin32Path = pathUtils.toPosixPath = void 0;
-	const path = __importStar(require$$1$5);
+	const path = __importStar(require$$1$4);
 	/**
 	 * toPosixPath converts the given path to the posix form. On Windows, \\ will be
 	 * replaced with /.
@@ -25621,8 +25622,8 @@ function requireIoUtil () {
 		var _a;
 		Object.defineProperty(exports, "__esModule", { value: true });
 		exports.getCmdPath = exports.tryGetExecutablePath = exports.isRooted = exports.isDirectory = exports.exists = exports.READONLY = exports.UV_FS_O_EXLOCK = exports.IS_WINDOWS = exports.unlink = exports.symlink = exports.stat = exports.rmdir = exports.rm = exports.rename = exports.readlink = exports.readdir = exports.open = exports.mkdir = exports.lstat = exports.copyFile = exports.chmod = void 0;
-		const fs = __importStar(require$$1);
-		const path = __importStar(require$$1$5);
+		const fs = __importStar(require$$0$2);
+		const path = __importStar(require$$1$4);
 		_a = fs.promises
 		// export const {open} = 'fs'
 		, exports.chmod = _a.chmod, exports.copyFile = _a.copyFile, exports.lstat = _a.lstat, exports.mkdir = _a.mkdir, exports.open = _a.open, exports.readdir = _a.readdir, exports.readlink = _a.readlink, exports.rename = _a.rename, exports.rm = _a.rm, exports.rmdir = _a.rmdir, exports.stat = _a.stat, exports.symlink = _a.symlink, exports.unlink = _a.unlink;
@@ -25811,8 +25812,8 @@ function requireIo () {
 	};
 	Object.defineProperty(io, "__esModule", { value: true });
 	io.findInPath = io.which = io.mkdirP = io.rmRF = io.mv = io.cp = void 0;
-	const assert_1 = require$$0$3;
-	const path = __importStar(require$$1$5);
+	const assert_1 = require$$0$4;
+	const path = __importStar(require$$1$4);
 	const ioUtil = __importStar(requireIoUtil());
 	/**
 	 * Copies a file or folder.
@@ -26120,7 +26121,7 @@ function requireToolrunner () {
 	const os = __importStar(require$$0);
 	const events = __importStar(require$$4$1);
 	const child = __importStar(require$$2$3);
-	const path = __importStar(require$$1$5);
+	const path = __importStar(require$$1$4);
 	const io = __importStar(requireIo());
 	const ioUtil = __importStar(requireIoUtil());
 	const timers_1 = require$$6$1;
@@ -26962,9 +26963,9 @@ function requireCore () {
 		exports.platform = exports.toPlatformPath = exports.toWin32Path = exports.toPosixPath = exports.markdownSummary = exports.summary = exports.getIDToken = exports.getState = exports.saveState = exports.group = exports.endGroup = exports.startGroup = exports.info = exports.notice = exports.warning = exports.error = exports.debug = exports.isDebug = exports.setFailed = exports.setCommandEcho = exports.setOutput = exports.getBooleanInput = exports.getMultilineInput = exports.getInput = exports.addPath = exports.setSecret = exports.exportVariable = exports.ExitCode = void 0;
 		const command_1 = requireCommand();
 		const file_command_1 = requireFileCommand();
-		const utils_1 = requireUtils$3();
+		const utils_1 = requireUtils$5();
 		const os = __importStar(require$$0);
-		const path = __importStar(require$$1$5);
+		const path = __importStar(require$$1$4);
 		const oidc_utils_1 = requireOidcUtils();
 		/**
 		 * The code to exit an action
@@ -27286,7 +27287,7 @@ function requireContext () {
 	hasRequiredContext = 1;
 	Object.defineProperty(context, "__esModule", { value: true });
 	context.Context = void 0;
-	const fs_1 = require$$1;
+	const fs_1 = require$$0$2;
 	const os_1 = require$$0;
 	class Context {
 	    /**
@@ -27341,16 +27342,16 @@ function requireContext () {
 	return context;
 }
 
-var utils$1 = {};
+var utils$3 = {};
 
-var utils = {};
+var utils$2 = {};
 
-var hasRequiredUtils$1;
+var hasRequiredUtils$3;
 
-function requireUtils$1 () {
-	if (hasRequiredUtils$1) return utils;
-	hasRequiredUtils$1 = 1;
-	var __createBinding = (utils && utils.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+function requireUtils$3 () {
+	if (hasRequiredUtils$3) return utils$2;
+	hasRequiredUtils$3 = 1;
+	var __createBinding = (utils$2 && utils$2.__createBinding) || (Object.create ? (function(o, m, k, k2) {
 	    if (k2 === undefined) k2 = k;
 	    var desc = Object.getOwnPropertyDescriptor(m, k);
 	    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
@@ -27361,19 +27362,19 @@ function requireUtils$1 () {
 	    if (k2 === undefined) k2 = k;
 	    o[k2] = m[k];
 	}));
-	var __setModuleDefault = (utils && utils.__setModuleDefault) || (Object.create ? (function(o, v) {
+	var __setModuleDefault = (utils$2 && utils$2.__setModuleDefault) || (Object.create ? (function(o, v) {
 	    Object.defineProperty(o, "default", { enumerable: true, value: v });
 	}) : function(o, v) {
 	    o["default"] = v;
 	});
-	var __importStar = (utils && utils.__importStar) || function (mod) {
+	var __importStar = (utils$2 && utils$2.__importStar) || function (mod) {
 	    if (mod && mod.__esModule) return mod;
 	    var result = {};
 	    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
 	    __setModuleDefault(result, mod);
 	    return result;
 	};
-	var __awaiter = (utils && utils.__awaiter) || function (thisArg, _arguments, P, generator) {
+	var __awaiter = (utils$2 && utils$2.__awaiter) || function (thisArg, _arguments, P, generator) {
 	    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
 	    return new (P || (P = Promise))(function (resolve, reject) {
 	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -27382,9 +27383,9 @@ function requireUtils$1 () {
 	        step((generator = generator.apply(thisArg, _arguments || [])).next());
 	    });
 	};
-	Object.defineProperty(utils, "__esModule", { value: true });
-	utils.getApiBaseUrl = utils.getProxyFetch = utils.getProxyAgentDispatcher = utils.getProxyAgent = utils.getAuthString = void 0;
-	const httpClient = __importStar(requireLib());
+	Object.defineProperty(utils$2, "__esModule", { value: true });
+	utils$2.getApiBaseUrl = utils$2.getProxyFetch = utils$2.getProxyAgentDispatcher = utils$2.getProxyAgent = utils$2.getAuthString = void 0;
+	const httpClient = __importStar(requireLib$1());
 	const undici_1 = requireUndici();
 	function getAuthString(token, options) {
 	    if (!token && !options.auth) {
@@ -27395,17 +27396,17 @@ function requireUtils$1 () {
 	    }
 	    return typeof options.auth === 'string' ? options.auth : `token ${token}`;
 	}
-	utils.getAuthString = getAuthString;
+	utils$2.getAuthString = getAuthString;
 	function getProxyAgent(destinationUrl) {
 	    const hc = new httpClient.HttpClient();
 	    return hc.getAgent(destinationUrl);
 	}
-	utils.getProxyAgent = getProxyAgent;
+	utils$2.getProxyAgent = getProxyAgent;
 	function getProxyAgentDispatcher(destinationUrl) {
 	    const hc = new httpClient.HttpClient();
 	    return hc.getAgentDispatcher(destinationUrl);
 	}
-	utils.getProxyAgentDispatcher = getProxyAgentDispatcher;
+	utils$2.getProxyAgentDispatcher = getProxyAgentDispatcher;
 	function getProxyFetch(destinationUrl) {
 	    const httpDispatcher = getProxyAgentDispatcher(destinationUrl);
 	    const proxyFetch = (url, opts) => __awaiter(this, void 0, void 0, function* () {
@@ -27413,13 +27414,13 @@ function requireUtils$1 () {
 	    });
 	    return proxyFetch;
 	}
-	utils.getProxyFetch = getProxyFetch;
+	utils$2.getProxyFetch = getProxyFetch;
 	function getApiBaseUrl() {
 	    return process.env['GITHUB_API_URL'] || 'https://api.github.com';
 	}
-	utils.getApiBaseUrl = getApiBaseUrl;
+	utils$2.getApiBaseUrl = getApiBaseUrl;
 	
-	return utils;
+	return utils$2;
 }
 
 function getUserAgent() {
@@ -27526,11 +27527,11 @@ function requireAdd () {
 }
 
 var remove;
-var hasRequiredRemove;
+var hasRequiredRemove$1;
 
-function requireRemove () {
-	if (hasRequiredRemove) return remove;
-	hasRequiredRemove = 1;
+function requireRemove$1 () {
+	if (hasRequiredRemove$1) return remove;
+	hasRequiredRemove$1 = 1;
 	remove = removeHook;
 
 	function removeHook(state, name, method) {
@@ -27560,7 +27561,7 @@ function requireBeforeAfterHook () {
 	hasRequiredBeforeAfterHook = 1;
 	var register = requireRegister();
 	var addHook = requireAdd();
-	var removeHook = requireRemove();
+	var removeHook = requireRemove$1();
 
 	// bind with array of arguments: https://stackoverflow.com/a/21792913
 	var bind = Function.bind;
@@ -31111,13 +31112,13 @@ var distWeb = /*#__PURE__*/Object.freeze({
 
 var require$$4 = /*@__PURE__*/getAugmentedNamespace(distWeb);
 
-var hasRequiredUtils;
+var hasRequiredUtils$2;
 
-function requireUtils () {
-	if (hasRequiredUtils) return utils$1;
-	hasRequiredUtils = 1;
+function requireUtils$2 () {
+	if (hasRequiredUtils$2) return utils$3;
+	hasRequiredUtils$2 = 1;
 	(function (exports) {
-		var __createBinding = (utils$1 && utils$1.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+		var __createBinding = (utils$3 && utils$3.__createBinding) || (Object.create ? (function(o, m, k, k2) {
 		    if (k2 === undefined) k2 = k;
 		    var desc = Object.getOwnPropertyDescriptor(m, k);
 		    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
@@ -31128,12 +31129,12 @@ function requireUtils () {
 		    if (k2 === undefined) k2 = k;
 		    o[k2] = m[k];
 		}));
-		var __setModuleDefault = (utils$1 && utils$1.__setModuleDefault) || (Object.create ? (function(o, v) {
+		var __setModuleDefault = (utils$3 && utils$3.__setModuleDefault) || (Object.create ? (function(o, v) {
 		    Object.defineProperty(o, "default", { enumerable: true, value: v });
 		}) : function(o, v) {
 		    o["default"] = v;
 		});
-		var __importStar = (utils$1 && utils$1.__importStar) || function (mod) {
+		var __importStar = (utils$3 && utils$3.__importStar) || function (mod) {
 		    if (mod && mod.__esModule) return mod;
 		    var result = {};
 		    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
@@ -31143,7 +31144,7 @@ function requireUtils () {
 		Object.defineProperty(exports, "__esModule", { value: true });
 		exports.getOctokitOptions = exports.GitHub = exports.defaults = exports.context = void 0;
 		const Context = __importStar(requireContext());
-		const Utils = __importStar(requireUtils$1());
+		const Utils = __importStar(requireUtils$3());
 		// octokit + plugins
 		const core_1 = require$$2;
 		const plugin_rest_endpoint_methods_1 = require$$3;
@@ -31175,8 +31176,8 @@ function requireUtils () {
 		}
 		exports.getOctokitOptions = getOctokitOptions;
 		
-	} (utils$1));
-	return utils$1;
+	} (utils$3));
+	return utils$3;
 }
 
 var hasRequiredGithub;
@@ -31210,7 +31211,7 @@ function requireGithub () {
 	Object.defineProperty(github, "__esModule", { value: true });
 	github.getOctokit = github.context = void 0;
 	const Context = __importStar(requireContext());
-	const utils_1 = requireUtils();
+	const utils_1 = requireUtils$2();
 	github.context = new Context.Context();
 	/**
 	 * Returns a hydrated octokit ready to use for GitHub Actions
@@ -31229,11 +31230,2769 @@ function requireGithub () {
 
 var githubExports = requireGithub();
 
+var fs = {};
+
+var universalify = {};
+
+var hasRequiredUniversalify;
+
+function requireUniversalify () {
+	if (hasRequiredUniversalify) return universalify;
+	hasRequiredUniversalify = 1;
+
+	universalify.fromCallback = function (fn) {
+	  return Object.defineProperty(function (...args) {
+	    if (typeof args[args.length - 1] === 'function') fn.apply(this, args);
+	    else {
+	      return new Promise((resolve, reject) => {
+	        args.push((err, res) => (err != null) ? reject(err) : resolve(res));
+	        fn.apply(this, args);
+	      })
+	    }
+	  }, 'name', { value: fn.name })
+	};
+
+	universalify.fromPromise = function (fn) {
+	  return Object.defineProperty(function (...args) {
+	    const cb = args[args.length - 1];
+	    if (typeof cb !== 'function') return fn.apply(this, args)
+	    else {
+	      args.pop();
+	      fn.apply(this, args).then(r => cb(null, r), cb);
+	    }
+	  }, 'name', { value: fn.name })
+	};
+	return universalify;
+}
+
+var polyfills;
+var hasRequiredPolyfills;
+
+function requirePolyfills () {
+	if (hasRequiredPolyfills) return polyfills;
+	hasRequiredPolyfills = 1;
+	var constants = require$$0$b;
+
+	var origCwd = process.cwd;
+	var cwd = null;
+
+	var platform = process.env.GRACEFUL_FS_PLATFORM || process.platform;
+
+	process.cwd = function() {
+	  if (!cwd)
+	    cwd = origCwd.call(process);
+	  return cwd
+	};
+	try {
+	  process.cwd();
+	} catch (er) {}
+
+	// This check is needed until node.js 12 is required
+	if (typeof process.chdir === 'function') {
+	  var chdir = process.chdir;
+	  process.chdir = function (d) {
+	    cwd = null;
+	    chdir.call(process, d);
+	  };
+	  if (Object.setPrototypeOf) Object.setPrototypeOf(process.chdir, chdir);
+	}
+
+	polyfills = patch;
+
+	function patch (fs) {
+	  // (re-)implement some things that are known busted or missing.
+
+	  // lchmod, broken prior to 0.6.2
+	  // back-port the fix here.
+	  if (constants.hasOwnProperty('O_SYMLINK') &&
+	      process.version.match(/^v0\.6\.[0-2]|^v0\.5\./)) {
+	    patchLchmod(fs);
+	  }
+
+	  // lutimes implementation, or no-op
+	  if (!fs.lutimes) {
+	    patchLutimes(fs);
+	  }
+
+	  // https://github.com/isaacs/node-graceful-fs/issues/4
+	  // Chown should not fail on einval or eperm if non-root.
+	  // It should not fail on enosys ever, as this just indicates
+	  // that a fs doesn't support the intended operation.
+
+	  fs.chown = chownFix(fs.chown);
+	  fs.fchown = chownFix(fs.fchown);
+	  fs.lchown = chownFix(fs.lchown);
+
+	  fs.chmod = chmodFix(fs.chmod);
+	  fs.fchmod = chmodFix(fs.fchmod);
+	  fs.lchmod = chmodFix(fs.lchmod);
+
+	  fs.chownSync = chownFixSync(fs.chownSync);
+	  fs.fchownSync = chownFixSync(fs.fchownSync);
+	  fs.lchownSync = chownFixSync(fs.lchownSync);
+
+	  fs.chmodSync = chmodFixSync(fs.chmodSync);
+	  fs.fchmodSync = chmodFixSync(fs.fchmodSync);
+	  fs.lchmodSync = chmodFixSync(fs.lchmodSync);
+
+	  fs.stat = statFix(fs.stat);
+	  fs.fstat = statFix(fs.fstat);
+	  fs.lstat = statFix(fs.lstat);
+
+	  fs.statSync = statFixSync(fs.statSync);
+	  fs.fstatSync = statFixSync(fs.fstatSync);
+	  fs.lstatSync = statFixSync(fs.lstatSync);
+
+	  // if lchmod/lchown do not exist, then make them no-ops
+	  if (fs.chmod && !fs.lchmod) {
+	    fs.lchmod = function (path, mode, cb) {
+	      if (cb) process.nextTick(cb);
+	    };
+	    fs.lchmodSync = function () {};
+	  }
+	  if (fs.chown && !fs.lchown) {
+	    fs.lchown = function (path, uid, gid, cb) {
+	      if (cb) process.nextTick(cb);
+	    };
+	    fs.lchownSync = function () {};
+	  }
+
+	  // on Windows, A/V software can lock the directory, causing this
+	  // to fail with an EACCES or EPERM if the directory contains newly
+	  // created files.  Try again on failure, for up to 60 seconds.
+
+	  // Set the timeout this long because some Windows Anti-Virus, such as Parity
+	  // bit9, may lock files for up to a minute, causing npm package install
+	  // failures. Also, take care to yield the scheduler. Windows scheduling gives
+	  // CPU to a busy looping process, which can cause the program causing the lock
+	  // contention to be starved of CPU by node, so the contention doesn't resolve.
+	  if (platform === "win32") {
+	    fs.rename = typeof fs.rename !== 'function' ? fs.rename
+	    : (function (fs$rename) {
+	      function rename (from, to, cb) {
+	        var start = Date.now();
+	        var backoff = 0;
+	        fs$rename(from, to, function CB (er) {
+	          if (er
+	              && (er.code === "EACCES" || er.code === "EPERM" || er.code === "EBUSY")
+	              && Date.now() - start < 60000) {
+	            setTimeout(function() {
+	              fs.stat(to, function (stater, st) {
+	                if (stater && stater.code === "ENOENT")
+	                  fs$rename(from, to, CB);
+	                else
+	                  cb(er);
+	              });
+	            }, backoff);
+	            if (backoff < 100)
+	              backoff += 10;
+	            return;
+	          }
+	          if (cb) cb(er);
+	        });
+	      }
+	      if (Object.setPrototypeOf) Object.setPrototypeOf(rename, fs$rename);
+	      return rename
+	    })(fs.rename);
+	  }
+
+	  // if read() returns EAGAIN, then just try it again.
+	  fs.read = typeof fs.read !== 'function' ? fs.read
+	  : (function (fs$read) {
+	    function read (fd, buffer, offset, length, position, callback_) {
+	      var callback;
+	      if (callback_ && typeof callback_ === 'function') {
+	        var eagCounter = 0;
+	        callback = function (er, _, __) {
+	          if (er && er.code === 'EAGAIN' && eagCounter < 10) {
+	            eagCounter ++;
+	            return fs$read.call(fs, fd, buffer, offset, length, position, callback)
+	          }
+	          callback_.apply(this, arguments);
+	        };
+	      }
+	      return fs$read.call(fs, fd, buffer, offset, length, position, callback)
+	    }
+
+	    // This ensures `util.promisify` works as it does for native `fs.read`.
+	    if (Object.setPrototypeOf) Object.setPrototypeOf(read, fs$read);
+	    return read
+	  })(fs.read);
+
+	  fs.readSync = typeof fs.readSync !== 'function' ? fs.readSync
+	  : (function (fs$readSync) { return function (fd, buffer, offset, length, position) {
+	    var eagCounter = 0;
+	    while (true) {
+	      try {
+	        return fs$readSync.call(fs, fd, buffer, offset, length, position)
+	      } catch (er) {
+	        if (er.code === 'EAGAIN' && eagCounter < 10) {
+	          eagCounter ++;
+	          continue
+	        }
+	        throw er
+	      }
+	    }
+	  }})(fs.readSync);
+
+	  function patchLchmod (fs) {
+	    fs.lchmod = function (path, mode, callback) {
+	      fs.open( path
+	             , constants.O_WRONLY | constants.O_SYMLINK
+	             , mode
+	             , function (err, fd) {
+	        if (err) {
+	          if (callback) callback(err);
+	          return
+	        }
+	        // prefer to return the chmod error, if one occurs,
+	        // but still try to close, and report closing errors if they occur.
+	        fs.fchmod(fd, mode, function (err) {
+	          fs.close(fd, function(err2) {
+	            if (callback) callback(err || err2);
+	          });
+	        });
+	      });
+	    };
+
+	    fs.lchmodSync = function (path, mode) {
+	      var fd = fs.openSync(path, constants.O_WRONLY | constants.O_SYMLINK, mode);
+
+	      // prefer to return the chmod error, if one occurs,
+	      // but still try to close, and report closing errors if they occur.
+	      var threw = true;
+	      var ret;
+	      try {
+	        ret = fs.fchmodSync(fd, mode);
+	        threw = false;
+	      } finally {
+	        if (threw) {
+	          try {
+	            fs.closeSync(fd);
+	          } catch (er) {}
+	        } else {
+	          fs.closeSync(fd);
+	        }
+	      }
+	      return ret
+	    };
+	  }
+
+	  function patchLutimes (fs) {
+	    if (constants.hasOwnProperty("O_SYMLINK") && fs.futimes) {
+	      fs.lutimes = function (path, at, mt, cb) {
+	        fs.open(path, constants.O_SYMLINK, function (er, fd) {
+	          if (er) {
+	            if (cb) cb(er);
+	            return
+	          }
+	          fs.futimes(fd, at, mt, function (er) {
+	            fs.close(fd, function (er2) {
+	              if (cb) cb(er || er2);
+	            });
+	          });
+	        });
+	      };
+
+	      fs.lutimesSync = function (path, at, mt) {
+	        var fd = fs.openSync(path, constants.O_SYMLINK);
+	        var ret;
+	        var threw = true;
+	        try {
+	          ret = fs.futimesSync(fd, at, mt);
+	          threw = false;
+	        } finally {
+	          if (threw) {
+	            try {
+	              fs.closeSync(fd);
+	            } catch (er) {}
+	          } else {
+	            fs.closeSync(fd);
+	          }
+	        }
+	        return ret
+	      };
+
+	    } else if (fs.futimes) {
+	      fs.lutimes = function (_a, _b, _c, cb) { if (cb) process.nextTick(cb); };
+	      fs.lutimesSync = function () {};
+	    }
+	  }
+
+	  function chmodFix (orig) {
+	    if (!orig) return orig
+	    return function (target, mode, cb) {
+	      return orig.call(fs, target, mode, function (er) {
+	        if (chownErOk(er)) er = null;
+	        if (cb) cb.apply(this, arguments);
+	      })
+	    }
+	  }
+
+	  function chmodFixSync (orig) {
+	    if (!orig) return orig
+	    return function (target, mode) {
+	      try {
+	        return orig.call(fs, target, mode)
+	      } catch (er) {
+	        if (!chownErOk(er)) throw er
+	      }
+	    }
+	  }
+
+
+	  function chownFix (orig) {
+	    if (!orig) return orig
+	    return function (target, uid, gid, cb) {
+	      return orig.call(fs, target, uid, gid, function (er) {
+	        if (chownErOk(er)) er = null;
+	        if (cb) cb.apply(this, arguments);
+	      })
+	    }
+	  }
+
+	  function chownFixSync (orig) {
+	    if (!orig) return orig
+	    return function (target, uid, gid) {
+	      try {
+	        return orig.call(fs, target, uid, gid)
+	      } catch (er) {
+	        if (!chownErOk(er)) throw er
+	      }
+	    }
+	  }
+
+	  function statFix (orig) {
+	    if (!orig) return orig
+	    // Older versions of Node erroneously returned signed integers for
+	    // uid + gid.
+	    return function (target, options, cb) {
+	      if (typeof options === 'function') {
+	        cb = options;
+	        options = null;
+	      }
+	      function callback (er, stats) {
+	        if (stats) {
+	          if (stats.uid < 0) stats.uid += 0x100000000;
+	          if (stats.gid < 0) stats.gid += 0x100000000;
+	        }
+	        if (cb) cb.apply(this, arguments);
+	      }
+	      return options ? orig.call(fs, target, options, callback)
+	        : orig.call(fs, target, callback)
+	    }
+	  }
+
+	  function statFixSync (orig) {
+	    if (!orig) return orig
+	    // Older versions of Node erroneously returned signed integers for
+	    // uid + gid.
+	    return function (target, options) {
+	      var stats = options ? orig.call(fs, target, options)
+	        : orig.call(fs, target);
+	      if (stats) {
+	        if (stats.uid < 0) stats.uid += 0x100000000;
+	        if (stats.gid < 0) stats.gid += 0x100000000;
+	      }
+	      return stats;
+	    }
+	  }
+
+	  // ENOSYS means that the fs doesn't support the op. Just ignore
+	  // that, because it doesn't matter.
+	  //
+	  // if there's no getuid, or if getuid() is something other
+	  // than 0, and the error is EINVAL or EPERM, then just ignore
+	  // it.
+	  //
+	  // This specific case is a silent failure in cp, install, tar,
+	  // and most other unix tools that manage permissions.
+	  //
+	  // When running as root, or if other types of errors are
+	  // encountered, then it's strict.
+	  function chownErOk (er) {
+	    if (!er)
+	      return true
+
+	    if (er.code === "ENOSYS")
+	      return true
+
+	    var nonroot = !process.getuid || process.getuid() !== 0;
+	    if (nonroot) {
+	      if (er.code === "EINVAL" || er.code === "EPERM")
+	        return true
+	    }
+
+	    return false
+	  }
+	}
+	return polyfills;
+}
+
+var legacyStreams;
+var hasRequiredLegacyStreams;
+
+function requireLegacyStreams () {
+	if (hasRequiredLegacyStreams) return legacyStreams;
+	hasRequiredLegacyStreams = 1;
+	var Stream = require$$0$6.Stream;
+
+	legacyStreams = legacy;
+
+	function legacy (fs) {
+	  return {
+	    ReadStream: ReadStream,
+	    WriteStream: WriteStream
+	  }
+
+	  function ReadStream (path, options) {
+	    if (!(this instanceof ReadStream)) return new ReadStream(path, options);
+
+	    Stream.call(this);
+
+	    var self = this;
+
+	    this.path = path;
+	    this.fd = null;
+	    this.readable = true;
+	    this.paused = false;
+
+	    this.flags = 'r';
+	    this.mode = 438; /*=0666*/
+	    this.bufferSize = 64 * 1024;
+
+	    options = options || {};
+
+	    // Mixin options into this
+	    var keys = Object.keys(options);
+	    for (var index = 0, length = keys.length; index < length; index++) {
+	      var key = keys[index];
+	      this[key] = options[key];
+	    }
+
+	    if (this.encoding) this.setEncoding(this.encoding);
+
+	    if (this.start !== undefined) {
+	      if ('number' !== typeof this.start) {
+	        throw TypeError('start must be a Number');
+	      }
+	      if (this.end === undefined) {
+	        this.end = Infinity;
+	      } else if ('number' !== typeof this.end) {
+	        throw TypeError('end must be a Number');
+	      }
+
+	      if (this.start > this.end) {
+	        throw new Error('start must be <= end');
+	      }
+
+	      this.pos = this.start;
+	    }
+
+	    if (this.fd !== null) {
+	      process.nextTick(function() {
+	        self._read();
+	      });
+	      return;
+	    }
+
+	    fs.open(this.path, this.flags, this.mode, function (err, fd) {
+	      if (err) {
+	        self.emit('error', err);
+	        self.readable = false;
+	        return;
+	      }
+
+	      self.fd = fd;
+	      self.emit('open', fd);
+	      self._read();
+	    });
+	  }
+
+	  function WriteStream (path, options) {
+	    if (!(this instanceof WriteStream)) return new WriteStream(path, options);
+
+	    Stream.call(this);
+
+	    this.path = path;
+	    this.fd = null;
+	    this.writable = true;
+
+	    this.flags = 'w';
+	    this.encoding = 'binary';
+	    this.mode = 438; /*=0666*/
+	    this.bytesWritten = 0;
+
+	    options = options || {};
+
+	    // Mixin options into this
+	    var keys = Object.keys(options);
+	    for (var index = 0, length = keys.length; index < length; index++) {
+	      var key = keys[index];
+	      this[key] = options[key];
+	    }
+
+	    if (this.start !== undefined) {
+	      if ('number' !== typeof this.start) {
+	        throw TypeError('start must be a Number');
+	      }
+	      if (this.start < 0) {
+	        throw new Error('start must be >= zero');
+	      }
+
+	      this.pos = this.start;
+	    }
+
+	    this.busy = false;
+	    this._queue = [];
+
+	    if (this.fd === null) {
+	      this._open = fs.open;
+	      this._queue.push([this._open, this.path, this.flags, this.mode, undefined]);
+	      this.flush();
+	    }
+	  }
+	}
+	return legacyStreams;
+}
+
+var clone_1;
+var hasRequiredClone;
+
+function requireClone () {
+	if (hasRequiredClone) return clone_1;
+	hasRequiredClone = 1;
+
+	clone_1 = clone;
+
+	var getPrototypeOf = Object.getPrototypeOf || function (obj) {
+	  return obj.__proto__
+	};
+
+	function clone (obj) {
+	  if (obj === null || typeof obj !== 'object')
+	    return obj
+
+	  if (obj instanceof Object)
+	    var copy = { __proto__: getPrototypeOf(obj) };
+	  else
+	    var copy = Object.create(null);
+
+	  Object.getOwnPropertyNames(obj).forEach(function (key) {
+	    Object.defineProperty(copy, key, Object.getOwnPropertyDescriptor(obj, key));
+	  });
+
+	  return copy
+	}
+	return clone_1;
+}
+
+var gracefulFs;
+var hasRequiredGracefulFs;
+
+function requireGracefulFs () {
+	if (hasRequiredGracefulFs) return gracefulFs;
+	hasRequiredGracefulFs = 1;
+	var fs = require$$0$2;
+	var polyfills = requirePolyfills();
+	var legacy = requireLegacyStreams();
+	var clone = requireClone();
+
+	var util = require$$0$3;
+
+	/* istanbul ignore next - node 0.x polyfill */
+	var gracefulQueue;
+	var previousSymbol;
+
+	/* istanbul ignore else - node 0.x polyfill */
+	if (typeof Symbol === 'function' && typeof Symbol.for === 'function') {
+	  gracefulQueue = Symbol.for('graceful-fs.queue');
+	  // This is used in testing by future versions
+	  previousSymbol = Symbol.for('graceful-fs.previous');
+	} else {
+	  gracefulQueue = '___graceful-fs.queue';
+	  previousSymbol = '___graceful-fs.previous';
+	}
+
+	function noop () {}
+
+	function publishQueue(context, queue) {
+	  Object.defineProperty(context, gracefulQueue, {
+	    get: function() {
+	      return queue
+	    }
+	  });
+	}
+
+	var debug = noop;
+	if (util.debuglog)
+	  debug = util.debuglog('gfs4');
+	else if (/\bgfs4\b/i.test(process.env.NODE_DEBUG || ''))
+	  debug = function() {
+	    var m = util.format.apply(util, arguments);
+	    m = 'GFS4: ' + m.split(/\n/).join('\nGFS4: ');
+	    console.error(m);
+	  };
+
+	// Once time initialization
+	if (!fs[gracefulQueue]) {
+	  // This queue can be shared by multiple loaded instances
+	  var queue = commonjsGlobal[gracefulQueue] || [];
+	  publishQueue(fs, queue);
+
+	  // Patch fs.close/closeSync to shared queue version, because we need
+	  // to retry() whenever a close happens *anywhere* in the program.
+	  // This is essential when multiple graceful-fs instances are
+	  // in play at the same time.
+	  fs.close = (function (fs$close) {
+	    function close (fd, cb) {
+	      return fs$close.call(fs, fd, function (err) {
+	        // This function uses the graceful-fs shared queue
+	        if (!err) {
+	          resetQueue();
+	        }
+
+	        if (typeof cb === 'function')
+	          cb.apply(this, arguments);
+	      })
+	    }
+
+	    Object.defineProperty(close, previousSymbol, {
+	      value: fs$close
+	    });
+	    return close
+	  })(fs.close);
+
+	  fs.closeSync = (function (fs$closeSync) {
+	    function closeSync (fd) {
+	      // This function uses the graceful-fs shared queue
+	      fs$closeSync.apply(fs, arguments);
+	      resetQueue();
+	    }
+
+	    Object.defineProperty(closeSync, previousSymbol, {
+	      value: fs$closeSync
+	    });
+	    return closeSync
+	  })(fs.closeSync);
+
+	  if (/\bgfs4\b/i.test(process.env.NODE_DEBUG || '')) {
+	    process.on('exit', function() {
+	      debug(fs[gracefulQueue]);
+	      require$$0$4.equal(fs[gracefulQueue].length, 0);
+	    });
+	  }
+	}
+
+	if (!commonjsGlobal[gracefulQueue]) {
+	  publishQueue(commonjsGlobal, fs[gracefulQueue]);
+	}
+
+	gracefulFs = patch(clone(fs));
+	if (process.env.TEST_GRACEFUL_FS_GLOBAL_PATCH && !fs.__patched) {
+	    gracefulFs = patch(fs);
+	    fs.__patched = true;
+	}
+
+	function patch (fs) {
+	  // Everything that references the open() function needs to be in here
+	  polyfills(fs);
+	  fs.gracefulify = patch;
+
+	  fs.createReadStream = createReadStream;
+	  fs.createWriteStream = createWriteStream;
+	  var fs$readFile = fs.readFile;
+	  fs.readFile = readFile;
+	  function readFile (path, options, cb) {
+	    if (typeof options === 'function')
+	      cb = options, options = null;
+
+	    return go$readFile(path, options, cb)
+
+	    function go$readFile (path, options, cb, startTime) {
+	      return fs$readFile(path, options, function (err) {
+	        if (err && (err.code === 'EMFILE' || err.code === 'ENFILE'))
+	          enqueue([go$readFile, [path, options, cb], err, startTime || Date.now(), Date.now()]);
+	        else {
+	          if (typeof cb === 'function')
+	            cb.apply(this, arguments);
+	        }
+	      })
+	    }
+	  }
+
+	  var fs$writeFile = fs.writeFile;
+	  fs.writeFile = writeFile;
+	  function writeFile (path, data, options, cb) {
+	    if (typeof options === 'function')
+	      cb = options, options = null;
+
+	    return go$writeFile(path, data, options, cb)
+
+	    function go$writeFile (path, data, options, cb, startTime) {
+	      return fs$writeFile(path, data, options, function (err) {
+	        if (err && (err.code === 'EMFILE' || err.code === 'ENFILE'))
+	          enqueue([go$writeFile, [path, data, options, cb], err, startTime || Date.now(), Date.now()]);
+	        else {
+	          if (typeof cb === 'function')
+	            cb.apply(this, arguments);
+	        }
+	      })
+	    }
+	  }
+
+	  var fs$appendFile = fs.appendFile;
+	  if (fs$appendFile)
+	    fs.appendFile = appendFile;
+	  function appendFile (path, data, options, cb) {
+	    if (typeof options === 'function')
+	      cb = options, options = null;
+
+	    return go$appendFile(path, data, options, cb)
+
+	    function go$appendFile (path, data, options, cb, startTime) {
+	      return fs$appendFile(path, data, options, function (err) {
+	        if (err && (err.code === 'EMFILE' || err.code === 'ENFILE'))
+	          enqueue([go$appendFile, [path, data, options, cb], err, startTime || Date.now(), Date.now()]);
+	        else {
+	          if (typeof cb === 'function')
+	            cb.apply(this, arguments);
+	        }
+	      })
+	    }
+	  }
+
+	  var fs$copyFile = fs.copyFile;
+	  if (fs$copyFile)
+	    fs.copyFile = copyFile;
+	  function copyFile (src, dest, flags, cb) {
+	    if (typeof flags === 'function') {
+	      cb = flags;
+	      flags = 0;
+	    }
+	    return go$copyFile(src, dest, flags, cb)
+
+	    function go$copyFile (src, dest, flags, cb, startTime) {
+	      return fs$copyFile(src, dest, flags, function (err) {
+	        if (err && (err.code === 'EMFILE' || err.code === 'ENFILE'))
+	          enqueue([go$copyFile, [src, dest, flags, cb], err, startTime || Date.now(), Date.now()]);
+	        else {
+	          if (typeof cb === 'function')
+	            cb.apply(this, arguments);
+	        }
+	      })
+	    }
+	  }
+
+	  var fs$readdir = fs.readdir;
+	  fs.readdir = readdir;
+	  var noReaddirOptionVersions = /^v[0-5]\./;
+	  function readdir (path, options, cb) {
+	    if (typeof options === 'function')
+	      cb = options, options = null;
+
+	    var go$readdir = noReaddirOptionVersions.test(process.version)
+	      ? function go$readdir (path, options, cb, startTime) {
+	        return fs$readdir(path, fs$readdirCallback(
+	          path, options, cb, startTime
+	        ))
+	      }
+	      : function go$readdir (path, options, cb, startTime) {
+	        return fs$readdir(path, options, fs$readdirCallback(
+	          path, options, cb, startTime
+	        ))
+	      };
+
+	    return go$readdir(path, options, cb)
+
+	    function fs$readdirCallback (path, options, cb, startTime) {
+	      return function (err, files) {
+	        if (err && (err.code === 'EMFILE' || err.code === 'ENFILE'))
+	          enqueue([
+	            go$readdir,
+	            [path, options, cb],
+	            err,
+	            startTime || Date.now(),
+	            Date.now()
+	          ]);
+	        else {
+	          if (files && files.sort)
+	            files.sort();
+
+	          if (typeof cb === 'function')
+	            cb.call(this, err, files);
+	        }
+	      }
+	    }
+	  }
+
+	  if (process.version.substr(0, 4) === 'v0.8') {
+	    var legStreams = legacy(fs);
+	    ReadStream = legStreams.ReadStream;
+	    WriteStream = legStreams.WriteStream;
+	  }
+
+	  var fs$ReadStream = fs.ReadStream;
+	  if (fs$ReadStream) {
+	    ReadStream.prototype = Object.create(fs$ReadStream.prototype);
+	    ReadStream.prototype.open = ReadStream$open;
+	  }
+
+	  var fs$WriteStream = fs.WriteStream;
+	  if (fs$WriteStream) {
+	    WriteStream.prototype = Object.create(fs$WriteStream.prototype);
+	    WriteStream.prototype.open = WriteStream$open;
+	  }
+
+	  Object.defineProperty(fs, 'ReadStream', {
+	    get: function () {
+	      return ReadStream
+	    },
+	    set: function (val) {
+	      ReadStream = val;
+	    },
+	    enumerable: true,
+	    configurable: true
+	  });
+	  Object.defineProperty(fs, 'WriteStream', {
+	    get: function () {
+	      return WriteStream
+	    },
+	    set: function (val) {
+	      WriteStream = val;
+	    },
+	    enumerable: true,
+	    configurable: true
+	  });
+
+	  // legacy names
+	  var FileReadStream = ReadStream;
+	  Object.defineProperty(fs, 'FileReadStream', {
+	    get: function () {
+	      return FileReadStream
+	    },
+	    set: function (val) {
+	      FileReadStream = val;
+	    },
+	    enumerable: true,
+	    configurable: true
+	  });
+	  var FileWriteStream = WriteStream;
+	  Object.defineProperty(fs, 'FileWriteStream', {
+	    get: function () {
+	      return FileWriteStream
+	    },
+	    set: function (val) {
+	      FileWriteStream = val;
+	    },
+	    enumerable: true,
+	    configurable: true
+	  });
+
+	  function ReadStream (path, options) {
+	    if (this instanceof ReadStream)
+	      return fs$ReadStream.apply(this, arguments), this
+	    else
+	      return ReadStream.apply(Object.create(ReadStream.prototype), arguments)
+	  }
+
+	  function ReadStream$open () {
+	    var that = this;
+	    open(that.path, that.flags, that.mode, function (err, fd) {
+	      if (err) {
+	        if (that.autoClose)
+	          that.destroy();
+
+	        that.emit('error', err);
+	      } else {
+	        that.fd = fd;
+	        that.emit('open', fd);
+	        that.read();
+	      }
+	    });
+	  }
+
+	  function WriteStream (path, options) {
+	    if (this instanceof WriteStream)
+	      return fs$WriteStream.apply(this, arguments), this
+	    else
+	      return WriteStream.apply(Object.create(WriteStream.prototype), arguments)
+	  }
+
+	  function WriteStream$open () {
+	    var that = this;
+	    open(that.path, that.flags, that.mode, function (err, fd) {
+	      if (err) {
+	        that.destroy();
+	        that.emit('error', err);
+	      } else {
+	        that.fd = fd;
+	        that.emit('open', fd);
+	      }
+	    });
+	  }
+
+	  function createReadStream (path, options) {
+	    return new fs.ReadStream(path, options)
+	  }
+
+	  function createWriteStream (path, options) {
+	    return new fs.WriteStream(path, options)
+	  }
+
+	  var fs$open = fs.open;
+	  fs.open = open;
+	  function open (path, flags, mode, cb) {
+	    if (typeof mode === 'function')
+	      cb = mode, mode = null;
+
+	    return go$open(path, flags, mode, cb)
+
+	    function go$open (path, flags, mode, cb, startTime) {
+	      return fs$open(path, flags, mode, function (err, fd) {
+	        if (err && (err.code === 'EMFILE' || err.code === 'ENFILE'))
+	          enqueue([go$open, [path, flags, mode, cb], err, startTime || Date.now(), Date.now()]);
+	        else {
+	          if (typeof cb === 'function')
+	            cb.apply(this, arguments);
+	        }
+	      })
+	    }
+	  }
+
+	  return fs
+	}
+
+	function enqueue (elem) {
+	  debug('ENQUEUE', elem[0].name, elem[1]);
+	  fs[gracefulQueue].push(elem);
+	  retry();
+	}
+
+	// keep track of the timeout between retry() calls
+	var retryTimer;
+
+	// reset the startTime and lastTime to now
+	// this resets the start of the 60 second overall timeout as well as the
+	// delay between attempts so that we'll retry these jobs sooner
+	function resetQueue () {
+	  var now = Date.now();
+	  for (var i = 0; i < fs[gracefulQueue].length; ++i) {
+	    // entries that are only a length of 2 are from an older version, don't
+	    // bother modifying those since they'll be retried anyway.
+	    if (fs[gracefulQueue][i].length > 2) {
+	      fs[gracefulQueue][i][3] = now; // startTime
+	      fs[gracefulQueue][i][4] = now; // lastTime
+	    }
+	  }
+	  // call retry to make sure we're actively processing the queue
+	  retry();
+	}
+
+	function retry () {
+	  // clear the timer and remove it to help prevent unintended concurrency
+	  clearTimeout(retryTimer);
+	  retryTimer = undefined;
+
+	  if (fs[gracefulQueue].length === 0)
+	    return
+
+	  var elem = fs[gracefulQueue].shift();
+	  var fn = elem[0];
+	  var args = elem[1];
+	  // these items may be unset if they were added by an older graceful-fs
+	  var err = elem[2];
+	  var startTime = elem[3];
+	  var lastTime = elem[4];
+
+	  // if we don't have a startTime we have no way of knowing if we've waited
+	  // long enough, so go ahead and retry this item now
+	  if (startTime === undefined) {
+	    debug('RETRY', fn.name, args);
+	    fn.apply(null, args);
+	  } else if (Date.now() - startTime >= 60000) {
+	    // it's been more than 60 seconds total, bail now
+	    debug('TIMEOUT', fn.name, args);
+	    var cb = args.pop();
+	    if (typeof cb === 'function')
+	      cb.call(null, err);
+	  } else {
+	    // the amount of time between the last attempt and right now
+	    var sinceAttempt = Date.now() - lastTime;
+	    // the amount of time between when we first tried, and when we last tried
+	    // rounded up to at least 1
+	    var sinceStart = Math.max(lastTime - startTime, 1);
+	    // backoff. wait longer than the total time we've been retrying, but only
+	    // up to a maximum of 100ms
+	    var desiredDelay = Math.min(sinceStart * 1.2, 100);
+	    // it's been long enough since the last retry, do it again
+	    if (sinceAttempt >= desiredDelay) {
+	      debug('RETRY', fn.name, args);
+	      fn.apply(null, args.concat([startTime]));
+	    } else {
+	      // if we can't do this job yet, push it to the end of the queue
+	      // and let the next iteration check again
+	      fs[gracefulQueue].push(elem);
+	    }
+	  }
+
+	  // schedule our next run if one isn't already scheduled
+	  if (retryTimer === undefined) {
+	    retryTimer = setTimeout(retry, 0);
+	  }
+	}
+	return gracefulFs;
+}
+
+var hasRequiredFs;
+
+function requireFs () {
+	if (hasRequiredFs) return fs;
+	hasRequiredFs = 1;
+	(function (exports) {
+		// This is adapted from https://github.com/normalize/mz
+		// Copyright (c) 2014-2016 Jonathan Ong me@jongleberry.com and Contributors
+		const u = requireUniversalify().fromCallback;
+		const fs = requireGracefulFs();
+
+		const api = [
+		  'access',
+		  'appendFile',
+		  'chmod',
+		  'chown',
+		  'close',
+		  'copyFile',
+		  'cp',
+		  'fchmod',
+		  'fchown',
+		  'fdatasync',
+		  'fstat',
+		  'fsync',
+		  'ftruncate',
+		  'futimes',
+		  'glob',
+		  'lchmod',
+		  'lchown',
+		  'lutimes',
+		  'link',
+		  'lstat',
+		  'mkdir',
+		  'mkdtemp',
+		  'open',
+		  'opendir',
+		  'readdir',
+		  'readFile',
+		  'readlink',
+		  'realpath',
+		  'rename',
+		  'rm',
+		  'rmdir',
+		  'stat',
+		  'statfs',
+		  'symlink',
+		  'truncate',
+		  'unlink',
+		  'utimes',
+		  'writeFile'
+		].filter(key => {
+		  // Some commands are not available on some systems. Ex:
+		  // fs.cp was added in Node.js v16.7.0
+		  // fs.statfs was added in Node v19.6.0, v18.15.0
+		  // fs.glob was added in Node.js v22.0.0
+		  // fs.lchown is not available on at least some Linux
+		  return typeof fs[key] === 'function'
+		});
+
+		// Export cloned fs:
+		Object.assign(exports, fs);
+
+		// Universalify async methods:
+		api.forEach(method => {
+		  exports[method] = u(fs[method]);
+		});
+
+		// We differ from mz/fs in that we still ship the old, broken, fs.exists()
+		// since we are a drop-in replacement for the native module
+		exports.exists = function (filename, callback) {
+		  if (typeof callback === 'function') {
+		    return fs.exists(filename, callback)
+		  }
+		  return new Promise(resolve => {
+		    return fs.exists(filename, resolve)
+		  })
+		};
+
+		// fs.read(), fs.write(), fs.readv(), & fs.writev() need special treatment due to multiple callback args
+
+		exports.read = function (fd, buffer, offset, length, position, callback) {
+		  if (typeof callback === 'function') {
+		    return fs.read(fd, buffer, offset, length, position, callback)
+		  }
+		  return new Promise((resolve, reject) => {
+		    fs.read(fd, buffer, offset, length, position, (err, bytesRead, buffer) => {
+		      if (err) return reject(err)
+		      resolve({ bytesRead, buffer });
+		    });
+		  })
+		};
+
+		// Function signature can be
+		// fs.write(fd, buffer[, offset[, length[, position]]], callback)
+		// OR
+		// fs.write(fd, string[, position[, encoding]], callback)
+		// We need to handle both cases, so we use ...args
+		exports.write = function (fd, buffer, ...args) {
+		  if (typeof args[args.length - 1] === 'function') {
+		    return fs.write(fd, buffer, ...args)
+		  }
+
+		  return new Promise((resolve, reject) => {
+		    fs.write(fd, buffer, ...args, (err, bytesWritten, buffer) => {
+		      if (err) return reject(err)
+		      resolve({ bytesWritten, buffer });
+		    });
+		  })
+		};
+
+		// Function signature is
+		// s.readv(fd, buffers[, position], callback)
+		// We need to handle the optional arg, so we use ...args
+		exports.readv = function (fd, buffers, ...args) {
+		  if (typeof args[args.length - 1] === 'function') {
+		    return fs.readv(fd, buffers, ...args)
+		  }
+
+		  return new Promise((resolve, reject) => {
+		    fs.readv(fd, buffers, ...args, (err, bytesRead, buffers) => {
+		      if (err) return reject(err)
+		      resolve({ bytesRead, buffers });
+		    });
+		  })
+		};
+
+		// Function signature is
+		// s.writev(fd, buffers[, position], callback)
+		// We need to handle the optional arg, so we use ...args
+		exports.writev = function (fd, buffers, ...args) {
+		  if (typeof args[args.length - 1] === 'function') {
+		    return fs.writev(fd, buffers, ...args)
+		  }
+
+		  return new Promise((resolve, reject) => {
+		    fs.writev(fd, buffers, ...args, (err, bytesWritten, buffers) => {
+		      if (err) return reject(err)
+		      resolve({ bytesWritten, buffers });
+		    });
+		  })
+		};
+
+		// fs.realpath.native sometimes not available if fs is monkey-patched
+		if (typeof fs.realpath.native === 'function') {
+		  exports.realpath.native = u(fs.realpath.native);
+		} else {
+		  process.emitWarning(
+		    'fs.realpath.native is not a function. Is fs being monkey-patched?',
+		    'Warning', 'fs-extra-WARN0003'
+		  );
+		} 
+	} (fs));
+	return fs;
+}
+
+var makeDir = {};
+
+var utils$1 = {};
+
+var hasRequiredUtils$1;
+
+function requireUtils$1 () {
+	if (hasRequiredUtils$1) return utils$1;
+	hasRequiredUtils$1 = 1;
+	const path = require$$1$4;
+
+	// https://github.com/nodejs/node/issues/8987
+	// https://github.com/libuv/libuv/pull/1088
+	utils$1.checkPath = function checkPath (pth) {
+	  if (process.platform === 'win32') {
+	    const pathHasInvalidWinCharacters = /[<>:"|?*]/.test(pth.replace(path.parse(pth).root, ''));
+
+	    if (pathHasInvalidWinCharacters) {
+	      const error = new Error(`Path contains invalid characters: ${pth}`);
+	      error.code = 'EINVAL';
+	      throw error
+	    }
+	  }
+	};
+	return utils$1;
+}
+
+var hasRequiredMakeDir;
+
+function requireMakeDir () {
+	if (hasRequiredMakeDir) return makeDir;
+	hasRequiredMakeDir = 1;
+	const fs = /*@__PURE__*/ requireFs();
+	const { checkPath } = /*@__PURE__*/ requireUtils$1();
+
+	const getMode = options => {
+	  const defaults = { mode: 0o777 };
+	  if (typeof options === 'number') return options
+	  return ({ ...defaults, ...options }).mode
+	};
+
+	makeDir.makeDir = async (dir, options) => {
+	  checkPath(dir);
+
+	  return fs.mkdir(dir, {
+	    mode: getMode(options),
+	    recursive: true
+	  })
+	};
+
+	makeDir.makeDirSync = (dir, options) => {
+	  checkPath(dir);
+
+	  return fs.mkdirSync(dir, {
+	    mode: getMode(options),
+	    recursive: true
+	  })
+	};
+	return makeDir;
+}
+
+var mkdirs;
+var hasRequiredMkdirs;
+
+function requireMkdirs () {
+	if (hasRequiredMkdirs) return mkdirs;
+	hasRequiredMkdirs = 1;
+	const u = requireUniversalify().fromPromise;
+	const { makeDir: _makeDir, makeDirSync } = /*@__PURE__*/ requireMakeDir();
+	const makeDir = u(_makeDir);
+
+	mkdirs = {
+	  mkdirs: makeDir,
+	  mkdirsSync: makeDirSync,
+	  // alias
+	  mkdirp: makeDir,
+	  mkdirpSync: makeDirSync,
+	  ensureDir: makeDir,
+	  ensureDirSync: makeDirSync
+	};
+	return mkdirs;
+}
+
+var pathExists_1;
+var hasRequiredPathExists;
+
+function requirePathExists () {
+	if (hasRequiredPathExists) return pathExists_1;
+	hasRequiredPathExists = 1;
+	const u = requireUniversalify().fromPromise;
+	const fs = /*@__PURE__*/ requireFs();
+
+	function pathExists (path) {
+	  return fs.access(path).then(() => true).catch(() => false)
+	}
+
+	pathExists_1 = {
+	  pathExists: u(pathExists),
+	  pathExistsSync: fs.existsSync
+	};
+	return pathExists_1;
+}
+
+var utimes;
+var hasRequiredUtimes;
+
+function requireUtimes () {
+	if (hasRequiredUtimes) return utimes;
+	hasRequiredUtimes = 1;
+
+	const fs = /*@__PURE__*/ requireFs();
+	const u = requireUniversalify().fromPromise;
+
+	async function utimesMillis (path, atime, mtime) {
+	  // if (!HAS_MILLIS_RES) return fs.utimes(path, atime, mtime, callback)
+	  const fd = await fs.open(path, 'r+');
+
+	  let closeErr = null;
+
+	  try {
+	    await fs.futimes(fd, atime, mtime);
+	  } finally {
+	    try {
+	      await fs.close(fd);
+	    } catch (e) {
+	      closeErr = e;
+	    }
+	  }
+
+	  if (closeErr) {
+	    throw closeErr
+	  }
+	}
+
+	function utimesMillisSync (path, atime, mtime) {
+	  const fd = fs.openSync(path, 'r+');
+	  fs.futimesSync(fd, atime, mtime);
+	  return fs.closeSync(fd)
+	}
+
+	utimes = {
+	  utimesMillis: u(utimesMillis),
+	  utimesMillisSync
+	};
+	return utimes;
+}
+
+var stat;
+var hasRequiredStat;
+
+function requireStat () {
+	if (hasRequiredStat) return stat;
+	hasRequiredStat = 1;
+
+	const fs = /*@__PURE__*/ requireFs();
+	const path = require$$1$4;
+	const u = requireUniversalify().fromPromise;
+
+	function getStats (src, dest, opts) {
+	  const statFunc = opts.dereference
+	    ? (file) => fs.stat(file, { bigint: true })
+	    : (file) => fs.lstat(file, { bigint: true });
+	  return Promise.all([
+	    statFunc(src),
+	    statFunc(dest).catch(err => {
+	      if (err.code === 'ENOENT') return null
+	      throw err
+	    })
+	  ]).then(([srcStat, destStat]) => ({ srcStat, destStat }))
+	}
+
+	function getStatsSync (src, dest, opts) {
+	  let destStat;
+	  const statFunc = opts.dereference
+	    ? (file) => fs.statSync(file, { bigint: true })
+	    : (file) => fs.lstatSync(file, { bigint: true });
+	  const srcStat = statFunc(src);
+	  try {
+	    destStat = statFunc(dest);
+	  } catch (err) {
+	    if (err.code === 'ENOENT') return { srcStat, destStat: null }
+	    throw err
+	  }
+	  return { srcStat, destStat }
+	}
+
+	async function checkPaths (src, dest, funcName, opts) {
+	  const { srcStat, destStat } = await getStats(src, dest, opts);
+	  if (destStat) {
+	    if (areIdentical(srcStat, destStat)) {
+	      const srcBaseName = path.basename(src);
+	      const destBaseName = path.basename(dest);
+	      if (funcName === 'move' &&
+	        srcBaseName !== destBaseName &&
+	        srcBaseName.toLowerCase() === destBaseName.toLowerCase()) {
+	        return { srcStat, destStat, isChangingCase: true }
+	      }
+	      throw new Error('Source and destination must not be the same.')
+	    }
+	    if (srcStat.isDirectory() && !destStat.isDirectory()) {
+	      throw new Error(`Cannot overwrite non-directory '${dest}' with directory '${src}'.`)
+	    }
+	    if (!srcStat.isDirectory() && destStat.isDirectory()) {
+	      throw new Error(`Cannot overwrite directory '${dest}' with non-directory '${src}'.`)
+	    }
+	  }
+
+	  if (srcStat.isDirectory() && isSrcSubdir(src, dest)) {
+	    throw new Error(errMsg(src, dest, funcName))
+	  }
+
+	  return { srcStat, destStat }
+	}
+
+	function checkPathsSync (src, dest, funcName, opts) {
+	  const { srcStat, destStat } = getStatsSync(src, dest, opts);
+
+	  if (destStat) {
+	    if (areIdentical(srcStat, destStat)) {
+	      const srcBaseName = path.basename(src);
+	      const destBaseName = path.basename(dest);
+	      if (funcName === 'move' &&
+	        srcBaseName !== destBaseName &&
+	        srcBaseName.toLowerCase() === destBaseName.toLowerCase()) {
+	        return { srcStat, destStat, isChangingCase: true }
+	      }
+	      throw new Error('Source and destination must not be the same.')
+	    }
+	    if (srcStat.isDirectory() && !destStat.isDirectory()) {
+	      throw new Error(`Cannot overwrite non-directory '${dest}' with directory '${src}'.`)
+	    }
+	    if (!srcStat.isDirectory() && destStat.isDirectory()) {
+	      throw new Error(`Cannot overwrite directory '${dest}' with non-directory '${src}'.`)
+	    }
+	  }
+
+	  if (srcStat.isDirectory() && isSrcSubdir(src, dest)) {
+	    throw new Error(errMsg(src, dest, funcName))
+	  }
+	  return { srcStat, destStat }
+	}
+
+	// recursively check if dest parent is a subdirectory of src.
+	// It works for all file types including symlinks since it
+	// checks the src and dest inodes. It starts from the deepest
+	// parent and stops once it reaches the src parent or the root path.
+	async function checkParentPaths (src, srcStat, dest, funcName) {
+	  const srcParent = path.resolve(path.dirname(src));
+	  const destParent = path.resolve(path.dirname(dest));
+	  if (destParent === srcParent || destParent === path.parse(destParent).root) return
+
+	  let destStat;
+	  try {
+	    destStat = await fs.stat(destParent, { bigint: true });
+	  } catch (err) {
+	    if (err.code === 'ENOENT') return
+	    throw err
+	  }
+
+	  if (areIdentical(srcStat, destStat)) {
+	    throw new Error(errMsg(src, dest, funcName))
+	  }
+
+	  return checkParentPaths(src, srcStat, destParent, funcName)
+	}
+
+	function checkParentPathsSync (src, srcStat, dest, funcName) {
+	  const srcParent = path.resolve(path.dirname(src));
+	  const destParent = path.resolve(path.dirname(dest));
+	  if (destParent === srcParent || destParent === path.parse(destParent).root) return
+	  let destStat;
+	  try {
+	    destStat = fs.statSync(destParent, { bigint: true });
+	  } catch (err) {
+	    if (err.code === 'ENOENT') return
+	    throw err
+	  }
+	  if (areIdentical(srcStat, destStat)) {
+	    throw new Error(errMsg(src, dest, funcName))
+	  }
+	  return checkParentPathsSync(src, srcStat, destParent, funcName)
+	}
+
+	function areIdentical (srcStat, destStat) {
+	  return destStat.ino && destStat.dev && destStat.ino === srcStat.ino && destStat.dev === srcStat.dev
+	}
+
+	// return true if dest is a subdir of src, otherwise false.
+	// It only checks the path strings.
+	function isSrcSubdir (src, dest) {
+	  const srcArr = path.resolve(src).split(path.sep).filter(i => i);
+	  const destArr = path.resolve(dest).split(path.sep).filter(i => i);
+	  return srcArr.every((cur, i) => destArr[i] === cur)
+	}
+
+	function errMsg (src, dest, funcName) {
+	  return `Cannot ${funcName} '${src}' to a subdirectory of itself, '${dest}'.`
+	}
+
+	stat = {
+	  // checkPaths
+	  checkPaths: u(checkPaths),
+	  checkPathsSync,
+	  // checkParent
+	  checkParentPaths: u(checkParentPaths),
+	  checkParentPathsSync,
+	  // Misc
+	  isSrcSubdir,
+	  areIdentical
+	};
+	return stat;
+}
+
+var copy_1;
+var hasRequiredCopy$1;
+
+function requireCopy$1 () {
+	if (hasRequiredCopy$1) return copy_1;
+	hasRequiredCopy$1 = 1;
+
+	const fs = /*@__PURE__*/ requireFs();
+	const path = require$$1$4;
+	const { mkdirs } = /*@__PURE__*/ requireMkdirs();
+	const { pathExists } = /*@__PURE__*/ requirePathExists();
+	const { utimesMillis } = /*@__PURE__*/ requireUtimes();
+	const stat = /*@__PURE__*/ requireStat();
+
+	async function copy (src, dest, opts = {}) {
+	  if (typeof opts === 'function') {
+	    opts = { filter: opts };
+	  }
+
+	  opts.clobber = 'clobber' in opts ? !!opts.clobber : true; // default to true for now
+	  opts.overwrite = 'overwrite' in opts ? !!opts.overwrite : opts.clobber; // overwrite falls back to clobber
+
+	  // Warn about using preserveTimestamps on 32-bit node
+	  if (opts.preserveTimestamps && process.arch === 'ia32') {
+	    process.emitWarning(
+	      'Using the preserveTimestamps option in 32-bit node is not recommended;\n\n' +
+	      '\tsee https://github.com/jprichardson/node-fs-extra/issues/269',
+	      'Warning', 'fs-extra-WARN0001'
+	    );
+	  }
+
+	  const { srcStat, destStat } = await stat.checkPaths(src, dest, 'copy', opts);
+
+	  await stat.checkParentPaths(src, srcStat, dest, 'copy');
+
+	  const include = await runFilter(src, dest, opts);
+
+	  if (!include) return
+
+	  // check if the parent of dest exists, and create it if it doesn't exist
+	  const destParent = path.dirname(dest);
+	  const dirExists = await pathExists(destParent);
+	  if (!dirExists) {
+	    await mkdirs(destParent);
+	  }
+
+	  await getStatsAndPerformCopy(destStat, src, dest, opts);
+	}
+
+	async function runFilter (src, dest, opts) {
+	  if (!opts.filter) return true
+	  return opts.filter(src, dest)
+	}
+
+	async function getStatsAndPerformCopy (destStat, src, dest, opts) {
+	  const statFn = opts.dereference ? fs.stat : fs.lstat;
+	  const srcStat = await statFn(src);
+
+	  if (srcStat.isDirectory()) return onDir(srcStat, destStat, src, dest, opts)
+
+	  if (
+	    srcStat.isFile() ||
+	    srcStat.isCharacterDevice() ||
+	    srcStat.isBlockDevice()
+	  ) return onFile(srcStat, destStat, src, dest, opts)
+
+	  if (srcStat.isSymbolicLink()) return onLink(destStat, src, dest, opts)
+	  if (srcStat.isSocket()) throw new Error(`Cannot copy a socket file: ${src}`)
+	  if (srcStat.isFIFO()) throw new Error(`Cannot copy a FIFO pipe: ${src}`)
+	  throw new Error(`Unknown file: ${src}`)
+	}
+
+	async function onFile (srcStat, destStat, src, dest, opts) {
+	  if (!destStat) return copyFile(srcStat, src, dest, opts)
+
+	  if (opts.overwrite) {
+	    await fs.unlink(dest);
+	    return copyFile(srcStat, src, dest, opts)
+	  }
+	  if (opts.errorOnExist) {
+	    throw new Error(`'${dest}' already exists`)
+	  }
+	}
+
+	async function copyFile (srcStat, src, dest, opts) {
+	  await fs.copyFile(src, dest);
+	  if (opts.preserveTimestamps) {
+	    // Make sure the file is writable before setting the timestamp
+	    // otherwise open fails with EPERM when invoked with 'r+'
+	    // (through utimes call)
+	    if (fileIsNotWritable(srcStat.mode)) {
+	      await makeFileWritable(dest, srcStat.mode);
+	    }
+
+	    // Set timestamps and mode correspondingly
+
+	    // Note that The initial srcStat.atime cannot be trusted
+	    // because it is modified by the read(2) system call
+	    // (See https://nodejs.org/api/fs.html#fs_stat_time_values)
+	    const updatedSrcStat = await fs.stat(src);
+	    await utimesMillis(dest, updatedSrcStat.atime, updatedSrcStat.mtime);
+	  }
+
+	  return fs.chmod(dest, srcStat.mode)
+	}
+
+	function fileIsNotWritable (srcMode) {
+	  return (srcMode & 0o200) === 0
+	}
+
+	function makeFileWritable (dest, srcMode) {
+	  return fs.chmod(dest, srcMode | 0o200)
+	}
+
+	async function onDir (srcStat, destStat, src, dest, opts) {
+	  // the dest directory might not exist, create it
+	  if (!destStat) {
+	    await fs.mkdir(dest);
+	  }
+
+	  const promises = [];
+
+	  // loop through the files in the current directory to copy everything
+	  for await (const item of await fs.opendir(src)) {
+	    const srcItem = path.join(src, item.name);
+	    const destItem = path.join(dest, item.name);
+
+	    promises.push(
+	      runFilter(srcItem, destItem, opts).then(include => {
+	        if (include) {
+	          // only copy the item if it matches the filter function
+	          return stat.checkPaths(srcItem, destItem, 'copy', opts).then(({ destStat }) => {
+	            // If the item is a copyable file, `getStatsAndPerformCopy` will copy it
+	            // If the item is a directory, `getStatsAndPerformCopy` will call `onDir` recursively
+	            return getStatsAndPerformCopy(destStat, srcItem, destItem, opts)
+	          })
+	        }
+	      })
+	    );
+	  }
+
+	  await Promise.all(promises);
+
+	  if (!destStat) {
+	    await fs.chmod(dest, srcStat.mode);
+	  }
+	}
+
+	async function onLink (destStat, src, dest, opts) {
+	  let resolvedSrc = await fs.readlink(src);
+	  if (opts.dereference) {
+	    resolvedSrc = path.resolve(process.cwd(), resolvedSrc);
+	  }
+	  if (!destStat) {
+	    return fs.symlink(resolvedSrc, dest)
+	  }
+
+	  let resolvedDest = null;
+	  try {
+	    resolvedDest = await fs.readlink(dest);
+	  } catch (e) {
+	    // dest exists and is a regular file or directory,
+	    // Windows may throw UNKNOWN error. If dest already exists,
+	    // fs throws error anyway, so no need to guard against it here.
+	    if (e.code === 'EINVAL' || e.code === 'UNKNOWN') return fs.symlink(resolvedSrc, dest)
+	    throw e
+	  }
+	  if (opts.dereference) {
+	    resolvedDest = path.resolve(process.cwd(), resolvedDest);
+	  }
+	  if (stat.isSrcSubdir(resolvedSrc, resolvedDest)) {
+	    throw new Error(`Cannot copy '${resolvedSrc}' to a subdirectory of itself, '${resolvedDest}'.`)
+	  }
+
+	  // do not copy if src is a subdir of dest since unlinking
+	  // dest in this case would result in removing src contents
+	  // and therefore a broken symlink would be created.
+	  if (stat.isSrcSubdir(resolvedDest, resolvedSrc)) {
+	    throw new Error(`Cannot overwrite '${resolvedDest}' with '${resolvedSrc}'.`)
+	  }
+
+	  // copy the link
+	  await fs.unlink(dest);
+	  return fs.symlink(resolvedSrc, dest)
+	}
+
+	copy_1 = copy;
+	return copy_1;
+}
+
+var copySync_1;
+var hasRequiredCopySync;
+
+function requireCopySync () {
+	if (hasRequiredCopySync) return copySync_1;
+	hasRequiredCopySync = 1;
+
+	const fs = requireGracefulFs();
+	const path = require$$1$4;
+	const mkdirsSync = /*@__PURE__*/ requireMkdirs().mkdirsSync;
+	const utimesMillisSync = /*@__PURE__*/ requireUtimes().utimesMillisSync;
+	const stat = /*@__PURE__*/ requireStat();
+
+	function copySync (src, dest, opts) {
+	  if (typeof opts === 'function') {
+	    opts = { filter: opts };
+	  }
+
+	  opts = opts || {};
+	  opts.clobber = 'clobber' in opts ? !!opts.clobber : true; // default to true for now
+	  opts.overwrite = 'overwrite' in opts ? !!opts.overwrite : opts.clobber; // overwrite falls back to clobber
+
+	  // Warn about using preserveTimestamps on 32-bit node
+	  if (opts.preserveTimestamps && process.arch === 'ia32') {
+	    process.emitWarning(
+	      'Using the preserveTimestamps option in 32-bit node is not recommended;\n\n' +
+	      '\tsee https://github.com/jprichardson/node-fs-extra/issues/269',
+	      'Warning', 'fs-extra-WARN0002'
+	    );
+	  }
+
+	  const { srcStat, destStat } = stat.checkPathsSync(src, dest, 'copy', opts);
+	  stat.checkParentPathsSync(src, srcStat, dest, 'copy');
+	  if (opts.filter && !opts.filter(src, dest)) return
+	  const destParent = path.dirname(dest);
+	  if (!fs.existsSync(destParent)) mkdirsSync(destParent);
+	  return getStats(destStat, src, dest, opts)
+	}
+
+	function getStats (destStat, src, dest, opts) {
+	  const statSync = opts.dereference ? fs.statSync : fs.lstatSync;
+	  const srcStat = statSync(src);
+
+	  if (srcStat.isDirectory()) return onDir(srcStat, destStat, src, dest, opts)
+	  else if (srcStat.isFile() ||
+	           srcStat.isCharacterDevice() ||
+	           srcStat.isBlockDevice()) return onFile(srcStat, destStat, src, dest, opts)
+	  else if (srcStat.isSymbolicLink()) return onLink(destStat, src, dest, opts)
+	  else if (srcStat.isSocket()) throw new Error(`Cannot copy a socket file: ${src}`)
+	  else if (srcStat.isFIFO()) throw new Error(`Cannot copy a FIFO pipe: ${src}`)
+	  throw new Error(`Unknown file: ${src}`)
+	}
+
+	function onFile (srcStat, destStat, src, dest, opts) {
+	  if (!destStat) return copyFile(srcStat, src, dest, opts)
+	  return mayCopyFile(srcStat, src, dest, opts)
+	}
+
+	function mayCopyFile (srcStat, src, dest, opts) {
+	  if (opts.overwrite) {
+	    fs.unlinkSync(dest);
+	    return copyFile(srcStat, src, dest, opts)
+	  } else if (opts.errorOnExist) {
+	    throw new Error(`'${dest}' already exists`)
+	  }
+	}
+
+	function copyFile (srcStat, src, dest, opts) {
+	  fs.copyFileSync(src, dest);
+	  if (opts.preserveTimestamps) handleTimestamps(srcStat.mode, src, dest);
+	  return setDestMode(dest, srcStat.mode)
+	}
+
+	function handleTimestamps (srcMode, src, dest) {
+	  // Make sure the file is writable before setting the timestamp
+	  // otherwise open fails with EPERM when invoked with 'r+'
+	  // (through utimes call)
+	  if (fileIsNotWritable(srcMode)) makeFileWritable(dest, srcMode);
+	  return setDestTimestamps(src, dest)
+	}
+
+	function fileIsNotWritable (srcMode) {
+	  return (srcMode & 0o200) === 0
+	}
+
+	function makeFileWritable (dest, srcMode) {
+	  return setDestMode(dest, srcMode | 0o200)
+	}
+
+	function setDestMode (dest, srcMode) {
+	  return fs.chmodSync(dest, srcMode)
+	}
+
+	function setDestTimestamps (src, dest) {
+	  // The initial srcStat.atime cannot be trusted
+	  // because it is modified by the read(2) system call
+	  // (See https://nodejs.org/api/fs.html#fs_stat_time_values)
+	  const updatedSrcStat = fs.statSync(src);
+	  return utimesMillisSync(dest, updatedSrcStat.atime, updatedSrcStat.mtime)
+	}
+
+	function onDir (srcStat, destStat, src, dest, opts) {
+	  if (!destStat) return mkDirAndCopy(srcStat.mode, src, dest, opts)
+	  return copyDir(src, dest, opts)
+	}
+
+	function mkDirAndCopy (srcMode, src, dest, opts) {
+	  fs.mkdirSync(dest);
+	  copyDir(src, dest, opts);
+	  return setDestMode(dest, srcMode)
+	}
+
+	function copyDir (src, dest, opts) {
+	  const dir = fs.opendirSync(src);
+
+	  try {
+	    let dirent;
+
+	    while ((dirent = dir.readSync()) !== null) {
+	      copyDirItem(dirent.name, src, dest, opts);
+	    }
+	  } finally {
+	    dir.closeSync();
+	  }
+	}
+
+	function copyDirItem (item, src, dest, opts) {
+	  const srcItem = path.join(src, item);
+	  const destItem = path.join(dest, item);
+	  if (opts.filter && !opts.filter(srcItem, destItem)) return
+	  const { destStat } = stat.checkPathsSync(srcItem, destItem, 'copy', opts);
+	  return getStats(destStat, srcItem, destItem, opts)
+	}
+
+	function onLink (destStat, src, dest, opts) {
+	  let resolvedSrc = fs.readlinkSync(src);
+	  if (opts.dereference) {
+	    resolvedSrc = path.resolve(process.cwd(), resolvedSrc);
+	  }
+
+	  if (!destStat) {
+	    return fs.symlinkSync(resolvedSrc, dest)
+	  } else {
+	    let resolvedDest;
+	    try {
+	      resolvedDest = fs.readlinkSync(dest);
+	    } catch (err) {
+	      // dest exists and is a regular file or directory,
+	      // Windows may throw UNKNOWN error. If dest already exists,
+	      // fs throws error anyway, so no need to guard against it here.
+	      if (err.code === 'EINVAL' || err.code === 'UNKNOWN') return fs.symlinkSync(resolvedSrc, dest)
+	      throw err
+	    }
+	    if (opts.dereference) {
+	      resolvedDest = path.resolve(process.cwd(), resolvedDest);
+	    }
+	    if (stat.isSrcSubdir(resolvedSrc, resolvedDest)) {
+	      throw new Error(`Cannot copy '${resolvedSrc}' to a subdirectory of itself, '${resolvedDest}'.`)
+	    }
+
+	    // prevent copy if src is a subdir of dest since unlinking
+	    // dest in this case would result in removing src contents
+	    // and therefore a broken symlink would be created.
+	    if (stat.isSrcSubdir(resolvedDest, resolvedSrc)) {
+	      throw new Error(`Cannot overwrite '${resolvedDest}' with '${resolvedSrc}'.`)
+	    }
+	    return copyLink(resolvedSrc, dest)
+	  }
+	}
+
+	function copyLink (resolvedSrc, dest) {
+	  fs.unlinkSync(dest);
+	  return fs.symlinkSync(resolvedSrc, dest)
+	}
+
+	copySync_1 = copySync;
+	return copySync_1;
+}
+
+var copy;
+var hasRequiredCopy;
+
+function requireCopy () {
+	if (hasRequiredCopy) return copy;
+	hasRequiredCopy = 1;
+
+	const u = requireUniversalify().fromPromise;
+	copy = {
+	  copy: u(/*@__PURE__*/ requireCopy$1()),
+	  copySync: /*@__PURE__*/ requireCopySync()
+	};
+	return copy;
+}
+
+var remove_1;
+var hasRequiredRemove;
+
+function requireRemove () {
+	if (hasRequiredRemove) return remove_1;
+	hasRequiredRemove = 1;
+
+	const fs = requireGracefulFs();
+	const u = requireUniversalify().fromCallback;
+
+	function remove (path, callback) {
+	  fs.rm(path, { recursive: true, force: true }, callback);
+	}
+
+	function removeSync (path) {
+	  fs.rmSync(path, { recursive: true, force: true });
+	}
+
+	remove_1 = {
+	  remove: u(remove),
+	  removeSync
+	};
+	return remove_1;
+}
+
+var empty;
+var hasRequiredEmpty;
+
+function requireEmpty () {
+	if (hasRequiredEmpty) return empty;
+	hasRequiredEmpty = 1;
+
+	const u = requireUniversalify().fromPromise;
+	const fs = /*@__PURE__*/ requireFs();
+	const path = require$$1$4;
+	const mkdir = /*@__PURE__*/ requireMkdirs();
+	const remove = /*@__PURE__*/ requireRemove();
+
+	const emptyDir = u(async function emptyDir (dir) {
+	  let items;
+	  try {
+	    items = await fs.readdir(dir);
+	  } catch {
+	    return mkdir.mkdirs(dir)
+	  }
+
+	  return Promise.all(items.map(item => remove.remove(path.join(dir, item))))
+	});
+
+	function emptyDirSync (dir) {
+	  let items;
+	  try {
+	    items = fs.readdirSync(dir);
+	  } catch {
+	    return mkdir.mkdirsSync(dir)
+	  }
+
+	  items.forEach(item => {
+	    item = path.join(dir, item);
+	    remove.removeSync(item);
+	  });
+	}
+
+	empty = {
+	  emptyDirSync,
+	  emptydirSync: emptyDirSync,
+	  emptyDir,
+	  emptydir: emptyDir
+	};
+	return empty;
+}
+
+var file;
+var hasRequiredFile;
+
+function requireFile () {
+	if (hasRequiredFile) return file;
+	hasRequiredFile = 1;
+
+	const u = requireUniversalify().fromPromise;
+	const path = require$$1$4;
+	const fs = /*@__PURE__*/ requireFs();
+	const mkdir = /*@__PURE__*/ requireMkdirs();
+
+	async function createFile (file) {
+	  let stats;
+	  try {
+	    stats = await fs.stat(file);
+	  } catch { }
+	  if (stats && stats.isFile()) return
+
+	  const dir = path.dirname(file);
+
+	  let dirStats = null;
+	  try {
+	    dirStats = await fs.stat(dir);
+	  } catch (err) {
+	    // if the directory doesn't exist, make it
+	    if (err.code === 'ENOENT') {
+	      await mkdir.mkdirs(dir);
+	      await fs.writeFile(file, '');
+	      return
+	    } else {
+	      throw err
+	    }
+	  }
+
+	  if (dirStats.isDirectory()) {
+	    await fs.writeFile(file, '');
+	  } else {
+	    // parent is not a directory
+	    // This is just to cause an internal ENOTDIR error to be thrown
+	    await fs.readdir(dir);
+	  }
+	}
+
+	function createFileSync (file) {
+	  let stats;
+	  try {
+	    stats = fs.statSync(file);
+	  } catch { }
+	  if (stats && stats.isFile()) return
+
+	  const dir = path.dirname(file);
+	  try {
+	    if (!fs.statSync(dir).isDirectory()) {
+	      // parent is not a directory
+	      // This is just to cause an internal ENOTDIR error to be thrown
+	      fs.readdirSync(dir);
+	    }
+	  } catch (err) {
+	    // If the stat call above failed because the directory doesn't exist, create it
+	    if (err && err.code === 'ENOENT') mkdir.mkdirsSync(dir);
+	    else throw err
+	  }
+
+	  fs.writeFileSync(file, '');
+	}
+
+	file = {
+	  createFile: u(createFile),
+	  createFileSync
+	};
+	return file;
+}
+
+var link;
+var hasRequiredLink;
+
+function requireLink () {
+	if (hasRequiredLink) return link;
+	hasRequiredLink = 1;
+
+	const u = requireUniversalify().fromPromise;
+	const path = require$$1$4;
+	const fs = /*@__PURE__*/ requireFs();
+	const mkdir = /*@__PURE__*/ requireMkdirs();
+	const { pathExists } = /*@__PURE__*/ requirePathExists();
+	const { areIdentical } = /*@__PURE__*/ requireStat();
+
+	async function createLink (srcpath, dstpath) {
+	  let dstStat;
+	  try {
+	    dstStat = await fs.lstat(dstpath);
+	  } catch {
+	    // ignore error
+	  }
+
+	  let srcStat;
+	  try {
+	    srcStat = await fs.lstat(srcpath);
+	  } catch (err) {
+	    err.message = err.message.replace('lstat', 'ensureLink');
+	    throw err
+	  }
+
+	  if (dstStat && areIdentical(srcStat, dstStat)) return
+
+	  const dir = path.dirname(dstpath);
+
+	  const dirExists = await pathExists(dir);
+
+	  if (!dirExists) {
+	    await mkdir.mkdirs(dir);
+	  }
+
+	  await fs.link(srcpath, dstpath);
+	}
+
+	function createLinkSync (srcpath, dstpath) {
+	  let dstStat;
+	  try {
+	    dstStat = fs.lstatSync(dstpath);
+	  } catch {}
+
+	  try {
+	    const srcStat = fs.lstatSync(srcpath);
+	    if (dstStat && areIdentical(srcStat, dstStat)) return
+	  } catch (err) {
+	    err.message = err.message.replace('lstat', 'ensureLink');
+	    throw err
+	  }
+
+	  const dir = path.dirname(dstpath);
+	  const dirExists = fs.existsSync(dir);
+	  if (dirExists) return fs.linkSync(srcpath, dstpath)
+	  mkdir.mkdirsSync(dir);
+
+	  return fs.linkSync(srcpath, dstpath)
+	}
+
+	link = {
+	  createLink: u(createLink),
+	  createLinkSync
+	};
+	return link;
+}
+
+var symlinkPaths_1;
+var hasRequiredSymlinkPaths;
+
+function requireSymlinkPaths () {
+	if (hasRequiredSymlinkPaths) return symlinkPaths_1;
+	hasRequiredSymlinkPaths = 1;
+
+	const path = require$$1$4;
+	const fs = /*@__PURE__*/ requireFs();
+	const { pathExists } = /*@__PURE__*/ requirePathExists();
+
+	const u = requireUniversalify().fromPromise;
+
+	/**
+	 * Function that returns two types of paths, one relative to symlink, and one
+	 * relative to the current working directory. Checks if path is absolute or
+	 * relative. If the path is relative, this function checks if the path is
+	 * relative to symlink or relative to current working directory. This is an
+	 * initiative to find a smarter `srcpath` to supply when building symlinks.
+	 * This allows you to determine which path to use out of one of three possible
+	 * types of source paths. The first is an absolute path. This is detected by
+	 * `path.isAbsolute()`. When an absolute path is provided, it is checked to
+	 * see if it exists. If it does it's used, if not an error is returned
+	 * (callback)/ thrown (sync). The other two options for `srcpath` are a
+	 * relative url. By default Node's `fs.symlink` works by creating a symlink
+	 * using `dstpath` and expects the `srcpath` to be relative to the newly
+	 * created symlink. If you provide a `srcpath` that does not exist on the file
+	 * system it results in a broken symlink. To minimize this, the function
+	 * checks to see if the 'relative to symlink' source file exists, and if it
+	 * does it will use it. If it does not, it checks if there's a file that
+	 * exists that is relative to the current working directory, if does its used.
+	 * This preserves the expectations of the original fs.symlink spec and adds
+	 * the ability to pass in `relative to current working direcotry` paths.
+	 */
+
+	async function symlinkPaths (srcpath, dstpath) {
+	  if (path.isAbsolute(srcpath)) {
+	    try {
+	      await fs.lstat(srcpath);
+	    } catch (err) {
+	      err.message = err.message.replace('lstat', 'ensureSymlink');
+	      throw err
+	    }
+
+	    return {
+	      toCwd: srcpath,
+	      toDst: srcpath
+	    }
+	  }
+
+	  const dstdir = path.dirname(dstpath);
+	  const relativeToDst = path.join(dstdir, srcpath);
+
+	  const exists = await pathExists(relativeToDst);
+	  if (exists) {
+	    return {
+	      toCwd: relativeToDst,
+	      toDst: srcpath
+	    }
+	  }
+
+	  try {
+	    await fs.lstat(srcpath);
+	  } catch (err) {
+	    err.message = err.message.replace('lstat', 'ensureSymlink');
+	    throw err
+	  }
+
+	  return {
+	    toCwd: srcpath,
+	    toDst: path.relative(dstdir, srcpath)
+	  }
+	}
+
+	function symlinkPathsSync (srcpath, dstpath) {
+	  if (path.isAbsolute(srcpath)) {
+	    const exists = fs.existsSync(srcpath);
+	    if (!exists) throw new Error('absolute srcpath does not exist')
+	    return {
+	      toCwd: srcpath,
+	      toDst: srcpath
+	    }
+	  }
+
+	  const dstdir = path.dirname(dstpath);
+	  const relativeToDst = path.join(dstdir, srcpath);
+	  const exists = fs.existsSync(relativeToDst);
+	  if (exists) {
+	    return {
+	      toCwd: relativeToDst,
+	      toDst: srcpath
+	    }
+	  }
+
+	  const srcExists = fs.existsSync(srcpath);
+	  if (!srcExists) throw new Error('relative srcpath does not exist')
+	  return {
+	    toCwd: srcpath,
+	    toDst: path.relative(dstdir, srcpath)
+	  }
+	}
+
+	symlinkPaths_1 = {
+	  symlinkPaths: u(symlinkPaths),
+	  symlinkPathsSync
+	};
+	return symlinkPaths_1;
+}
+
+var symlinkType_1;
+var hasRequiredSymlinkType;
+
+function requireSymlinkType () {
+	if (hasRequiredSymlinkType) return symlinkType_1;
+	hasRequiredSymlinkType = 1;
+
+	const fs = /*@__PURE__*/ requireFs();
+	const u = requireUniversalify().fromPromise;
+
+	async function symlinkType (srcpath, type) {
+	  if (type) return type
+
+	  let stats;
+	  try {
+	    stats = await fs.lstat(srcpath);
+	  } catch {
+	    return 'file'
+	  }
+
+	  return (stats && stats.isDirectory()) ? 'dir' : 'file'
+	}
+
+	function symlinkTypeSync (srcpath, type) {
+	  if (type) return type
+
+	  let stats;
+	  try {
+	    stats = fs.lstatSync(srcpath);
+	  } catch {
+	    return 'file'
+	  }
+	  return (stats && stats.isDirectory()) ? 'dir' : 'file'
+	}
+
+	symlinkType_1 = {
+	  symlinkType: u(symlinkType),
+	  symlinkTypeSync
+	};
+	return symlinkType_1;
+}
+
+var symlink;
+var hasRequiredSymlink;
+
+function requireSymlink () {
+	if (hasRequiredSymlink) return symlink;
+	hasRequiredSymlink = 1;
+
+	const u = requireUniversalify().fromPromise;
+	const path = require$$1$4;
+	const fs = /*@__PURE__*/ requireFs();
+
+	const { mkdirs, mkdirsSync } = /*@__PURE__*/ requireMkdirs();
+
+	const { symlinkPaths, symlinkPathsSync } = /*@__PURE__*/ requireSymlinkPaths();
+	const { symlinkType, symlinkTypeSync } = /*@__PURE__*/ requireSymlinkType();
+
+	const { pathExists } = /*@__PURE__*/ requirePathExists();
+
+	const { areIdentical } = /*@__PURE__*/ requireStat();
+
+	async function createSymlink (srcpath, dstpath, type) {
+	  let stats;
+	  try {
+	    stats = await fs.lstat(dstpath);
+	  } catch { }
+
+	  if (stats && stats.isSymbolicLink()) {
+	    const [srcStat, dstStat] = await Promise.all([
+	      fs.stat(srcpath),
+	      fs.stat(dstpath)
+	    ]);
+
+	    if (areIdentical(srcStat, dstStat)) return
+	  }
+
+	  const relative = await symlinkPaths(srcpath, dstpath);
+	  srcpath = relative.toDst;
+	  const toType = await symlinkType(relative.toCwd, type);
+	  const dir = path.dirname(dstpath);
+
+	  if (!(await pathExists(dir))) {
+	    await mkdirs(dir);
+	  }
+
+	  return fs.symlink(srcpath, dstpath, toType)
+	}
+
+	function createSymlinkSync (srcpath, dstpath, type) {
+	  let stats;
+	  try {
+	    stats = fs.lstatSync(dstpath);
+	  } catch { }
+	  if (stats && stats.isSymbolicLink()) {
+	    const srcStat = fs.statSync(srcpath);
+	    const dstStat = fs.statSync(dstpath);
+	    if (areIdentical(srcStat, dstStat)) return
+	  }
+
+	  const relative = symlinkPathsSync(srcpath, dstpath);
+	  srcpath = relative.toDst;
+	  type = symlinkTypeSync(relative.toCwd, type);
+	  const dir = path.dirname(dstpath);
+	  const exists = fs.existsSync(dir);
+	  if (exists) return fs.symlinkSync(srcpath, dstpath, type)
+	  mkdirsSync(dir);
+	  return fs.symlinkSync(srcpath, dstpath, type)
+	}
+
+	symlink = {
+	  createSymlink: u(createSymlink),
+	  createSymlinkSync
+	};
+	return symlink;
+}
+
+var ensure;
+var hasRequiredEnsure;
+
+function requireEnsure () {
+	if (hasRequiredEnsure) return ensure;
+	hasRequiredEnsure = 1;
+
+	const { createFile, createFileSync } = /*@__PURE__*/ requireFile();
+	const { createLink, createLinkSync } = /*@__PURE__*/ requireLink();
+	const { createSymlink, createSymlinkSync } = /*@__PURE__*/ requireSymlink();
+
+	ensure = {
+	  // file
+	  createFile,
+	  createFileSync,
+	  ensureFile: createFile,
+	  ensureFileSync: createFileSync,
+	  // link
+	  createLink,
+	  createLinkSync,
+	  ensureLink: createLink,
+	  ensureLinkSync: createLinkSync,
+	  // symlink
+	  createSymlink,
+	  createSymlinkSync,
+	  ensureSymlink: createSymlink,
+	  ensureSymlinkSync: createSymlinkSync
+	};
+	return ensure;
+}
+
+var utils;
+var hasRequiredUtils;
+
+function requireUtils () {
+	if (hasRequiredUtils) return utils;
+	hasRequiredUtils = 1;
+	function stringify (obj, { EOL = '\n', finalEOL = true, replacer = null, spaces } = {}) {
+	  const EOF = finalEOL ? EOL : '';
+	  const str = JSON.stringify(obj, replacer, spaces);
+
+	  return str.replace(/\n/g, EOL) + EOF
+	}
+
+	function stripBom (content) {
+	  // we do this because JSON.parse would convert it to a utf8 string if encoding wasn't specified
+	  if (Buffer.isBuffer(content)) content = content.toString('utf8');
+	  return content.replace(/^\uFEFF/, '')
+	}
+
+	utils = { stringify, stripBom };
+	return utils;
+}
+
+var jsonfile_1;
+var hasRequiredJsonfile$1;
+
+function requireJsonfile$1 () {
+	if (hasRequiredJsonfile$1) return jsonfile_1;
+	hasRequiredJsonfile$1 = 1;
+	let _fs;
+	try {
+	  _fs = requireGracefulFs();
+	} catch (_) {
+	  _fs = require$$0$2;
+	}
+	const universalify = requireUniversalify();
+	const { stringify, stripBom } = requireUtils();
+
+	async function _readFile (file, options = {}) {
+	  if (typeof options === 'string') {
+	    options = { encoding: options };
+	  }
+
+	  const fs = options.fs || _fs;
+
+	  const shouldThrow = 'throws' in options ? options.throws : true;
+
+	  let data = await universalify.fromCallback(fs.readFile)(file, options);
+
+	  data = stripBom(data);
+
+	  let obj;
+	  try {
+	    obj = JSON.parse(data, options ? options.reviver : null);
+	  } catch (err) {
+	    if (shouldThrow) {
+	      err.message = `${file}: ${err.message}`;
+	      throw err
+	    } else {
+	      return null
+	    }
+	  }
+
+	  return obj
+	}
+
+	const readFile = universalify.fromPromise(_readFile);
+
+	function readFileSync (file, options = {}) {
+	  if (typeof options === 'string') {
+	    options = { encoding: options };
+	  }
+
+	  const fs = options.fs || _fs;
+
+	  const shouldThrow = 'throws' in options ? options.throws : true;
+
+	  try {
+	    let content = fs.readFileSync(file, options);
+	    content = stripBom(content);
+	    return JSON.parse(content, options.reviver)
+	  } catch (err) {
+	    if (shouldThrow) {
+	      err.message = `${file}: ${err.message}`;
+	      throw err
+	    } else {
+	      return null
+	    }
+	  }
+	}
+
+	async function _writeFile (file, obj, options = {}) {
+	  const fs = options.fs || _fs;
+
+	  const str = stringify(obj, options);
+
+	  await universalify.fromCallback(fs.writeFile)(file, str, options);
+	}
+
+	const writeFile = universalify.fromPromise(_writeFile);
+
+	function writeFileSync (file, obj, options = {}) {
+	  const fs = options.fs || _fs;
+
+	  const str = stringify(obj, options);
+	  // not sure if fs.writeFileSync returns anything, but just in case
+	  return fs.writeFileSync(file, str, options)
+	}
+
+	const jsonfile = {
+	  readFile,
+	  readFileSync,
+	  writeFile,
+	  writeFileSync
+	};
+
+	jsonfile_1 = jsonfile;
+	return jsonfile_1;
+}
+
+var jsonfile;
+var hasRequiredJsonfile;
+
+function requireJsonfile () {
+	if (hasRequiredJsonfile) return jsonfile;
+	hasRequiredJsonfile = 1;
+
+	const jsonFile = requireJsonfile$1();
+
+	jsonfile = {
+	  // jsonfile exports
+	  readJson: jsonFile.readFile,
+	  readJsonSync: jsonFile.readFileSync,
+	  writeJson: jsonFile.writeFile,
+	  writeJsonSync: jsonFile.writeFileSync
+	};
+	return jsonfile;
+}
+
+var outputFile_1;
+var hasRequiredOutputFile;
+
+function requireOutputFile () {
+	if (hasRequiredOutputFile) return outputFile_1;
+	hasRequiredOutputFile = 1;
+
+	const u = requireUniversalify().fromPromise;
+	const fs = /*@__PURE__*/ requireFs();
+	const path = require$$1$4;
+	const mkdir = /*@__PURE__*/ requireMkdirs();
+	const pathExists = /*@__PURE__*/ requirePathExists().pathExists;
+
+	async function outputFile (file, data, encoding = 'utf-8') {
+	  const dir = path.dirname(file);
+
+	  if (!(await pathExists(dir))) {
+	    await mkdir.mkdirs(dir);
+	  }
+
+	  return fs.writeFile(file, data, encoding)
+	}
+
+	function outputFileSync (file, ...args) {
+	  const dir = path.dirname(file);
+	  if (!fs.existsSync(dir)) {
+	    mkdir.mkdirsSync(dir);
+	  }
+
+	  fs.writeFileSync(file, ...args);
+	}
+
+	outputFile_1 = {
+	  outputFile: u(outputFile),
+	  outputFileSync
+	};
+	return outputFile_1;
+}
+
+var outputJson_1;
+var hasRequiredOutputJson;
+
+function requireOutputJson () {
+	if (hasRequiredOutputJson) return outputJson_1;
+	hasRequiredOutputJson = 1;
+
+	const { stringify } = requireUtils();
+	const { outputFile } = /*@__PURE__*/ requireOutputFile();
+
+	async function outputJson (file, data, options = {}) {
+	  const str = stringify(data, options);
+
+	  await outputFile(file, str, options);
+	}
+
+	outputJson_1 = outputJson;
+	return outputJson_1;
+}
+
+var outputJsonSync_1;
+var hasRequiredOutputJsonSync;
+
+function requireOutputJsonSync () {
+	if (hasRequiredOutputJsonSync) return outputJsonSync_1;
+	hasRequiredOutputJsonSync = 1;
+
+	const { stringify } = requireUtils();
+	const { outputFileSync } = /*@__PURE__*/ requireOutputFile();
+
+	function outputJsonSync (file, data, options) {
+	  const str = stringify(data, options);
+
+	  outputFileSync(file, str, options);
+	}
+
+	outputJsonSync_1 = outputJsonSync;
+	return outputJsonSync_1;
+}
+
+var json;
+var hasRequiredJson;
+
+function requireJson () {
+	if (hasRequiredJson) return json;
+	hasRequiredJson = 1;
+
+	const u = requireUniversalify().fromPromise;
+	const jsonFile = /*@__PURE__*/ requireJsonfile();
+
+	jsonFile.outputJson = u(/*@__PURE__*/ requireOutputJson());
+	jsonFile.outputJsonSync = /*@__PURE__*/ requireOutputJsonSync();
+	// aliases
+	jsonFile.outputJSON = jsonFile.outputJson;
+	jsonFile.outputJSONSync = jsonFile.outputJsonSync;
+	jsonFile.writeJSON = jsonFile.writeJson;
+	jsonFile.writeJSONSync = jsonFile.writeJsonSync;
+	jsonFile.readJSON = jsonFile.readJson;
+	jsonFile.readJSONSync = jsonFile.readJsonSync;
+
+	json = jsonFile;
+	return json;
+}
+
+var move_1;
+var hasRequiredMove$1;
+
+function requireMove$1 () {
+	if (hasRequiredMove$1) return move_1;
+	hasRequiredMove$1 = 1;
+
+	const fs = /*@__PURE__*/ requireFs();
+	const path = require$$1$4;
+	const { copy } = /*@__PURE__*/ requireCopy();
+	const { remove } = /*@__PURE__*/ requireRemove();
+	const { mkdirp } = /*@__PURE__*/ requireMkdirs();
+	const { pathExists } = /*@__PURE__*/ requirePathExists();
+	const stat = /*@__PURE__*/ requireStat();
+
+	async function move (src, dest, opts = {}) {
+	  const overwrite = opts.overwrite || opts.clobber || false;
+
+	  const { srcStat, isChangingCase = false } = await stat.checkPaths(src, dest, 'move', opts);
+
+	  await stat.checkParentPaths(src, srcStat, dest, 'move');
+
+	  // If the parent of dest is not root, make sure it exists before proceeding
+	  const destParent = path.dirname(dest);
+	  const parsedParentPath = path.parse(destParent);
+	  if (parsedParentPath.root !== destParent) {
+	    await mkdirp(destParent);
+	  }
+
+	  return doRename(src, dest, overwrite, isChangingCase)
+	}
+
+	async function doRename (src, dest, overwrite, isChangingCase) {
+	  if (!isChangingCase) {
+	    if (overwrite) {
+	      await remove(dest);
+	    } else if (await pathExists(dest)) {
+	      throw new Error('dest already exists.')
+	    }
+	  }
+
+	  try {
+	    // Try w/ rename first, and try copy + remove if EXDEV
+	    await fs.rename(src, dest);
+	  } catch (err) {
+	    if (err.code !== 'EXDEV') {
+	      throw err
+	    }
+	    await moveAcrossDevice(src, dest, overwrite);
+	  }
+	}
+
+	async function moveAcrossDevice (src, dest, overwrite) {
+	  const opts = {
+	    overwrite,
+	    errorOnExist: true,
+	    preserveTimestamps: true
+	  };
+
+	  await copy(src, dest, opts);
+	  return remove(src)
+	}
+
+	move_1 = move;
+	return move_1;
+}
+
+var moveSync_1;
+var hasRequiredMoveSync;
+
+function requireMoveSync () {
+	if (hasRequiredMoveSync) return moveSync_1;
+	hasRequiredMoveSync = 1;
+
+	const fs = requireGracefulFs();
+	const path = require$$1$4;
+	const copySync = /*@__PURE__*/ requireCopy().copySync;
+	const removeSync = /*@__PURE__*/ requireRemove().removeSync;
+	const mkdirpSync = /*@__PURE__*/ requireMkdirs().mkdirpSync;
+	const stat = /*@__PURE__*/ requireStat();
+
+	function moveSync (src, dest, opts) {
+	  opts = opts || {};
+	  const overwrite = opts.overwrite || opts.clobber || false;
+
+	  const { srcStat, isChangingCase = false } = stat.checkPathsSync(src, dest, 'move', opts);
+	  stat.checkParentPathsSync(src, srcStat, dest, 'move');
+	  if (!isParentRoot(dest)) mkdirpSync(path.dirname(dest));
+	  return doRename(src, dest, overwrite, isChangingCase)
+	}
+
+	function isParentRoot (dest) {
+	  const parent = path.dirname(dest);
+	  const parsedPath = path.parse(parent);
+	  return parsedPath.root === parent
+	}
+
+	function doRename (src, dest, overwrite, isChangingCase) {
+	  if (isChangingCase) return rename(src, dest, overwrite)
+	  if (overwrite) {
+	    removeSync(dest);
+	    return rename(src, dest, overwrite)
+	  }
+	  if (fs.existsSync(dest)) throw new Error('dest already exists.')
+	  return rename(src, dest, overwrite)
+	}
+
+	function rename (src, dest, overwrite) {
+	  try {
+	    fs.renameSync(src, dest);
+	  } catch (err) {
+	    if (err.code !== 'EXDEV') throw err
+	    return moveAcrossDevice(src, dest, overwrite)
+	  }
+	}
+
+	function moveAcrossDevice (src, dest, overwrite) {
+	  const opts = {
+	    overwrite,
+	    errorOnExist: true,
+	    preserveTimestamps: true
+	  };
+	  copySync(src, dest, opts);
+	  return removeSync(src)
+	}
+
+	moveSync_1 = moveSync;
+	return moveSync_1;
+}
+
+var move;
+var hasRequiredMove;
+
+function requireMove () {
+	if (hasRequiredMove) return move;
+	hasRequiredMove = 1;
+
+	const u = requireUniversalify().fromPromise;
+	move = {
+	  move: u(/*@__PURE__*/ requireMove$1()),
+	  moveSync: /*@__PURE__*/ requireMoveSync()
+	};
+	return move;
+}
+
+var lib;
+var hasRequiredLib;
+
+function requireLib () {
+	if (hasRequiredLib) return lib;
+	hasRequiredLib = 1;
+
+	lib = {
+	  // Export promiseified graceful-fs:
+	  .../*@__PURE__*/ requireFs(),
+	  // Export extra methods:
+	  .../*@__PURE__*/ requireCopy(),
+	  .../*@__PURE__*/ requireEmpty(),
+	  .../*@__PURE__*/ requireEnsure(),
+	  .../*@__PURE__*/ requireJson(),
+	  .../*@__PURE__*/ requireMkdirs(),
+	  .../*@__PURE__*/ requireMove(),
+	  .../*@__PURE__*/ requireOutputFile(),
+	  .../*@__PURE__*/ requirePathExists(),
+	  .../*@__PURE__*/ requireRemove()
+	};
+	return lib;
+}
+
+var libExports = /*@__PURE__*/ requireLib();
+
 function generateBot(token) {
     return githubExports.getOctokit(token);
 }
 function generatePRBody() {
-    return ``;
+    const body = [
+        "This pull request was created by gh printer.",
+        "Please merge after confirming the contents."
+    ];
+    return body.join("\n");
 }
 
 var execExports = requireExec();
@@ -31262,17 +34021,29 @@ class Git {
 
 async function run() {
     const outputFile = coreExports.getInput("output-file");
-    const ghToken = coreExports.getInput("github-token");
+    const ghToken = process.env.GITHUB_TOKEN;
+    const contents = coreExports.getInput("contents");
     const branch = githubExports.context.ref.replace("refs/heads/", "");
     const printerBranch = `gh-printer/${branch}`;
     const title = `Print a result of ${branch}`;
     if (!outputFile) {
         coreExports.setFailed(Error("output-file is not set"));
+        return;
     }
     if (!ghToken) {
         coreExports.setFailed(Error("github-token is not set"));
+        return;
     }
+    if (!contents) {
+        coreExports.setFailed(Error("contents is not set"));
+        return;
+    }
+    const filePath = join(process.cwd(), outputFile);
     await Git.setupUser();
+    await Git.checkoutBranch(printerBranch);
+    await libExports.writeFile(filePath, contents);
+    await Git.commitAll(title);
+    await Git.pushAll();
     const octokit = generateBot(ghToken);
     const prs = await octokit.rest.pulls.list({
         ...githubExports.context.repo,
