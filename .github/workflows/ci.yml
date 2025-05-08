@@ -43,6 +43,18 @@ jobs:
         id: npm-ci-test
         run: npm run ci-test
 
+  test-unixtime:
+    name: Generate Update Log
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get Unixtime
+        id: get-unixtime
+        run: echo "UNIX_TIME=$(date +%s)" >> $GITHUB_ENV
+
+    outputs:
+      unixtime: ${{ steps.get-unixtime.outputs.UNIX_TIME }}
+
   test-action:
     name: GitHub Actions Test
 
@@ -51,29 +63,22 @@ jobs:
       contents: write
 
     runs-on: ubuntu-latest
+    needs: test-unixtime
 
     steps:
       - name: Checkout
         id: checkout
         uses: actions/checkout@v4
 
-      - name: Get unixtime
-        id: get-unixtime
-        run: echo "UNIX_TIME=$(date +%s)" >> $GITHUB_ENV
-
-      - name: Get update log
-        id: get-update-log
-        run: echo "UPDATE_LOG='Updated at ${{ steps.get-unixtime.outputs.UNIX_TIME }}.'" >> $GITHUB_ENV
-
       - name: Test Local Action
         id: test-action
         uses: ./
         env:
-          LOG: ${{ steps.get-update-log.outputs.UPDATE_LOG }}
+          LOG: "Updated at ${{ needs.test-unixtime.outputs.unixtime }}."
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           output-file: ./tests/update.txt
-          contents: Updated at ${{ env.LOG }}.
+          contents: ${{ env.LOG }}
 
       - name: Print Output
         id: output
