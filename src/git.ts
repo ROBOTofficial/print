@@ -40,9 +40,12 @@ export class Git {
 		await exec("git", ["reset", `--${mode}`, pathSpec]);
 	}
 
-	public static async commitAll(message: string) {
+	public static async commitAll(message: string, ignoreFiles?: string[]) {
 		try {
 			await exec("git", ["add", "."]);
+			for (const filePath of ignoreFiles ?? []) {
+				await exec("git", ["reset", "HEAD", filePath]);
+			}
 			await exec("git", ["commit", "-m", message]);
 			return true;
 		} catch {
