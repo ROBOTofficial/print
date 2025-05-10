@@ -12,6 +12,7 @@
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
 		"test": "jest",
+		"changesets": "npx @changesets/cli",
 		"actions": "echo \"Created by gh-printer.\""
 	},
 	"devDependencies": {
