@@ -9,12 +9,20 @@ branding:
 inputs:
   github-token:
     description: gh-printer's github token
+    required: true
   output-file:
     description: gh-printer's output file
+    required: true
   input-file:
     description: gh-printer's input file
+    required: false
   contents:
     description: printer contents
+    required: false
+  ignore-input-file:
+    description: ignore gh-printer's input-file
+    default: true
+    required: false
 
 outputs:
   output-file:
