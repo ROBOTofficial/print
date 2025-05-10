@@ -34077,6 +34077,7 @@ async function getInputFileOption() {
 async function run() {
     const outputFile = coreExports.getInput("output-file");
     const ghToken = coreExports.getInput("github-token");
+    const ignoreInputFile = coreExports.getBooleanInput("ignore-input-file");
     const contents = await getContents();
     const branch = Git.branchName;
     const baseBranch = Git.getBranchName(false);
@@ -34102,7 +34103,7 @@ async function run() {
     await Git.setupUser();
     await Git.checkoutBranch(printerBranch);
     await createFile(filePath, contents);
-    if (!(await Git.commitAll(title, [await getInputFileOption()].filter((value) => value !== null)))) {
+    if (!(await Git.commitAll(title, ignoreInputFile ? [await getInputFileOption()].filter((value) => value !== null) : []))) {
         coreExports.info("No changes in this branch");
         return;
     }

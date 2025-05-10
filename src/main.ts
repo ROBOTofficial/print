@@ -27,6 +27,7 @@ async function getInputFileOption() {
 export async function run() {
 	const outputFile = core.getInput("output-file");
 	const ghToken = core.getInput("github-token");
+	const ignoreInputFile = core.getBooleanInput("ignore-input-file");
 	const contents = await getContents();
 
 	const branch = Git.branchName;
@@ -60,7 +61,7 @@ export async function run() {
 	if (
 		!(await Git.commitAll(
 			title,
-			[await getInputFileOption()].filter((value) => value !== null)
+			ignoreInputFile ? [await getInputFileOption()].filter((value) => value !== null) : []
 		))
 	) {
 		core.info("No changes in this branch");
