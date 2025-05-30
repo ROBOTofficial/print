@@ -108,66 +108,13 @@ jobs:
 If you set true for this option, This actions commits the input file.
 
 ```yml
-name: Benchmark
-
-on:
-  pull_request:
-    branches:
-      - main
-
-jobs:
-  benchmark:
-    name: Benchmark
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: .node-version
-          cache: npm
-
-      - name: Install Dependencies
-        run: npm ci
-
-      - name: Benchmark
-        run: echo "$(npm run benchmark)" > tmp.txt
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: benchmark
-          path: tmp.txt
-
-  printer:
-    name: Printer
-
-    permissions:
-      pull-requests: write
-      contents: write
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        id: checkout
-        uses: actions/checkout@v4
-
-      - name: Download Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: benchmark
-
-      - name: Print
-        uses: ROBOTofficial/print@1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          output-file: ./benchmark.txt
-          input-file: ./tmp.txt
-          ignore-input-file: false
+- name: Print
+  uses: ROBOTofficial/print@1
+  with:
+    github-token: ${{ secrets.GITHUB_TOKEN }}
+    output-file: ./benchmark.txt
+    input-file: ./tmp.txt
+    ignore-input-file: false
 ```
 
 ## For contributors
