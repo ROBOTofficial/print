@@ -121,3 +121,30 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           output-file: ./tests/log.txt
           input-file: ./test.txt
+
+  test-action-run:
+    name: GitHub Actions Test
+
+    permissions:
+      pull-requests: write
+      contents: write
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - name: Test Local Action
+        uses: ./
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          output-file: ./tests/run.txt
+          run: npm run test
