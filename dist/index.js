@@ -34058,8 +34058,17 @@ async function createFile(filePath, data, options) {
     }
 }
 
+async function runCommand(command) {
+    const { stdout } = await execExports.getExecOutput(command);
+    return stdout;
+}
+
 async function getContents() {
     try {
+        const run = coreExports.getInput("run");
+        if (run) {
+            return await runCommand(run);
+        }
         const inputFilePath = coreExports.getInput("input-file");
         if (inputFilePath) {
             return await libExports.readFile(join(process.cwd(), inputFilePath), "utf-8");
@@ -34092,7 +34101,7 @@ async function run() {
         return;
     }
     if (!contents) {
-        coreExports.setFailed(Error("please set input-file or contents"));
+        coreExports.setFailed(Error("please set input-file or contents or run"));
         return;
     }
     if (!branch || !baseBranch) {
