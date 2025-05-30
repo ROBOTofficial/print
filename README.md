@@ -4,18 +4,58 @@ Outputs the results of the actions to the specified file.
 
 ## Usage
 
-#### Hello World
+#### Print Benchmark
+
+```yml
+name: Benchmark
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  print:
+    name: print
+
+    permissions:
+      pull-requests: write
+      contents: write
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        id: setup-node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - name: Print
+        uses: ROBOTofficial/print@1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          output-file: ./benchmark.log
+          contents: npm run benchmark
+```
+
+#### Print Arbitrary string
 
 ```yml
 name: Hello World
 
 on:
-  pull_request:
+  push:
     branches:
       - main
 
 jobs:
-  test:
+  print:
     name: Greet
 
     permissions:
@@ -29,6 +69,13 @@ jobs:
         id: checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        id: setup-node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
       - name: Print
         uses: ROBOTofficial/print@1
         with:
@@ -37,13 +84,13 @@ jobs:
           contents: "Hi!!!"
 ```
 
-#### Benchmark
+#### Print Benchmark result with Upload Artifact
 
 ```yml
 name: Benchmark
 
 on:
-  pull_request:
+  push:
     branches:
       - main
 
