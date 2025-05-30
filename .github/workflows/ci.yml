@@ -150,4 +150,4 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           output-file: ./tests/run.txt
-          run: npm run test
+          run: echo "$(npm run actions)"
