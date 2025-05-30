@@ -19,6 +19,9 @@ inputs:
   contents:
     description: printer contents
     required: false
+  run:
+    description: run commands
+    required: false
   ignore-input-file:
     description: ignore gh-printer's input-file
     default: true
