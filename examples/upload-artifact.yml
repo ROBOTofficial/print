@@ -52,7 +52,7 @@ jobs:
           name: benchmark
 
       - name: Print
-        uses: ROBOTofficial/print@1
+        uses: ROBOTofficial/print@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           output-file: ./benchmark.txt
