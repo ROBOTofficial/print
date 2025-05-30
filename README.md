@@ -36,12 +36,15 @@ jobs:
           node-version-file: .node-version
           cache: npm
 
+      - name: Install Dependencies
+        run: npm install
+
       - name: Print
-        uses: ROBOTofficial/print@1
+        uses: ROBOTofficial/print@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           output-file: ./benchmark.log
-          contents: npm run benchmark
+          run: npm run benchmark
 ```
 
 **If you want to see other examples, look [here](./examples/).**
