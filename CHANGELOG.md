@@ -1,5 +1,12 @@
 # gh-printer
 
+## 1.0.4
+
+### Patch Changes
+
+- e44cdcb: Add run input's ci test
+- abfb1bb: Add run input
+
 ## 1.0.3
 
 ### Patch Changes

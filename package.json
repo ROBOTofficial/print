@@ -1,7 +1,7 @@
 {
 	"name": "gh-printer",
 	"description": "Outputs the results of the actions to the specified file.",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"module": "dist/index.js",
 	"type": "module",
 	"private": true,
