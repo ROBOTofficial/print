@@ -6,9 +6,14 @@ import { readFile } from "fs-extra";
 import { generateBot, generatePRBody } from "./bot.js";
 import { Git } from "./git.js";
 import { createFile } from "./file.js";
+import { runCommand } from "./run.js";
 
 async function getContents(): Promise<string | null> {
 	try {
+		const run = core.getInput("run");
+		if (run) {
+			return await runCommand(run);
+		}
 		const inputFilePath = core.getInput("input-file");
 		if (inputFilePath) {
 			return await readFile(join(process.cwd(), inputFilePath), "utf-8");
@@ -44,7 +49,7 @@ export async function run() {
 		return;
 	}
 	if (!contents) {
-		core.setFailed(Error("please set input-file or contents"));
+		core.setFailed(Error("please set input-file or contents or run"));
 		return;
 	}
 

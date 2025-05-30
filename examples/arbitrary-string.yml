@@ -1,0 +1,35 @@
+name: Print Arbitrary string
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  print:
+    name: Greet
+
+    permissions:
+      pull-requests: write
+      contents: write
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        id: setup-node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - name: Print
+        uses: ROBOTofficial/print@1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          output-file: ./test.log
+          contents: "Hi!!!"
