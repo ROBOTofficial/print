@@ -49,7 +49,7 @@ export async function run() {
 		return;
 	}
 	if (!contents) {
-		core.setFailed(Error("please set input-file or contents"));
+		core.setFailed(Error("please set input-file or contents or run"));
 		return;
 	}
 

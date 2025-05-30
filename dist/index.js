@@ -34101,7 +34101,7 @@ async function run() {
         return;
     }
     if (!contents) {
-        coreExports.setFailed(Error("please set input-file or contents"));
+        coreExports.setFailed(Error("please set input-file or contents or run"));
         return;
     }
     if (!branch || !baseBranch) {
