@@ -18,7 +18,7 @@ jobs:
     steps:
       - name: Checkout
         id: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
         id: setup-node
@@ -48,7 +48,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -86,7 +86,7 @@ jobs:
     steps:
       - name: Checkout
         id: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Test Local Action
         uses: ./
@@ -108,7 +108,7 @@ jobs:
     steps:
       - name: Checkout
         id: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Download Artifact
         uses: actions/download-artifact@v4
@@ -134,7 +134,7 @@ jobs:
     steps:
       - name: Checkout
         id: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
